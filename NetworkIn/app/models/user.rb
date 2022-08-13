@@ -1,8 +1,27 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id               :bigint           not null, primary key
+#  email            :string           not null
+#  password_digest  :string           not null
+#  session_token    :string           not null
+#  first_name       :string           not null
+#  last_name        :string           not null
+#  headline         :string           not null
+#  pronouns         :string
+#  location_country :string           not null
+#  location_city    :string           not null
+#  about            :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 class User < ApplicationRecord
     #has_many experiences, education, posts, likes, comments, connections
     
     validates :email, :session_token, presence: true, uniqueness: true
     validates :password_digest, :first_name, :last_name, :headline, :location_country, :location_city, presence: true
+    validates :password, length: { minimum: 6 }, allow_nil: true
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
