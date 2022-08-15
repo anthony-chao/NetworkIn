@@ -5,9 +5,12 @@ class NameForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            email: this.props.location.state.email,
+            password: this.props.location.state.password,
             first_name: '',
             last_name: ''
         }
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -17,14 +20,15 @@ class NameForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state)
-        this.props.history.push('/signup/headline');
+        this.props.history.push({pathname: '/signup/location', state: 
+        { email: this.state.email, password: this.state.password, 
+            first_name: this.state.first_name, last_name: this.state.last_name}});
     }
-
+ 
     render() {
         return (
             <div className="signup-form-name-section">
-                <h1 className="">Make the most of your professional life</h1>
+                <h1 className="signup-form-name-header">Make the most of your professional life</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>First name
                         <input type="text" value={this.state.first_name} onChange={this.handleUpdate('first_name')} />

@@ -10,10 +10,11 @@ const App = () => (
     <div>
         <h1>NetworkIn</h1>
         <HomepageContainer />
-
-        <Route path="/login" component={LoginFormContainer} />
+        <LoginFormContainer />
+        {/* <Route path="/login" component={LoginFormContainer} />
         <Route path="/signup/name" component={SignupNameContainer} />
-        <Route path="/signup" component={SignupEmailContainer} />
+        <Route path="/signup" component={SignupEmailContainer} /> */}
+        <SignupFormContainer/>
     </div>
 );
 

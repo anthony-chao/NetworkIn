@@ -1,12 +1,10 @@
 import React from 'react'
-import { connect } from "react-redux"
-import { signup, login } from "../../actions/session_actions"
-import { receiveSignupEmail } from "../../actions/session_actions"
 
 class EmailForm extends React.Component {
 
     constructor(props) {
         super(props)
+
         this.state = {
             email: '',
             password: ''
@@ -23,14 +21,13 @@ class EmailForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state)
-        this.props.history.push('/signup/name');
+        this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
     }
 
     render() {
         return (
             <div className="signup-form-email-section">
-                <h1 className="">Make the most of your professional life</h1>
+                <h1 className="signup-form-email-header">Make the most of your professional life</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Email
                         <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} />
@@ -49,17 +46,5 @@ class EmailForm extends React.Component {
     }
 
 }
-
-// const mapStateToProps = (state) => ({
-//     user: state.user
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//     signup: (user) => dispatch(signup(user)),
-//     login: (user) => dispatch(login(user)),
-//     receiveSignupEmail: (email) => dispatch(receiveSignupEmail(email))
-// })
-
-// export default connect(mapStateToProps, mapDispatchToProps)(EmailForm)
 
 export default EmailForm;

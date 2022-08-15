@@ -35,29 +35,3 @@ export const signup = (user) => dispatch => {
     .then((user) => dispatch(receiveCurrentUser(user)),
     (errors) => dispatch(receiveSessionErrors(errors)))
 }
-
-// Actions for User Sign Up
-export const RECEIVE_SIGNUP_EMAIL = 'RECIEVE_SIGNUP_EMAIL';
-export const RECEIVE_SIGNUP_NAME = 'RECEIVE_SIGNUP_NAME';
-export const RECEIVE_SIGNUP_LOCATION = 'RECEIVE_SIGNUP_LOCATION';
-export const RECEIVE_SIGNUP_HEADLINE = 'RECEIVE_SIGNUP_HEADLINE';
-
-export const receiveSignupEmail = (email) => ({
-    type: RECEIVE_SIGNUP_EMAIL,
-    email: email
-})
-
-export const receiveSignupName = (name) => ({
-    type: RECEIVE_SIGNUP_NAME,
-    name: name
-})
-
-export const receiveSignupLocation = (location) => ({
-    type: RECEIVE_SIGNUP_LOCATION,
-    location: location
-})
-
-export const receiveSignupHeadline = (headline) => ({
-    type: RECEIVE_SIGNUP_HEADLINE,
-    headline: headline
-})

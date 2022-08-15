@@ -9,6 +9,7 @@ const Homepage = ({ currentUser, logout }) => {
       <Link to="/signup">Sign up!</Link>
     </nav>
   );
+  
   const personalGreeting = () => (
     <hgroup className="header-group">
       <button className="header-button" onClick={logout}>Log Out</button>
