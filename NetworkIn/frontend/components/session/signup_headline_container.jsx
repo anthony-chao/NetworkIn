@@ -1,5 +1,6 @@
 import React from 'react';
 import { signup, login } from '../../actions/session_actions';
+import { connect } from 'react-redux'
 
 class HeadlineForm extends React.Component {
 
@@ -26,9 +27,12 @@ class HeadlineForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({headline: this.state.recent_job.concat(' at ', this.state.recent_company)})
-        const user = signup(this.state);
-        login(user);
+        this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)})
+        console.log(this.state);
+        const user = this.state;
+        this.props.signup(user)
+        console.log(user);
+        this.props.login(user);
     }
 
     render() {
@@ -52,4 +56,12 @@ class HeadlineForm extends React.Component {
 
 }
 
-export default HeadlineForm;
+// export default HeadlineForm;
+
+
+const mapDispatchToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+    signup: (user) => dispatch(signup(user))
+})
+
+export default connect(null, mapDispatchToProps)(HeadlineForm);
