@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LoginFormContainer from '../session/login_form_container'
 
 const Homepage = ({ currentUser, logout }) => {
   const sessionLinks = () => (
@@ -11,8 +12,13 @@ const Homepage = ({ currentUser, logout }) => {
           <Link className="homepage-login-button" to="/login">Sign in</Link>
         </div>
       </nav>
-      <h1 class="homepage-header">Welcome to your professional community</h1>
-      <img src="./app/assets/images/homepage-photo.png" alt="" />
+      <main className="homepage-body-area">
+        <div className="homepage-built-in-login">
+          <h1 className="homepage-header">Welcome to your professional community</h1>
+          < LoginFormContainer />
+        </div>
+      </main>
+      
     </div>
   );
   

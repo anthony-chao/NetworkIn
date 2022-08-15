@@ -27,12 +27,11 @@ class HeadlineForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)})
-        console.log(this.state);
-        const user = this.state;
-        this.props.signup(user)
-        console.log(user);
-        this.props.login(user);
+        this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)}, () => {
+            const user = this.state;
+            this.props.signup(user)
+            this.props.login(user);
+        })
     }
 
     render() {
