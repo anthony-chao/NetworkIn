@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LoginFormContainer from '../session/login_form_container'
+import LoginFormContainer from '../loginpage/login_form_container'
 
 const Homepage = ({ currentUser, logout }) => {
   const sessionLinks = () => (
@@ -17,6 +17,7 @@ const Homepage = ({ currentUser, logout }) => {
           <h1 className="homepage-header">Welcome to your professional community</h1>
           < LoginFormContainer />
         </div>
+        <img className='homepage-logo' src="https://static-exp1.licdn.com/aero-v1/sc/h/dxf91zhqd2z6b0bwg85ktm5s4" alt="homepage-logo" />
       </main>
       
     </div>

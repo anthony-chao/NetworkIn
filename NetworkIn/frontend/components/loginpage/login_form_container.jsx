@@ -26,8 +26,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className='login-form-container'>
-                <h1>Sign in</h1>
-                <h2>Stay updated on your professional world</h2>
+
                 <form onSubmit={this.handleSubmit}>
                     <div class="login-input">
                         <input className="login-input-container" type="text" value={this.state.email} onChange={this.handleUpdate('email')} />
@@ -41,7 +40,6 @@ class LoginForm extends React.Component {
                     <br />
                     <button type="submit" className="login-button">Sign in</button>
                 </form>
-                <p>New to NetworkIn? <Link to='/signup'>Join now</Link> </p>
             </div>
         )
     }
