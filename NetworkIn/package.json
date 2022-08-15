@@ -8,9 +8,14 @@
     "lib": "lib",
     "test": "test"
   },
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --mode=development --watch"
+    "webpack": "webpack --mode=development --watch",
+    "postinstall": "webpack"
   },
   "keywords": [],
   "author": "",

@@ -34,7 +34,6 @@ class EmailForm extends React.Component {
 
     handleEmailErrors() {
         const emailParts = this.state.email.split('@')
-        console.log(emailParts.length)
         if (emailParts.length === 2 && emailParts[0].length > 2 && emailParts[1].length > 2) {
             this.setState({'emailErrors': false})
         }
