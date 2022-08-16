@@ -7,12 +7,17 @@ import LoginPageContainer from './loginpage/loginpage_container'
 
 const App = () => {
     return (
-            <Switch>
-                <AuthRoute exact path="/" component={HomepageContainer} />
-                <AuthRoute exact path="/login" component={LoginPageContainer} />
-                <AuthRoute path="/signup" component={SignupFormContainer} />
-            </Switch>
+        <h1>hellooooo from app</h1>
     );
 };
 
 export default App;
+
+
+
+
+// <Switch>
+{/* <AuthRoute exact path="/" component={HomepageContainer} />
+<AuthRoute exact path="/login" component={LoginPageContainer} />
+<AuthRoute path="/signup" component={SignupFormContainer} />
+</Switch> */}
