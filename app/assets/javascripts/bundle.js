@@ -905,6 +905,9 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
       location_country: '',
       location_city: ''
     };
+    _this.errors = {
+      emailError: ''
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }

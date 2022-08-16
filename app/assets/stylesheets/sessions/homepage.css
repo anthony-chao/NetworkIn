@@ -1,5 +1,4 @@
 .homepage-body-area {
-    /* margin-left: 150px; */
     margin-left: 10vw;
     max-width: 1128px;
     display: flex;
@@ -89,6 +88,7 @@
     justify-content: center;
     background-color: #2977c9;
     margin-top: 20px;
+    margin-left: 10px;
 }
 
 .login-button:hover {
@@ -123,7 +123,8 @@
 }
  
 .demo-login-divider {
-    margin: 16px 0;
+    margin-top: 4px;
+    /* margin: 16px 0; */
     padding: 0 16px;
     display: flex;
     align-items: center;
