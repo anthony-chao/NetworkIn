@@ -7,7 +7,11 @@ import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
 
 const App = () => {
     return (
-        <h1>hellooooo from app</h1>
+        <Switch>
+            <AuthRoute exact path="/" component={HomepageContainer} />
+            <AuthRoute exact path="/login" component={LoginPageContainer} />
+            <AuthRoute path="/signup" component={SignupFormContainer} />
+        </Switch>
     );
 };
 
@@ -16,8 +20,3 @@ export default App;
 
 
 
-// <Switch>
-{/* <AuthRoute exact path="/" component={HomepageContainer} />
-<AuthRoute exact path="/login" component={LoginPageContainer} />
-<AuthRoute path="/signup" component={SignupFormContainer} />
-</Switch> */}
