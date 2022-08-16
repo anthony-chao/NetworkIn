@@ -545,8 +545,12 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       email: '',
       password: '',
-      emailErrors: true,
-      passwordErrors: true
+      emailError: false,
+      passwordError: false
+    };
+    _this.errorMessages = {
+      emailErrorMessage: 'Please enter a valid email address.',
+      passwordErrorMessage: 'Password must be 6 characters or more.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -560,44 +564,57 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "handleErrors",
+    value: function handleErrors() {
+      if (this.state.password.length < 6) {
+        this.setState({
+          passwordError: true
+        });
+      } else {
+        this.setState({
+          passwordError: false
+        });
+      }
+
+      if (this.state.email.includes('@') && this.state.email.split('@')[1].includes('.')) {
+        var emailParts = this.state.email.split('@');
+
+        if (emailParts.length !== 2 && emailParts[1].split('.').length !== 2) {
+          this.setState({
+            emailError: true
+          });
+        } else if (emailParts.length === 2 && emailParts[1].split('.').length === 2 && this.state.password.length >= 6) {
+          this.props.history.push({
+            pathname: '/signup/name',
+            state: {
+              email: this.state.email,
+              password: this.state.password
+            }
+          });
+        } else {
+          this.setState({
+            emailError: false
+          });
+        }
+      } else {
+        this.setState({
+          emailError: true
+        });
+      }
+
+      console.log(this.state);
     } //persist the state and redirect to the next phase of signup (adding name)
 
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      this.handleEmailErrors();
-      this.handlePasswordErrors();
+      e.preventDefault(); // if (this.state.emailError === false && this.state.passwordError === false) { 
+      //     this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
+      // }
 
-      if (this.state.emailErrors === false && this.state.passwordErrors === false) {
-        this.props.history.push({
-          pathname: '/signup/name',
-          state: {
-            email: this.state.email,
-            password: this.state.password
-          }
-        });
-      }
-    }
-  }, {
-    key: "handleEmailErrors",
-    value: function handleEmailErrors() {
-      var emailParts = this.state.email.split('@');
-
-      if (emailParts.length === 2 && emailParts[0].length > 2 && emailParts[1].length > 2) {
-        this.setState({
-          'emailErrors': false
-        });
-      }
-    }
-  }, {
-    key: "handlePasswordErrors",
-    value: function handlePasswordErrors() {
-      if (this.state.password.length >= 6) {
-        this.setState({
-          'passwordErrors': false
-        });
-      }
+      this.handleErrors();
     }
   }, {
     key: "render",
@@ -621,7 +638,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.email,
         onChange: this.handleUpdate('email'),
         required: true
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.emailError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, this.errorMessages.emailErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Password (6 or more characters)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         className: "signup-input-container",
@@ -629,7 +646,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.password,
         onChange: this.handleUpdate('password'),
         required: true
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      }), this.state.passwordError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, this.errorMessages.passwordErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "signup-disclaimer"
       }, "By clicking Agree & Join, you agree to the NetworkIn User Agreement, Privacy Policy, and Cookie Policy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
@@ -904,9 +921,6 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
       last_name: _this.props.location.state.last_name,
       location_country: '',
       location_city: ''
-    };
-    _this.errors = {
-      emailError: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;

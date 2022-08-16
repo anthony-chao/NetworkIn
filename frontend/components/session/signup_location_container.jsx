@@ -12,9 +12,6 @@ class LocationForm extends React.Component {
             location_country: '',
             location_city: ''
         }
-        this.errors = {
-            emailError: ''
-        }
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
