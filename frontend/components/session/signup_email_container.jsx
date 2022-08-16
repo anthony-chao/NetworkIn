@@ -51,21 +51,19 @@ class EmailForm extends React.Component {
                 <nav className="homepage-buttons">
                     <Link to="/">NetworkIn</Link>
                 </nav>
-                <h1 className="signup-form-email-header">Make the most of your professional life</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email
-                        <input type="text" value={this.state.email} onChange={this.handleUpdate('email')} required />
-                    </label>
+                <h1 className="signup-form-header">Make the most of your professional life</h1>
+                <form className="signup-form" onSubmit={this.handleSubmit}>
+                        <label className="signup-labels">Email</label>
+                        <input className="signup-input-container" type="text" value={this.state.email} onChange={this.handleUpdate('email')} required />
                     <br />
-                    <label>Password (6 or more characters)
-                        <input type="password" value={this.state.password} onChange={this.handleUpdate('password')} required />
-                    </label>
+                        <label className="signup-labels">Password (6 or more characters)</label>
+                        <input className="signup-input-container" type="password" value={this.state.password} onChange={this.handleUpdate('password')} required />
                     <br />
-                    <p>By clicking Agree & Join, you agree to the NetworkIn User Agreement, Privacy Policy, and Cookie Policy.</p>
+                    <p className="signup-disclaimer">By clicking Agree & Join, you agree to the NetworkIn User Agreement, Privacy Policy, and Cookie Policy.</p>
                     <br />
                     <button type="submit" className="signup-buttons">Agree & Join</button>
                 </form>
-                <p>Already on NetworkIn? <Link to='/login'>Sign in</Link> </p>
+                <p className="signuppage-login-message">Already on NetworkIn? <Link className="signuppage-login-link" to='/login'>Sign in</Link> </p>
             </div>
         )
     }

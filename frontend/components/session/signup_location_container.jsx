@@ -33,11 +33,11 @@ class LocationForm extends React.Component {
         return (
             <div className="signup-form-location-section">
                 <nav className="homepage-buttons">
-                    <Link to="/">NetworkIn</Link>
+                    <h1>NetworkIn</h1>
                 </nav>
-                <h1 className="signup-form-location-header">Welcome, {this.state.first_name}! </h1>
+                <h1 className="signup-form-header">Welcome, {this.state.first_name}! </h1>
                 <h2 className="signup-form-location-subheader">Let's start your profile, connect to people you know, and engage with them on topics you care about.</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form className="signup-form" onSubmit={this.handleSubmit}>
                     <label>Country
                         <input type="text" value={this.state.location_country} onChange={this.handleUpdate('location_country')} />
                     </label>

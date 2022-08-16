@@ -29,17 +29,15 @@ class NameForm extends React.Component {
         return (
             <div className="signup-form-name-section">
                 <nav className="homepage-buttons">
-                    <Link to="/">NetworkIn</Link>
+                    <h1>NetworkIn</h1>
                 </nav>
-                <h1 className="signup-form-name-header">Make the most of your professional life</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label>First name
-                        <input type="text" value={this.state.first_name} onChange={this.handleUpdate('first_name')} />
-                    </label>
+                <h1 className="signup-form-header">Make the most of your professional life</h1>
+                <form className="signup-form" onSubmit={this.handleSubmit}>
+                    <label className="signup-labels">First name</label>
+                    <input className="signup-input-container" type="text" value={this.state.first_name} onChange={this.handleUpdate('first_name')} />
                     <br />
-                    <label>Last name
-                        <input type="text" value={this.state.last_name} onChange={this.handleUpdate('last_name')} />
-                    </label>
+                    <label className="signup-labels">Last name</label>
+                    <input className="signup-input-container" type="text" value={this.state.last_name} onChange={this.handleUpdate('last_name')} />
                     <br />
                     <button type="submit" className="signup-buttons">Continue</button>
                 </form>

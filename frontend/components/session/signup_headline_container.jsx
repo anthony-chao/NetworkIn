@@ -38,10 +38,10 @@ class HeadlineForm extends React.Component {
         return (
             <div className="signup-form-headline-section">
                 <nav className="homepage-buttons">
-                    <Link to="/">NetworkIn</Link>
+                    <h1>NetworkIn</h1>
                 </nav>
-                <h1 className="signup-form-headline-header">Your profile helps you discover new people and opportunities</h1>
-                <form onSubmit={this.handleSubmit}>
+                <h1 className="signup-form-header">Your profile helps you discover new people and opportunities</h1>
+                <form className="signup-form"onSubmit={this.handleSubmit}>
                     <label>Most recent job title
                         <input type="text" value={this.state.recent_job} onChange={this.handleUpdate('recent_job')} />
                     </label>
