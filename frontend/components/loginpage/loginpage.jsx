@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import LoginFormContainer from './login_form_container'
 
 const LoginPage = ({ currentUser, logout }) => {
+  debugger;
   const sessionLinks = () => (
     <div>
-        
-      <main className="loginpage-body-area">
-        <div className="homepage-built-in-login">
-            <h1>Sign in</h1>
-            <h2>Stay updated on your professional world</h2>
-            < LoginFormContainer />
-        </div>
-        <p>New to NetworkIn? <Link to='/signup'>Join now</Link> </p>
+      <nav className="homepage-buttons">
+        <Link to="/">NetworkIn</Link>
+      </nav>
+      <main className="loginpage-body">
+          <h1 className="loginpage-header">Sign in</h1>
+          <h2 className="loginpage-subheader">Stay updated on your professional world</h2>
+          < LoginFormContainer />
       </main>
+      <p>New to NetworkIn? <Link to='/signup'>Join now</Link> </p>
       
     </div>
   );
@@ -26,6 +27,5 @@ const LoginPage = ({ currentUser, logout }) => {
 
   return currentUser ? personalGreeting() : sessionLinks();
 };
-
 
 export default LoginPage;
