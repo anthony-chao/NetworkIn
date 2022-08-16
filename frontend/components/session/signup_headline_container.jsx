@@ -36,19 +36,17 @@ class HeadlineForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-headline-section">
+            <div className="signup-form-pages signup-form-headline-section">
                 <nav className="homepage-buttons">
                     <h1>NetworkIn</h1>
                 </nav>
-                <h1 className="signup-form-header">Your profile helps you discover new people and opportunities</h1>
-                <form className="signup-form"onSubmit={this.handleSubmit}>
-                    <label>Most recent job title
-                        <input type="text" value={this.state.recent_job} onChange={this.handleUpdate('recent_job')} />
-                    </label>
+                <h1 className="signup-form-header signup-form-headline-header">Your profile helps you discover new people and opportunities</h1>
+                <form className="signup-form" onSubmit={this.handleSubmit}>
+                    <label className="signup-labels">Most recent job title</label>
+                    <input className="signup-input-container" type="text" value={this.state.recent_job} onChange={this.handleUpdate('recent_job')} />
                     <br />
-                    <label>Most recent company
-                        <input type="text" value={this.state.recent_company} onChange={this.handleUpdate('recent_company')} />
-                    </label>
+                    <label className="signup-labels">Most recent company</label>
+                    <input className="signup-input-container" type="text" value={this.state.recent_company} onChange={this.handleUpdate('recent_company')} />
                     <br />
                     <button type="submit" className="signup-buttons">Continue</button>
                 </form>
@@ -59,8 +57,6 @@ class HeadlineForm extends React.Component {
 }
 
 // export default HeadlineForm;
-
-
 const mapDispatchToProps = (dispatch) => ({
     login: (user) => dispatch(login(user)),
     signup: (user) => dispatch(signup(user))

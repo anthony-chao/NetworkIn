@@ -31,20 +31,18 @@ class LocationForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-location-section">
+            <div className="signup-form-pages signup-form-location-section">
                 <nav className="homepage-buttons">
                     <h1>NetworkIn</h1>
                 </nav>
-                <h1 className="signup-form-header">Welcome, {this.state.first_name}! </h1>
+                <h1 className="signup-form-header signup-form-location-header">Welcome, {this.state.first_name}! </h1>
                 <h2 className="signup-form-location-subheader">Let's start your profile, connect to people you know, and engage with them on topics you care about.</h2>
                 <form className="signup-form" onSubmit={this.handleSubmit}>
-                    <label>Country
-                        <input type="text" value={this.state.location_country} onChange={this.handleUpdate('location_country')} />
-                    </label>
+                    <label className="signup-labels">Country </label >
+                    <input className="signup-input-container" type="text" value={this.state.location_country} onChange={this.handleUpdate('location_country')} />        
                     <br />
-                    <label>City
-                        <input type="text" value={this.state.location_city} onChange={this.handleUpdate('location_city')} />
-                    </label>
+                    <label className="signup-labels">City</label>
+                    <input className="signup-input-container" type="text" value={this.state.location_city} onChange={this.handleUpdate('location_city')} />
                     <br />
                     <button type="submit" className="signup-buttons">Next</button>
                 </form>

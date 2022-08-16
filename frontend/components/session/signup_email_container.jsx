@@ -47,7 +47,7 @@ class EmailForm extends React.Component {
 
     render() {
         return (
-            <div className="signup-form-email-section">
+            <div className="signup-form-pages signup-form-email-section">
                 <nav className="homepage-buttons">
                     <Link to="/">NetworkIn</Link>
                 </nav>

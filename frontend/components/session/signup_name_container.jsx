@@ -27,7 +27,7 @@ class NameForm extends React.Component {
  
     render() {
         return (
-            <div className="signup-form-name-section">
+            <div className="signup-form-pages signup-form-name-section">
                 <nav className="homepage-buttons">
                     <h1>NetworkIn</h1>
                 </nav>

@@ -1,7 +1,6 @@
 .signup-form {
     width: 352px;
-    /* -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-    box-shadow: 0 4px 12px rgb(0 0 0 / 15%); */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 24px;
     border-radius: 8px;
     margin: 0 auto;
@@ -73,6 +72,10 @@
     background-color: #2977c9;
 }
 
+.signup-buttons:hover {
+    background-color: #006097;
+}
+
 .signuppage-login-message {
     text-decoration: none;
     text-align: center;
@@ -102,6 +105,31 @@
     margin-top: 10px;
 }
 
-.signup-form-email-section {
-    background-color: #f3f2ef
+.signup-form-pages {
+    background-color: #f3f2ef;
+    height: 100vh;
+}
+
+.signup-form-location-header {
+    font-weight: 500;
+}
+
+.signup-form-location-subheader {
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 24px;
+    padding-right: 16px;
+    padding-left: 16px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgba(0,0,0,0.6);
+    width: 40vw;
+    flex-wrap: wrap;
+}
+
+.signup-form-headline-header {
+    font-weight: 500;
+    width: 40vw;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
