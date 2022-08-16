@@ -139,7 +139,6 @@
     padding-top: 30px;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap;
     display: flex;
     position: relative;
 }
