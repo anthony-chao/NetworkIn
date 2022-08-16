@@ -37,6 +37,9 @@ class HeadlineForm extends React.Component {
     render() {
         return (
             <div className="signup-form-headline-section">
+                <nav className="homepage-buttons">
+                    <Link to="/">NetworkIn</Link>
+                </nav>
                 <h1 className="signup-form-headline-header">Your profile helps you discover new people and opportunities</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Most recent job title

@@ -28,6 +28,9 @@ class NameForm extends React.Component {
     render() {
         return (
             <div className="signup-form-name-section">
+                <nav className="homepage-buttons">
+                    <Link to="/">NetworkIn</Link>
+                </nav>
                 <h1 className="signup-form-name-header">Make the most of your professional life</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>First name

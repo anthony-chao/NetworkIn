@@ -32,6 +32,9 @@ class LocationForm extends React.Component {
     render() {
         return (
             <div className="signup-form-location-section">
+                <nav className="homepage-buttons">
+                    <Link to="/">NetworkIn</Link>
+                </nav>
                 <h1 className="signup-form-location-header">Welcome, {this.state.first_name}! </h1>
                 <h2 className="signup-form-location-subheader">Let's start your profile, connect to people you know, and engage with them on topics you care about.</h2>
                 <form onSubmit={this.handleSubmit}>

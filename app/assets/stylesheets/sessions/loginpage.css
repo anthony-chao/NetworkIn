@@ -1,0 +1,74 @@
+.loginpage-body {
+    width: 352px;
+    -webkit-box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+    padding: 24px;
+    border-radius: 8px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.loginpage-body .login-input-container {
+    width: 100%;
+}
+
+.loginpage-body .login-input {
+    width: 85%;
+}
+
+.loginpage-header {
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: rgba(0,0,0,0.9);
+    padding: 0 0 4px 0;
+}
+
+.loginpage-subheader {
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.9);
+}
+
+.loginpage-body .login-button {
+    font-size: 1.25rem;
+    height: 52px;
+    width: 92%;
+    margin-bottom: -10px;
+}
+
+.loginpage-body .demo-login-divider::before {
+    width: 42%;
+}
+
+.loginpage-body .demo-login-divider::after {
+    width: 42%;
+}
+
+.loginpage-signup-message {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    margin: 32px 0 0;
+}
+
+.loginpage-signup-link {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
+    border: 0;
+    color: #0a66c2;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: inherit;
+    height: 32px;
+    line-height: 32px;
+    overflow: hidden;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 28px;
+}
+
+.loginpage-signup-link:hover {
+    background-color: rgba(0, 128, 255, 0.18);
+}

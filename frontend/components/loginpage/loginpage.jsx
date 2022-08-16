@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import LoginFormContainer from './login_form_container'
 
 const LoginPage = ({ currentUser, logout }) => {
-  debugger;
   const sessionLinks = () => (
     <div>
       <nav className="homepage-buttons">
@@ -14,7 +13,7 @@ const LoginPage = ({ currentUser, logout }) => {
           <h2 className="loginpage-subheader">Stay updated on your professional world</h2>
           < LoginFormContainer />
       </main>
-      <p>New to NetworkIn? <Link to='/signup'>Join now</Link> </p>
+      <p className="loginpage-signup-message">New to NetworkIn? <Link className="loginpage-signup-link" to='/signup'>Join now</Link> </p>
       
     </div>
   );

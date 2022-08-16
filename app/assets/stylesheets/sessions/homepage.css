@@ -1,5 +1,4 @@
 .homepage-body-area {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Fira Sans', Ubuntu, Oxygen, 'Oxygen Sans', Cantarell, 'Droid Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Lucida Grande', Helvetica, Arial, sans-serif;
     margin-left: 150px;
     max-width: 1128px;
     display: flex;
@@ -11,7 +10,8 @@
 .homepage-header {
     font-size: 56px;
     font-weight: 200;
-    color: #8f5849
+    color: #8f5849;
+    margin-bottom: 40px;
 }
 
 .homepage-built-in-login {
@@ -128,7 +128,6 @@
     align-items: center;
     font-weight: 400;
     color: rgba(0,0,0,0.6);
-    padding: 0 16px;
 }
 
 /* Nav Bar */

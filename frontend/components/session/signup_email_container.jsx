@@ -48,6 +48,9 @@ class EmailForm extends React.Component {
     render() {
         return (
             <div className="signup-form-email-section">
+                <nav className="homepage-buttons">
+                    <Link to="/">NetworkIn</Link>
+                </nav>
                 <h1 className="signup-form-email-header">Make the most of your professional life</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Email
