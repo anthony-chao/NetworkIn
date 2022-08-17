@@ -3,8 +3,9 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 24px;
     border-radius: 8px;
-    margin: 0 auto;
+    margin: 0 auto; 
     background: #fff;
+    margin-top: 10vh;
 }
 
 .loginpage-body .login-input-container {

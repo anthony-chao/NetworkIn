@@ -10,10 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.logout = logout
     window.signup = signup
 
-    // const store = configureStore();
-    // window.getState = store.getState;
-    // window.dispatch = store.dispatch;
-
     let store;
     if (window.currentUser) {
     const preloadedState = {

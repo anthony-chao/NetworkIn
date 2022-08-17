@@ -4,13 +4,15 @@ import SignupFormContainer from './session/signup_form_container'
 import HomepageContainer from './homepage/homepage_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import LoginPageContainer from './loginpage/loginpage_container'
+import FeedContainer from './feed/feed_container'
 
 const App = () => {
     return (
         <Switch>
-            <AuthRoute exact path="/" component={HomepageContainer} />
             <AuthRoute exact path="/login" component={LoginPageContainer} />
             <AuthRoute path="/signup" component={SignupFormContainer} />
+            <ProtectedRoute exact path="/feed" component={FeedContainer}/>
+            <AuthRoute exact path="/" component={HomepageContainer} />            
         </Switch>
     );
 };
