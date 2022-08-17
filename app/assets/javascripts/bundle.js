@@ -553,6 +553,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
       passwordErrorMessage: 'Password must be 6 characters or more.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -603,17 +604,11 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
           emailError: true
         });
       }
-
-      console.log(this.state);
-    } //persist the state and redirect to the next phase of signup (adding name)
-
+    }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // if (this.state.emailError === false && this.state.passwordError === false) { 
-      //     this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
-      // }
-
+      e.preventDefault();
       this.handleErrors();
     }
   }, {
@@ -633,20 +628,24 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.emailError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.email,
         onChange: this.handleUpdate('email'),
         required: true
-      }), this.state.emailError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, this.errorMessages.emailErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.emailError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.emailErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Password (6 or more characters)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.passwordError ? 'sign-up-error-input' : ''),
         type: "password",
         value: this.state.password,
         onChange: this.handleUpdate('password'),
         required: true
-      }), this.state.passwordError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, this.errorMessages.passwordErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      }), this.state.passwordError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.passwordErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "signup-disclaimer"
       }, "By clicking Agree & Join, you agree to the NetworkIn User Agreement, Privacy Policy, and Cookie Policy."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
@@ -781,9 +780,16 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
       location_city: _this.props.location.state.location_city,
       recent_job: '',
       recent_company: '',
-      headline: ''
+      headline: '',
+      jobError: '',
+      companyError: ''
+    };
+    _this.errorMessages = {
+      jobErrorMessage: 'Please enter your most recent job title.',
+      companyErrorMessage: 'Please enter the name of your most recent company.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -797,20 +803,50 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
+    key: "handleErrors",
+    value: function handleErrors() {
       var _this3 = this;
 
-      e.preventDefault();
-      this.setState({
-        'headline': this.state.recent_job.concat(' at ', this.state.recent_company)
-      }, function () {
-        var user = _this3.state;
+      if (this.state.recent_job.length === 0) {
+        this.setState({
+          jobError: true
+        });
+      } else if (this.state.recent_job.length !== 0) {
+        this.setState({
+          jobError: false
+        });
+      }
 
-        _this3.props.signup(user);
+      if (this.state.recent_company.length === 0) {
+        this.setState({
+          companyError: true
+        });
+      } else if (this.state.recent_company.length !== 0 && this.state.recent_job.length === 0) {
+        this.setState({
+          companyError: false
+        });
+      } else if (this.state.recent_job.length !== 0 && this.state.recent_company.length !== 0) {
+        this.setState({
+          'headline': this.state.recent_job.concat(' at ', this.state.recent_company)
+        }, function () {
+          var user = _this3.state;
 
-        _this3.props.login(user);
-      });
+          _this3.props.signup(user);
+
+          _this3.props.login(user);
+        });
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault(); // this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)}, () => {
+      //     const user = this.state;
+      //     this.props.signup(user)
+      //     this.props.login(user);
+      // })
+
+      this.handleErrors();
     }
   }, {
     key: "render",
@@ -827,18 +863,22 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Most recent job title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.jobError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.recent_job,
         onChange: this.handleUpdate('recent_job')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.jobError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.jobErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Most recent company"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.companyError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.recent_company,
         onChange: this.handleUpdate('recent_company')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), this.state.companyError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.companyErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
         className: "signup-buttons"
       }, "Continue")));
@@ -920,9 +960,16 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
       first_name: _this.props.location.state.first_name,
       last_name: _this.props.location.state.last_name,
       location_country: '',
-      location_city: ''
+      location_city: '',
+      countryError: false,
+      cityError: false
+    };
+    _this.errorMessages = {
+      countryErrorMessage: 'Please enter a country or region.',
+      cityErrorMessage: 'Please enter a city or district.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -936,20 +983,45 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleErrors",
+    value: function handleErrors() {
+      if (this.state.location_country.length === 0) {
+        this.setState({
+          countryError: true
+        });
+      } else if (this.state.location_country.length !== 0) {
+        this.setState({
+          countryError: false
+        });
+      }
+
+      if (this.state.location_city.length === 0) {
+        this.setState({
+          cityError: true
+        });
+      } else if (this.state.location_city.length !== 0 && this.state.location_country.length === 0) {
+        this.setState({
+          cityError: false
+        });
+      } else if (this.state.location_country.length !== 0 && this.state.location_city.length !== 0) {
+        this.props.history.push({
+          pathname: '/signup/headline',
+          state: {
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            location_country: this.state.location_country,
+            location_city: this.state.location_city
+          }
+        });
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.history.push({
-        pathname: '/signup/headline',
-        state: {
-          email: this.state.email,
-          password: this.state.password,
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          location_country: this.state.location_country,
-          location_city: this.state.location_city
-        }
-      });
+      this.handleErrors();
     }
   }, {
     key: "render",
@@ -967,19 +1039,23 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
-      }, "Country "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+      }, "Country/Region "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: "signup-input-container ".concat(this.state.countryError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.location_country,
         onChange: this.handleUpdate('location_country')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.countryError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.countryErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
-      }, "City"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+      }, "City/District"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: "signup-input-container ".concat(this.state.cityError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.location_city,
         onChange: this.handleUpdate('location_city')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), this.state.cityError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.cityErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
         className: "signup-buttons"
       }, "Next")));
@@ -1047,9 +1123,16 @@ var NameForm = /*#__PURE__*/function (_React$Component) {
       email: _this.props.location.state.email,
       password: _this.props.location.state.password,
       first_name: '',
-      last_name: ''
+      last_name: '',
+      firstNameError: false,
+      lastNameError: false
+    };
+    _this.errorMessages = {
+      firstNameErrorMessage: 'Please enter your first name.',
+      lastNameErrorMessage: 'Please enter your last name.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1063,18 +1146,43 @@ var NameForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleErrors",
+    value: function handleErrors() {
+      if (this.state.first_name.length === 0) {
+        this.setState({
+          firstNameError: true
+        });
+      } else if (this.state.first_name.length !== 0) {
+        this.setState({
+          firstNameError: false
+        });
+      }
+
+      if (this.state.last_name.length === 0) {
+        this.setState({
+          lastNameError: true
+        });
+      } else if (this.state.last_name.length !== 0 && this.state.first_name.length === 0) {
+        this.setState({
+          lastNameError: false
+        });
+      } else if (this.state.first_name.length !== 0 && this.state.last_name.length !== 0) {
+        this.props.history.push({
+          pathname: '/signup/location',
+          state: {
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.first_name,
+            last_name: this.state.last_name
+          }
+        });
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.history.push({
-        pathname: '/signup/location',
-        state: {
-          email: this.state.email,
-          password: this.state.password,
-          first_name: this.state.first_name,
-          last_name: this.state.last_name
-        }
-      });
+      this.handleErrors();
     }
   }, {
     key: "render",
@@ -1091,18 +1199,22 @@ var NameForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "First name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.firstNameError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.first_name,
         onChange: this.handleUpdate('first_name')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.firstNameError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.firstNameErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "signup-labels"
       }, "Last name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "signup-input-container",
+        className: "signup-input-container ".concat(this.state.lastNameError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.last_name,
         onChange: this.handleUpdate('last_name')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), this.state.lastNameError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "sign-up-error-message"
+      }, this.errorMessages.lastNameErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
         className: "signup-buttons"
       }, "Continue")));
