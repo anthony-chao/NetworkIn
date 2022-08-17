@@ -292,7 +292,11 @@ var Homepage = /*#__PURE__*/function (_React$Component) {
         className: "homepage-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/"
-      }, "NetworkIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/PJW6hmHb/Screen-Shot-2022-08-17-at-12-14-20-PM.jpg",
+        alt: ""
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "homepage-signup-login-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         className: "homepage-signup-button",
@@ -480,11 +484,51 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDemoLogin",
     value: function handleDemoLogin(e) {
-      e.preventDefault();
-      this.props.login({
-        email: 'anthony@gmail.com',
-        password: 'abc123'
-      });
+      var _this3 = this;
+
+      e.preventDefault(); // this.props.login({
+      //     email: 'anthony@gmail.com',
+      //     password: 'abc123'
+      // })
+
+      var demo = {
+        email: "anthony@gmail.com",
+        password: "abc123"
+      };
+      var speed = 80;
+
+      if (this.state.email !== demo.email) {
+        var inputemail = setInterval(function () {
+          if (_this3.state.email !== demo.email) {
+            var temp = demo.email.slice(0, _this3.state.email.length + 1);
+
+            _this3.setState({
+              email: temp
+            });
+          } else {
+            clearInterval(inputemail);
+            animatePW();
+          }
+        }, speed);
+      }
+
+      var animatePW = function animatePW() {
+        if (_this3.state.password !== demo.password) {
+          var inputPassword = setInterval(function () {
+            if (_this3.state.password !== demo.password) {
+              var temp = demo.password.slice(0, _this3.state.password.length + 1);
+
+              _this3.setState({
+                password: temp
+              });
+            } else {
+              clearInterval(inputPassword);
+
+              _this3.props.login(demo);
+            }
+          }, speed);
+        }
+      };
     }
   }, {
     key: "render",
@@ -614,7 +658,11 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
         className: "homepage-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/"
-      }, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/PJW6hmHb/Screen-Shot-2022-08-17-at-12-14-20-PM.jpg",
+        alt: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", {
         className: "loginpage-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "loginpage-header"
@@ -836,7 +884,11 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
         className: "homepage-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/"
-      }, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png",
+        alt: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "signup-form-header"
       }, "Make the most of your professional life"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "signup-form",
@@ -1066,7 +1118,13 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-form-pages signup-form-headline-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
         className: "homepage-buttons"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Link, {
+        to: "/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png",
+        alt: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "signup-form-header signup-form-headline-header"
       }, "Your profile helps you discover new people and opportunities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "signup-form",
@@ -1241,7 +1299,13 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-form-pages signup-form-location-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
         className: "homepage-buttons"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Link, {
+        to: "/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png",
+        alt: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "signup-form-header signup-form-location-header"
       }, "Welcome, ", this.state.first_name, "! "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "signup-form-location-subheader"
@@ -1402,7 +1466,13 @@ var NameForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-form-pages signup-form-name-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
         className: "homepage-buttons"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Link, {
+        to: "/"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "logo-image",
+        src: "https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png",
+        alt: ""
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "signup-form-header"
       }, "Make the most of your professional life"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "signup-form",

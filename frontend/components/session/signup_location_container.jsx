@@ -62,7 +62,7 @@ class LocationForm extends React.Component {
         return (
             <div className="signup-form-pages signup-form-location-section">
                 <nav className="homepage-buttons">
-                    <h1>NetworkIn</h1>
+                    <Link to="/"><img className="logo-image" src="https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png" alt="" /></Link>
                 </nav>
                 <h1 className="signup-form-header signup-form-location-header">Welcome, {this.state.first_name}! </h1>
                 <h2 className="signup-form-location-subheader">Let's start your profile, connect to people you know, and engage with them on topics you care about.</h2>

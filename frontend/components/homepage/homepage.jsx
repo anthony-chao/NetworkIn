@@ -11,7 +11,7 @@ class Homepage extends React.Component {
     return (
       <div>
         <nav className="homepage-buttons">
-          <Link to="/">NetworkIn</Link>
+          <Link to="/"><img className="logo-image" src="https://i.postimg.cc/PJW6hmHb/Screen-Shot-2022-08-17-at-12-14-20-PM.jpg" alt="" /></Link>
           <div className="homepage-signup-login-buttons">
             <Link className="homepage-signup-button" to="/signup">Join now</Link>
             <Link className="homepage-login-button" to="/login">Sign in</Link>

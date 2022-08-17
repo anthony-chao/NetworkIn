@@ -58,10 +58,42 @@ class LoginForm extends React.Component {
 
     handleDemoLogin(e) {
         e.preventDefault();
-        this.props.login({
-            email: 'anthony@gmail.com',
-            password: 'abc123'
-        })
+        // this.props.login({
+        //     email: 'anthony@gmail.com',
+        //     password: 'abc123'
+        // })
+        const demo = {
+            email: "anthony@gmail.com",
+            password: "abc123"
+          }
+          const speed = 80;
+      
+         if (this.state.email !== demo.email) {
+                  const inputemail = setInterval(() => {
+                      if (this.state.email !== demo.email) {
+                          const temp = demo.email.slice(0, this.state.email.length + 1);
+                          this.setState({ email: temp })
+                      } else {
+                          clearInterval(inputemail);
+                          animatePW();
+                      }
+                  }, speed)
+              }
+              const animatePW = () => {
+                  if (this.state.password !== demo.password) {
+                      const inputPassword = setInterval(() => {
+                          if (this.state.password !== demo.password) {
+                              const temp = demo.password.slice(0, this.state.password.length + 1);
+                              this.setState({ password: temp });
+                          } else {
+                              clearInterval(inputPassword);
+                              this.props.login(demo);
+                          }
+                      }, speed);
+                  }
+              }
+
+        
     }
 
     render() {
