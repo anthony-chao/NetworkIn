@@ -1,18 +1,20 @@
 import React from 'react';
 import { signup, login } from '../../actions/session_actions';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { receiveSignupJob } from '../../actions/session_actions';
 
 class HeadlineForm extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            email: this.props.location.state.email,
-            password: this.props.location.state.password,
-            first_name: this.props.location.state.first_name,
-            last_name: this.props.location.state.last_name,
-            location_country: this.props.location.state.location_country,
-            location_city: this.props.location.state.location_city,
+            email: this.props.session.email,
+            password: this.props.session.password,
+            first_name: this.props.session.first_name,
+            last_name: this.props.session.last_name,
+            location_country: this.props.session.location_country,
+            location_city: this.props.session.location_city,
             recent_job: '',
             recent_company: '',
             headline: '',
@@ -50,6 +52,7 @@ class HeadlineForm extends React.Component {
         }
         else if (this.state.recent_job.length !== 0 && this.state.recent_company.length !== 0) {
             this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)}, () => {
+                this.props.receiveSignupJob({recent_job: this.state.recent_job, recent_company: this.state.recent_company});
                 const user = this.state;
                 this.props.signup(user)
                 this.props.login(user);
@@ -63,6 +66,7 @@ class HeadlineForm extends React.Component {
     }
 
     render() {
+        
         return (
             <div className="signup-form-pages signup-form-headline-section">
                 <nav className="homepage-buttons">
@@ -87,9 +91,14 @@ class HeadlineForm extends React.Component {
 }
 
 // export default HeadlineForm;
-const mapDispatchToProps = (dispatch) => ({
-    login: (user) => dispatch(login(user)),
-    signup: (user) => dispatch(signup(user))
+const mapStateToProps = (state) => ({
+    session: state.session
 })
 
-export default connect(null, mapDispatchToProps)(HeadlineForm);
+const mapDispatchToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+    signup: (user) => dispatch(signup(user)),
+    receiveSignupJob: (data) => dispatch(receiveSignupJob(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeadlineForm);

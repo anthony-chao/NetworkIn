@@ -1,16 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { receiveEmailandPassword } from '../../actions/session_actions';
+import { connect } from 'react-redux';
 
 class EmailForm extends React.Component {
 
     constructor(props) {
         super(props)
 
-        this.state = {
-            email: '',
-            password: '',
-            emailError: false,
-            passwordError: false
+        if (props.session.email && props.session.password) {
+            this.state = {
+                email: props.session.email,
+                password: props.session.password,
+                emailError: false,
+                passwordError: false
+            }
+        }
+        else {
+            this.state = {
+                email: "",
+                password: "",
+                emailError: false,
+                passwordError: false
+            }
         }
 
         this.errorMessages = {
@@ -41,7 +53,9 @@ class EmailForm extends React.Component {
                 this.setState({emailError: true});
             }
             else if (emailParts.length === 2 && emailParts[1].split('.').length === 2 && this.state.password.length >= 6) {
-                this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
+                // this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
+                this.props.receiveEmailandPassword({email: this.state.email, password: this.state.password});
+                this.props.history.push('/signup/name');
             }
             else {
                 this.setState({emailError: false})
@@ -85,4 +99,13 @@ class EmailForm extends React.Component {
 
 }
 
-export default EmailForm;
+
+const mapStateToProps = (state) => ({
+    session: state.session
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    receiveEmailandPassword: (data) => dispatch(receiveEmailandPassword(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EmailForm);

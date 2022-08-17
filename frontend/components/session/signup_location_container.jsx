@@ -1,18 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { receiveSignupLocation } from '../../actions/session_actions';
 
 class LocationForm extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            email: this.props.location.state.email,
-            password: this.props.location.state.password,
-            first_name: this.props.location.state.first_name,
-            last_name: this.props.location.state.last_name,
-            location_country: '',
-            location_city: '',
-            countryError: false,
-            cityError: false
+
+        if (props.session.location_country && props.session.location_city) {
+            this.state = {
+                location_country: props.session.location_country,
+                location_city: props.session.location_city,
+                firstNameError: false,
+                lastNameError: false
+            }
+        }
+        else {
+            this.state = {
+                location_country: "",
+                location_city: "",
+                firstNameError: false,
+                lastNameError: false
+            }
         }
 
         this.errorMessages = {
@@ -44,11 +54,8 @@ class LocationForm extends React.Component {
             this.setState({cityError: false})
         }
         else if (this.state.location_country.length !== 0 && this.state.location_city.length !== 0) {
-            this.props.history.push({pathname: '/signup/headline', state: 
-                { email: this.state.email, password: this.state.password, 
-                first_name: this.state.first_name, last_name: this.state.last_name,
-                location_country: this.state.location_country, location_city: this.state.location_city
-            }});    
+            this.props.receiveSignupLocation({location_country: this.state.location_country, location_city: this.state.location_city});
+            this.props.history.push('/signup/headline')
         }
         
     }
@@ -64,7 +71,9 @@ class LocationForm extends React.Component {
                 <nav className="homepage-buttons">
                     <Link to="/"><img className="logo-image" src="https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png" alt="" /></Link>
                 </nav>
-                <h1 className="signup-form-header signup-form-location-header">Welcome, {this.state.first_name}! </h1>
+                {console.log(this.props)}
+                {console.log(this.state)}
+                <h1 className="signup-form-header signup-form-location-header">Welcome, {this.props.session.first_name}! </h1>
                 <h2 className="signup-form-location-subheader">Let's start your profile, connect to people you know, and engage with them on topics you care about.</h2>
                 <form className="signup-form" onSubmit={this.handleSubmit}>
                     <label className="signup-labels">Country/Region </label >
@@ -83,4 +92,12 @@ class LocationForm extends React.Component {
 
 }
 
-export default LocationForm;
+const mapStateToProps = (state) => ({
+    session: state.session
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    receiveSignupLocation: (data) => dispatch(receiveSignupLocation(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationForm);

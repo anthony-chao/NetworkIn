@@ -40,3 +40,34 @@ export const signup = (user) => dispatch => {
 export const clearSessionErrors = () => ({
     type: CLEAR_SESSION_ERRORS
 })
+
+
+// actions to retain sign up information in global state
+
+export const RECEIVE_EMAIL_PASSWORD = 'RECEIVE_EMAIL_PASSWORD'
+
+export const receiveEmailandPassword = (data) => ({
+    type: RECEIVE_EMAIL_PASSWORD,
+    data: data
+})
+
+export const RECEIVE_SIGNUP_NAMES = 'RECEIVE_SIGNUP_NAMES'
+
+export const receiveSignupName = (data) => ({
+    type: RECEIVE_SIGNUP_NAMES,
+    data: data
+})
+
+export const RECEIVE_SIGNUP_LOCATION = 'RECEIVE_SIGNUP_LOCATION'
+
+export const receiveSignupLocation = (data) => ({
+    type: RECEIVE_SIGNUP_LOCATION,
+    data: data
+})
+
+export const RECEIVE_SIGNUP_JOB = 'RECEIVE_SIGNUP_JOB'
+
+export const receiveSignupJob = (data) => ({
+    type: RECEIVE_SIGNUP_JOB,
+    data: data
+})

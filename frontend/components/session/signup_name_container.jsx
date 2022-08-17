@@ -1,16 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { receiveSignupName } from '../../actions/session_actions';
 
 class NameForm extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            email: this.props.location.state.email,
-            password: this.props.location.state.password,
-            first_name: '',
-            last_name: '',
-            firstNameError: false,
-            lastNameError: false,
+        if (props.session.first_name && props.session.last_name) {
+            this.state = {
+                first_name: props.session.first_name,
+                last_name: props.session.last_name,
+                firstNameError: false,
+                lastNameError: false
+            }
+        }
+        else {
+            this.state = {
+                first_name: "",
+                last_name: "",
+                firstNameError: false,
+                lastNameError: false
+            }
         }
 
         this.errorMessages = {
@@ -42,9 +53,11 @@ class NameForm extends React.Component {
             this.setState({lastNameError: false})
         }
         else if (this.state.first_name.length !== 0 && this.state.last_name.length !== 0) {
-            this.props.history.push({pathname: '/signup/location', state: 
-                { email: this.state.email, password: this.state.password, 
-                first_name: this.state.first_name, last_name: this.state.last_name}});
+            // this.props.history.push({pathname: '/signup/location', state: 
+            //     { email: this.state.email, password: this.state.password, 
+            //     first_name: this.state.first_name, last_name: this.state.last_name}});
+            this.props.receiveSignupName({first_name: this.state.first_name, last_name: this.state.last_name});
+            this.props.history.push('/signup/location')
         }
         
     }
@@ -78,4 +91,12 @@ class NameForm extends React.Component {
 
 }
 
-export default NameForm;
+const mapStateToProps = (state) => ({
+    session: state.session
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    receiveSignupName: (data) => dispatch(receiveSignupName(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NameForm);
