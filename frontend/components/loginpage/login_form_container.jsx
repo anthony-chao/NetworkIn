@@ -1,26 +1,59 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { login } from '../../actions/session_actions'
+import { clearSessionErrors, login } from '../../actions/session_actions'
 
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            emailEmptyError: '',
+            passwordEmptyError: ''
         }
+    
+        this.errorMessages = {
+            emailEmptyErrorMessage: 'Please enter an email address.',
+            passwordEmptyErrorMessage: 'Please enter a password.'
+        }
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemoLogin = this.handleDemoLogin.bind(this);
+        this.handleErrors = this.handleErrors.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.clearSessionErrors();
     }
 
     handleUpdate(field) {
         return (e) => this.setState({[field]: e.currentTarget.value})
     }
 
+    handleErrors() {
+        if (this.state.email.length === 0) {
+            this.setState({emailEmptyError: true});
+        }
+        else if (this.state.email.length !== 0) {
+            this.setState({emailEmptyError: false})
+        }
+
+        if (this.state.password.length === 0) {
+            this.setState({passwordEmptyError: true})
+        }
+        else if (this.state.password.length !== 0) {
+            this.setState({passwordEmptyError: false})
+        }
+
+        if (this.state.email.length !== 0 && this.state.password.length !== 0) {
+            const user = Object.assign({}, this.state);
+            this.props.login(user);
+        }
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.state);
-        this.props.login(user);
+        this.handleErrors();
     }
 
     handleDemoLogin(e) {
@@ -34,17 +67,19 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className='login-form-container'>
-
+                {this.props.errors.responseJSON ? <p className="auth-login-error">Invalid Email/Password combination. Please try again.</p> : ''}
                 <form onSubmit={this.handleSubmit}>
                     <div className="login-input">
-                        <input className="login-input-container" type="text" value={this.state.email} onChange={this.handleUpdate('email')} />
+                        <input className={`login-input-container ${this.state.emailEmptyError ? 'sign-up-error-input' : ''}`} type="text" value={this.state.email} onChange={this.handleUpdate('email')} />
                         <label className="login-labels">Email </label>
                     </div>
+                    { this.state.emailEmptyError ? <p className="login-error-message">{this.errorMessages.emailEmptyErrorMessage}</p> : null }
                     <br />
                     <div className="login-input">
-                        <input className="login-input-container" type="password" value={this.state.password} onChange={this.handleUpdate('password')} />
+                        <input className={`login-input-container ${this.state.passwordEmptyError ? 'sign-up-error-input' : ''}`} type="password" value={this.state.password} onChange={this.handleUpdate('password')} />
                         <label className="login-labels">Password </label>
                     </div>
+                    { this.state.passwordEmptyError ? <p className="login-error-message">{this.errorMessages.passwordEmptyErrorMessage}</p> : null }
                     <br />
                     <button type="submit" className="login-button">Sign in</button>
                     <br />
@@ -57,10 +92,13 @@ class LoginForm extends React.Component {
 
 }
 
-// export default LoginForm;
-
-const mapDispatchToProps = (dispatch) => ({
-    login: (user) => dispatch(login(user))
+const mapStateToprops = ({errors: {session}}) => ({
+    errors: session
 })
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+const mapDispatchToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+    clearSessionErrors: () => dispatch(clearSessionErrors())
+})
+
+export default connect(mapStateToprops, mapDispatchToProps)(LoginForm);

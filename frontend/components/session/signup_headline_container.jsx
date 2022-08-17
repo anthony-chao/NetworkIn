@@ -54,17 +54,11 @@ class HeadlineForm extends React.Component {
                 this.props.signup(user)
                 this.props.login(user);
             })
-        }
-        
+        }        
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        // this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)}, () => {
-        //     const user = this.state;
-        //     this.props.signup(user)
-        //     this.props.login(user);
-        // })
         this.handleErrors();
     }
 

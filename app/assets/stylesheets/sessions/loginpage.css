@@ -70,3 +70,10 @@
 .loginpage-signup-link:hover {
     background-color: rgba(0, 128, 255, 0.18);
 }
+
+.login-error-message {
+    font-size: 0.9rem;
+    padding-top: 5px;
+    font-weight: 400;
+    color: #d11124;
+}

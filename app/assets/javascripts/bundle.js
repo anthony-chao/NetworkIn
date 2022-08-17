@@ -10,9 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CLEAR_SESSION_ERRORS": () => (/* binding */ CLEAR_SESSION_ERRORS),
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "RECEIVE_SESSION_ERRORS": () => (/* binding */ RECEIVE_SESSION_ERRORS),
+/* harmony export */   "clearSessionErrors": () => (/* binding */ clearSessionErrors),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout),
 /* harmony export */   "signup": () => (/* binding */ signup)
@@ -22,6 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+var CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
 var receiveCurrentUser = function receiveCurrentUser(currentUser) {
   return {
@@ -68,6 +71,11 @@ var signup = function signup(user) {
     }, function (errors) {
       return dispatch(receiveSessionErrors(errors));
     });
+  };
+};
+var clearSessionErrors = function clearSessionErrors() {
+  return {
+    type: CLEAR_SESSION_ERRORS
   };
 };
 
@@ -276,14 +284,26 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      emailEmptyError: '',
+      passwordEmptyError: ''
+    };
+    _this.errorMessages = {
+      emailEmptyErrorMessage: 'Please enter an email address.',
+      passwordEmptyErrorMessage: 'Please enter a password.'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemoLogin = _this.handleDemoLogin.bind(_assertThisInitialized(_this));
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(LoginForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearSessionErrors();
+    }
+  }, {
     key: "handleUpdate",
     value: function handleUpdate(field) {
       var _this2 = this;
@@ -293,11 +313,38 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleErrors",
+    value: function handleErrors() {
+      if (this.state.email.length === 0) {
+        this.setState({
+          emailEmptyError: true
+        });
+      } else if (this.state.email.length !== 0) {
+        this.setState({
+          emailEmptyError: false
+        });
+      }
+
+      if (this.state.password.length === 0) {
+        this.setState({
+          passwordEmptyError: true
+        });
+      } else if (this.state.password.length !== 0) {
+        this.setState({
+          passwordEmptyError: false
+        });
+      }
+
+      if (this.state.email.length !== 0 && this.state.password.length !== 0) {
+        var user = Object.assign({}, this.state);
+        this.props.login(user);
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.login(user);
+      this.handleErrors();
     }
   }, {
     key: "handleDemoLogin",
@@ -313,27 +360,33 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "login-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      }, this.props.errors.responseJSON ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "auth-login-error"
+      }, "Invalid Email/Password combination. Please try again.") : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "login-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "login-input-container",
+        className: "login-input-container ".concat(this.state.emailEmptyError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.email,
         onChange: this.handleUpdate('email')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "login-labels"
-      }, "Email ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Email ")), this.state.emailEmptyError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "login-error-message"
+      }, this.errorMessages.emailEmptyErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "login-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        className: "login-input-container",
+        className: "login-input-container ".concat(this.state.passwordEmptyError ? 'sign-up-error-input' : ''),
         type: "password",
         value: this.state.password,
         onChange: this.handleUpdate('password')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "login-labels"
-      }, "Password ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, "Password ")), this.state.passwordEmptyError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "login-error-message"
+      }, this.errorMessages.passwordEmptyErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         type: "submit",
         className: "login-button"
       }, "Sign in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -347,18 +400,27 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return LoginForm;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component)); // export default LoginForm;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
+var mapStateToprops = function mapStateToprops(_ref) {
+  var session = _ref.errors.session;
+  return {
+    errors: session
+  };
+};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     login: function login(user) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.login)(user));
+    },
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearSessionErrors)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatchToProps)(LoginForm));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToprops, mapDispatchToProps)(LoginForm));
 
 /***/ }),
 
@@ -477,7 +539,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import Test from './test';
+
 
 var Root = function Root(_ref) {
   var store = _ref.store;
@@ -840,12 +902,7 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault(); // this.setState({'headline': this.state.recent_job.concat(' at ', this.state.recent_company)}, () => {
-      //     const user = this.state;
-      //     this.props.signup(user)
-      //     this.props.login(user);
-      // })
-
+      e.preventDefault();
       this.handleErrors();
     }
   }, {
@@ -1325,6 +1382,9 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_SESSION_ERRORS:
       return action.errors;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_SESSION_ERRORS:
+      return [];
 
     default:
       return state;
