@@ -1,1 +1,0 @@
-json.extract! education, :id, :user_id, :title, :company_name, :location, :start_date, :end_date, :description

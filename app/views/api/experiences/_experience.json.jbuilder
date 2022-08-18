@@ -1,0 +1,1 @@
+json.extract! experience, :id, :user_id, :title, :company_name, :location, :start_date, :end_date, :description
