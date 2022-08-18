@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import GlobalNavBar from '../globalnavbar/global_nav_bar';
 
 class Feed extends React.Component {
   constructor(props) {
@@ -9,10 +9,7 @@ class Feed extends React.Component {
   render() {
     return (
       <div>
-        <nav className="logged-in-nav-bar">
-            <Link to="/feed"><img src="" alt="" /></Link>
-            <button onClick={this.props.logout}>Log Out</button>
-        </nav>
+        < GlobalNavBar />
     </div>
     )
   }

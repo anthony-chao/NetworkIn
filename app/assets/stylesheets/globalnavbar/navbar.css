@@ -1,0 +1,10 @@
+.global-nav-bar {
+    background-color: white;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 5vh;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
