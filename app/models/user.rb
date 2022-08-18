@@ -18,6 +18,16 @@
 #
 class User < ApplicationRecord
     #has_many experiences, education, posts, likes, comments, connections
+
+    has_many :experiences,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Experience
+
+    has_many :educations,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Education
     
     validates :email, :session_token, presence: true, uniqueness: true
     validates :password_digest, :first_name, :last_name, :headline, :location_country, :location_city, presence: true
