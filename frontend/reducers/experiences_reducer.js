@@ -1,4 +1,4 @@
-import { RECEIVE_EXPERIENCE, REMOVE_EXPERIENCE,  } from "../actions/experience_actions";
+import { RECEIVE_EXPERIENCE, REMOVE_EXPERIENCE, RECEIVE_EXPERIENCES } from "../actions/experience_actions";
 
 const experiencesReducer = (state = {}, action) => {
 
@@ -6,6 +6,8 @@ const experiencesReducer = (state = {}, action) => {
     let nextState = Object.assign({}, state);
 
     switch (action.type) {
+        case RECEIVE_EXPERIENCES:
+            return action.experiences;
         case RECEIVE_EXPERIENCE:
             nextState[action.experience.id] = action.experience;
             return nextState;

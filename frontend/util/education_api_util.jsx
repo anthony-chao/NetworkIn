@@ -1,3 +1,10 @@
+export const fetchEducations = () => {
+    return $.ajax({
+        url: 'api/educations',
+        method: 'GET'
+    })
+}
+
 export const addEducation = (education) => {
     return $.ajax({
         url: '/api/educations',

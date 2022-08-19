@@ -1,3 +1,10 @@
+export const showAllExperiences = (userId) => {
+    return $.ajax({
+        url: 'api/experiences',
+        method: 'GET'
+    })
+}
+
 export const addExperience = (experience) => {
     return $.ajax({
         url: '/api/experiences',

@@ -1,7 +1,8 @@
 class Api::EducationsController < ApplicationController
 
     def index
-        @educations = Education.where(user_id: params[:user_id])
+        @educations = Education.all
+        render :index
     end
 
     def create

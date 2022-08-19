@@ -1,4 +1,4 @@
-import { RECEIVE_EDUCATION, REMOVE_EDUCATION,  } from "../actions/education_actions";
+import { RECEIVE_EDUCATION, REMOVE_EDUCATION, RECEIVE_EDUCATIONS } from "../actions/education_actions";
 
 const educationsReducer = (state = {}, action) => {
 
@@ -6,6 +6,10 @@ const educationsReducer = (state = {}, action) => {
     let nextState = Object.assign({}, state);
 
     switch (action.type) {
+        case RECEIVE_EDUCATIONS:
+            // return action.educations;
+            Object.assign(nextState, action.educations);
+            return nextState;
         case RECEIVE_EDUCATION:
             nextState[action.education.id] = action.education;
             return nextState;
