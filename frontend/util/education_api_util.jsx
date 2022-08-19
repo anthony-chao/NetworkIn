@@ -1,6 +1,6 @@
-export const fetchEducations = () => {
+export const fetchEducations = (userId) => {
     return $.ajax({
-        url: 'api/educations',
+        url: `api/users/${userId}/educations`,
         method: 'GET'
     })
 }

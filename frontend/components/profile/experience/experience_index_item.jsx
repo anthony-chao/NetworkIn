@@ -1,6 +1,6 @@
 import React from "react";
 
-class EducationIndexItem extends React.Component {
+class ExperienceIndexItem extends React.Component {
 
     constructor(props) {
         super(props)
@@ -8,8 +8,8 @@ class EducationIndexItem extends React.Component {
 
     render() {
         return (
-            <div className="education-index-item">
-                <div className="education-body">
+            <div className="experience-index-item">
+                <div className="experience-body">
                     <div className="education-school">{this.props.education.school}</div>
 
                     { (this.props.education.degree && !this.props.education.field) ? <div className="education-degree">{this.props.education.degree}</div> : null} 
@@ -29,4 +29,4 @@ class EducationIndexItem extends React.Component {
     }
 }
 
-export default EducationIndexItem;
+export default ExperienceIndexItem;

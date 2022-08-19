@@ -1,8 +1,7 @@
 class Api::ExperiencesController < ApplicationController
 
     def index
-        # @experiences = Experience.where(user_id: params[:user_id])
-        @experiences = Experience.all
+        @experiences = Experience.where(user_id: params[:user_id])
         render :index
     end
 

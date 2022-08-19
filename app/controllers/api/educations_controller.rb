@@ -1,7 +1,7 @@
 class Api::EducationsController < ApplicationController
 
     def index
-        @educations = Education.all
+        @educations = Education.where(user_id: params[:user_id])
         render :index
     end
 

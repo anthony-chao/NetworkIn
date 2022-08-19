@@ -1,8 +1,7 @@
 import React from "react";
-import EducationIndexItem from './education/education_index_item'
 import { connect } from "react-redux";
 import GlobalNavBar from '../globalnavbar/global_nav_bar'
-import { fetchEducations } from "../../actions/education_actions";
+import EducationIndexContainer from './education/education_index_container';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -10,8 +9,7 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchEducations();
-        console.log(this.props)
+        //receive user action
     }
 
     render() {
@@ -19,26 +17,14 @@ class Profile extends React.Component {
             <div>
                 < GlobalNavBar />
                 <h1>The profile is showing!</h1>
-                {this.props.currentUser.id}
-                {console.log(this.props.viewedUser[0])}
-                {/* {this.props.viewedUser} */}
-                {/* < EducationIndexItem  /> */}
+                < EducationIndexContainer viewedPageId={this.props.viewedPageId} />
             </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const array = Object.values(state.entities.viewedUser);
-    let newArray = array.filter(element => element.user_id === parseInt(ownProps.match.params.id));
-    return {
-        currentUser: state.entities.users[state.session.id],
-        viewedUser: newArray
-    }
-};
-
-const mapDispatchToProps = (dispatch) => ({
-    fetchEducations: (userId) => dispatch(fetchEducations(userId))
+const mapStateToProps = (state, ownProps) => ({
+    viewedPageId: ownProps.match.params.id
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, null)(Profile);

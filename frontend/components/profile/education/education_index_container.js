@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import { fetchEducations } from '../../../actions/education_actions';
 import EducationIndex from './education_index';
 
-const mapStateToProps = ({ session, entities: { users } }) => ({
-    currentUser: users[session.id]
-});
+const mapStateToProps = (state, ownProps) => {
+    console.log(ownProps)
+    return {
+        currentUser: state.entities.users[state.session.id],
+        viewedUserId: ownProps.viewedPageId,
+        educations: state.entities.viewedUser
+    }
+};
 
-const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(logout())
-});
+const mapDispatchToProps = (dispatch) => ({
+    fetchEducations: (userId) => dispatch(fetchEducations(userId))
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(EducationIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(EducationIndex)
