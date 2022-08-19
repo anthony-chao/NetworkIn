@@ -1,21 +1,21 @@
 import React from "react";
-import EducationIndexItem from "./education_index_item";
+import ExperienceIndexItem from "./experience_index_item";
 
-class EducationIndex extends React.Component {
+class ExperienceIndex extends React.Component {
 
     constructor(props) {
         super(props)
     }
 
     componentDidMount() {
-        this.props.fetchEducations(this.props.viewedUserId)
+        this.props.fetchExperiences(this.props.viewedUserId)
     }
 
     render() {
         return (
             <section>
-                {Object.values(this.props.educations).map((education) => (
-                    <EducationIndexItem key={education.id} education={education}/>
+                {Object.values(this.props.experiences).map((experience) => (
+                    <ExperienceIndexItem key={experience.id} experience={experience}/>
                 ))
                 }
 
@@ -25,4 +25,4 @@ class EducationIndex extends React.Component {
 }
 
 
-export default EducationIndex;
+export default ExperienceIndex;

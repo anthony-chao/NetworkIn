@@ -76,6 +76,81 @@ var deleteEducation = function deleteEducation(education) {
 
 /***/ }),
 
+/***/ "./frontend/actions/experience_actions.js":
+/*!************************************************!*\
+  !*** ./frontend/actions/experience_actions.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_EXPERIENCE": () => (/* binding */ RECEIVE_EXPERIENCE),
+/* harmony export */   "RECEIVE_EXPERIENCES": () => (/* binding */ RECEIVE_EXPERIENCES),
+/* harmony export */   "REMOVE_EXPERIENCE": () => (/* binding */ REMOVE_EXPERIENCE),
+/* harmony export */   "addExperience": () => (/* binding */ addExperience),
+/* harmony export */   "deleteExperience": () => (/* binding */ deleteExperience),
+/* harmony export */   "fetchExperiences": () => (/* binding */ fetchExperiences),
+/* harmony export */   "updateExperience": () => (/* binding */ updateExperience)
+/* harmony export */ });
+/* harmony import */ var _util_experience_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/experience_api_util */ "./frontend/util/experience_api_util.jsx");
+
+var RECEIVE_EXPERIENCES = 'RECEIVE_EXPERIENCES';
+var RECEIVE_EXPERIENCE = 'RECEIVE_EXPERIENCE';
+var REMOVE_EXPERIENCE = 'REMOVE_EXPERIENCE';
+
+var receiveExperiences = function receiveExperiences(experiences) {
+  return {
+    type: RECEIVE_EXPERIENCES,
+    experiences: experiences
+  };
+};
+
+var receiveExperience = function receiveExperience(experience) {
+  return {
+    type: RECEIVE_EXPERIENCE,
+    experience: experience
+  };
+};
+
+var removeExperience = function removeExperience(experience) {
+  return {
+    type: REMOVE_EXPERIENCE,
+    experience: experience
+  };
+};
+
+var fetchExperiences = function fetchExperiences(userId) {
+  return function (dispatch) {
+    return _util_experience_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchExperiences(userId).then(function (experiences) {
+      return dispatch(receiveExperiences(experiences));
+    });
+  };
+};
+var addExperience = function addExperience(experience) {
+  return function (dispatch) {
+    return _util_experience_api_util__WEBPACK_IMPORTED_MODULE_0__.addExperience(experience).then(function (experience) {
+      return dispatch(receiveExperience(experience));
+    });
+  };
+};
+var updateExperience = function updateExperience(experience) {
+  return function (dispatch) {
+    return _util_experience_api_util__WEBPACK_IMPORTED_MODULE_0__.updateExperience(experience).then(function (experience) {
+      return dispatch(receiveExperience(experience));
+    });
+  };
+};
+var deleteExperience = function deleteExperience(experience) {
+  return function (dispatch) {
+    return _util_experience_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteExperience(experience).then(function (experience) {
+      return dispatch(removeExperience(experience));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1118,6 +1193,196 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/profile/experience/experience_index.jsx":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/profile/experience/experience_index.jsx ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _experience_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./experience_index_item */ "./frontend/components/profile/experience/experience_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var ExperienceIndex = /*#__PURE__*/function (_React$Component) {
+  _inherits(ExperienceIndex, _React$Component);
+
+  var _super = _createSuper(ExperienceIndex);
+
+  function ExperienceIndex(props) {
+    _classCallCheck(this, ExperienceIndex);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ExperienceIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchExperiences(this.props.viewedUserId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, Object.values(this.props.experiences).map(function (experience) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: experience.id,
+          experience: experience
+        });
+      }));
+    }
+  }]);
+
+  return ExperienceIndex;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExperienceIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/experience/experience_index_container.js":
+/*!******************************************************************************!*\
+  !*** ./frontend/components/profile/experience/experience_index_container.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_experience_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/experience_actions */ "./frontend/actions/experience_actions.js");
+/* harmony import */ var _experience_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experience_index */ "./frontend/components/profile/experience/experience_index.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    viewedUserId: ownProps.viewedPageId,
+    experiences: state.entities.viewedUserForExp
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchExperiences: function fetchExperiences(userId) {
+      return dispatch((0,_actions_experience_actions__WEBPACK_IMPORTED_MODULE_1__.fetchExperiences)(userId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_experience_index__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/experience/experience_index_item.jsx":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/profile/experience/experience_index_item.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ExperienceIndexItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(ExperienceIndexItem, _React$Component);
+
+  var _super = _createSuper(ExperienceIndexItem);
+
+  function ExperienceIndexItem(props) {
+    _classCallCheck(this, ExperienceIndexItem);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ExperienceIndexItem, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-index-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-title"
+      }, this.props.experience.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-company-name"
+      }, this.props.experience.company_name), this.props.experience.start_date && this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-dates"
+      }, this.props.experience.start_date, " - ", this.props.experience.end_date) : null, this.props.experience.start_date && !this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-dates"
+      }, this.props.experience.start_date) : null, this.props.experience.location ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-location"
+      }, this.props.experience.location) : null, this.props.experience.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "experience-description"
+      }, this.props.experience.description) : null));
+    }
+  }]);
+
+  return ExperienceIndexItem;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExperienceIndexItem);
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profile.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/profile/profile.jsx ***!
@@ -1134,6 +1399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../globalnavbar/global_nav_bar */ "./frontend/components/globalnavbar/global_nav_bar.jsx");
 /* harmony import */ var _education_education_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./education/education_index_container */ "./frontend/components/profile/education/education_index_container.js");
+/* harmony import */ var _experience_experience_index_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./experience/experience_index_container */ "./frontend/components/profile/experience/experience_index_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1161,6 +1427,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Profile = /*#__PURE__*/function (_React$Component) {
   _inherits(Profile, _React$Component);
 
@@ -1179,9 +1446,21 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "The profile is showing!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_education_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "ProfilePage"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "The profile is showing!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-experience"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "experience-header"
+      }, "Experience"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_experience_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         viewedPageId: this.props.viewedPageId
-      }));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-experience"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-header"
+      }, "Education"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_education_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        viewedPageId: this.props.viewedPageId
+      })));
     }
   }]);
 
@@ -2135,13 +2414,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _educations_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./educations_reducer */ "./frontend/reducers/educations_reducer.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _experiences_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experiences_reducer */ "./frontend/reducers/experiences_reducer.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  viewedUser: _educations_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  viewedUser: _educations_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  viewedUserForExp: _experiences_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -2166,6 +2448,47 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/experiences_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/experiences_reducer.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/experience_actions */ "./frontend/actions/experience_actions.js");
+
+
+var experiencesReducer = function experiencesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EXPERIENCES:
+      return action.experiences;
+
+    case _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EXPERIENCE:
+      nextState[action.experience.id] = action.experience;
+      return nextState;
+
+    case _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_EXPERIENCE:
+      delete nextState[action.experience.id];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (experiencesReducer);
 
 /***/ }),
 
@@ -2398,6 +2721,53 @@ var updateEducation = function updateEducation(education) {
 var deleteEducation = function deleteEducation(education) {
   return $.ajax({
     url: "/api/educations/".concat(education.id),
+    method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/experience_api_util.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/util/experience_api_util.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addExperience": () => (/* binding */ addExperience),
+/* harmony export */   "deleteExperience": () => (/* binding */ deleteExperience),
+/* harmony export */   "fetchExperiences": () => (/* binding */ fetchExperiences),
+/* harmony export */   "updateExperience": () => (/* binding */ updateExperience)
+/* harmony export */ });
+var fetchExperiences = function fetchExperiences(userId) {
+  return $.ajax({
+    url: "api/users/".concat(userId, "/experiences"),
+    method: 'GET'
+  });
+};
+var addExperience = function addExperience(experience) {
+  return $.ajax({
+    url: '/api/experiences',
+    method: 'POST',
+    data: {
+      experience: experience
+    }
+  });
+};
+var updateExperience = function updateExperience(experience) {
+  return $.ajax({
+    url: "/api/experiences/".concat(experience.id),
+    method: 'PATCH',
+    data: {
+      experience: experience
+    }
+  });
+};
+var deleteExperience = function deleteExperience(experience) {
+  return $.ajax({
+    url: "/api/experiences/".concat(experience.id),
     method: 'DELETE'
   });
 };

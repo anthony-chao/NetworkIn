@@ -10,19 +10,15 @@ class ExperienceIndexItem extends React.Component {
         return (
             <div className="experience-index-item">
                 <div className="experience-body">
-                    <div className="education-school">{this.props.education.school}</div>
+                    <div className="experience-title">{this.props.experience.title}</div>
+                    <div className="experience-company-name">{this.props.experience.company_name}</div>
 
-                    { (this.props.education.degree && !this.props.education.field) ? <div className="education-degree">{this.props.education.degree}</div> : null} 
-                    { (!this.props.education.degree && this.props.education.field) ? <div className="education-degree">{this.props.education.field}</div> : null} 
-                    { (this.props.education.degree && this.props.education.field) ? <div className="education-degree">{this.props.education.degree}, {this.props.education.field}</div> : null}
+                    { (this.props.experience.start_date && this.props.experience.end_date) ? <div className="experience-dates">{this.props.experience.start_date} - {this.props.experience.end_date}</div> : null}
+                    { (this.props.experience.start_date && !this.props.experience.end_date) ? <div className="experience-dates">{this.props.experience.start_date}</div> : null}
                     
-                    { (this.props.education.start_date && this.props.education.end_date) ? <div className="education-dates">{this.props.education.start_date} - {this.props.education.end_date}</div> : null}
-                    { (this.props.education.start_date && !this.props.education.end_date) ? <div className="education-dates">{this.props.education.start_date}</div> : null}
-                    { (!this.props.education.start_date && this.props.education.end_date) ? <div className="education-dates">{this.props.education.end_date}</div> : null}
-                    
-                    { (this.props.education.activities) ? <div className="education-activities">Activities and societies: {this.props.education.activities}</div> : null} 
+                    { (this.props.experience.location) ? <div className="experience-location">{this.props.experience.location}</div> : null} 
 
-                    { (this.props.education.description) ? <div className="education-description">{this.props.education.description}</div> : null }
+                    { (this.props.experience.description) ? <div className="experience-description">{this.props.experience.description}</div> : null }
                 </div>
             </div>
         )

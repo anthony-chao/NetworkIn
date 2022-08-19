@@ -46133,3 +46133,388 @@ Processing by Api::ExperiencesController#index as JSON
 Completed 200 OK in 266ms (Views: 83.6ms | ActiveRecord: 114.6ms)
 
 
+Started GET "/" for ::1 at 2022-08-19 16:23:53 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (48.2ms)
+Completed 200 OK in 795ms (Views: 780.6ms | ActiveRecord: 14.1ms)
+
+
+Started GET "/api/users/undefined/educations" for ::1 at 2022-08-19 16:23:55 -0400
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"undefined"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (5.3ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 0]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/index.json.jbuilder (10.3ms)
+Completed 200 OK in 46ms (Views: 27.1ms | ActiveRecord: 10.6ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:24:02 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 831ms (Views: 826.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:24:03 -0400
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (12.2ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.6ms)
+  Rendered api/educations/_education.json.jbuilder (0.1ms)
+  Rendered api/educations/index.json.jbuilder (109.4ms)
+Completed 200 OK in 130ms (Views: 97.0ms | ActiveRecord: 31.8ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:42:14 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.8ms)
+  Rendered static_pages/root.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 799ms (Views: 797.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:42:16 -0400
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (3.5ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.6ms)
+  Rendered api/educations/_education.json.jbuilder (0.3ms)
+  Rendered api/educations/index.json.jbuilder (24.7ms)
+Completed 200 OK in 42ms (Views: 38.1ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:42:39 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 759ms (Views: 757.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:42:41 -0400
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (56.3ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.7ms)
+  Rendered api/educations/_education.json.jbuilder (0.2ms)
+  Rendered api/educations/index.json.jbuilder (73.2ms)
+Completed 200 OK in 89ms (Views: 31.3ms | ActiveRecord: 56.3ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:43:01 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (2.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 754ms (Views: 752.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/users/1/experiences" for ::1 at 2022-08-19 16:43:02 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"1"}
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:43:02 -0400
+  Rendering api/experiences/index.json.jbuilder
+  [1m[36mExperience Load (1.7ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/_experience.json.jbuilder (1.5ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.4ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.5ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/index.json.jbuilder (42.8ms)
+Completed 200 OK in 73ms (Views: 70.1ms | ActiveRecord: 1.7ms)
+
+
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (1.9ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.5ms)
+  Rendered api/educations/_education.json.jbuilder (0.2ms)
+  Rendered api/educations/index.json.jbuilder (10.4ms)
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:45:53 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (15.4ms)
+Completed 200 OK in 809ms (Views: 807.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:45:55 -0400
+Started GET "/api/users/1/experiences" for ::1 at 2022-08-19 16:45:55 -0400
+Processing by Api::EducationsController#index as JSON
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Parameters: {"user_id"=>"1"}
+  Rendering api/experiences/index.json.jbuilder
+  [1m[36mExperience Load (11.4ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/_experience.json.jbuilder (1.1ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/index.json.jbuilder (53.8ms)
+  Rendering api/educations/index.json.jbuilder
+Completed 200 OK in 92ms (Views: 79.8ms | ActiveRecord: 11.4ms)
+
+
+  [1m[36mEducation Load (2.0ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.7ms)
+  Rendered api/educations/_education.json.jbuilder (0.3ms)
+  Rendered api/educations/index.json.jbuilder (12.8ms)
+Completed 200 OK in 110ms (Views: 107.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:46:29 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (1.3ms)
+  Rendered static_pages/root.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 116ms (Views: 113.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/api/users/1/experiences" for ::1 at 2022-08-19 16:46:30 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"1"}
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:46:30 -0400
+  Rendering api/experiences/index.json.jbuilder
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mExperience Load (24.8ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  [1m[36mEducation Load (5.4ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/experiences/_experience.json.jbuilder (1.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.5ms)
+  Rendered api/educations/_education.json.jbuilder (0.7ms)
+  Rendered api/educations/_education.json.jbuilder (0.9ms)
+  Rendered api/educations/index.json.jbuilder (24.2ms)
+Completed 200 OK in 48ms (Views: 41.7ms | ActiveRecord: 5.4ms)
+
+
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.4ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.3ms)
+  Rendered api/experiences/index.json.jbuilder (65.8ms)
+Completed 200 OK in 104ms (Views: 78.8ms | ActiveRecord: 24.8ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:47:14 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 1420ms (Views: 1419.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/users/1/experiences" for ::1 at 2022-08-19 16:47:16 -0400
+Started GET "/api/users/1/educations" for ::1 at 2022-08-19 16:47:16 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/experiences/index.json.jbuilder
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"1"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mExperience Load (47.2ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/_experience.json.jbuilder (0.5ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.1ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/_experience.json.jbuilder (0.2ms)
+  Rendered api/experiences/index.json.jbuilder (63.6ms)
+Completed 200 OK in 80ms (Views: 32.8ms | ActiveRecord: 47.2ms)
+
+
+  [1m[36mEducation Load (63.3ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.5ms)
+  Rendered api/educations/_education.json.jbuilder (0.1ms)
+  Rendered api/educations/index.json.jbuilder (72.3ms)
+Completed 200 OK in 89ms (Views: 24.5ms | ActiveRecord: 63.3ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:47:35 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 124ms (Views: 122.0ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/users/2/experiences" for ::1 at 2022-08-19 16:47:36 -0400
+Started GET "/api/users/2/educations" for ::1 at 2022-08-19 16:47:36 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  Rendering api/experiences/index.json.jbuilder
+  [1m[36mExperience Load (11.5ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/index.json.jbuilder (13.0ms)
+Completed 200 OK in 30ms (Views: 17.6ms | ActiveRecord: 11.5ms)
+
+
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"2"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (0.9ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.5ms)
+  Rendered api/educations/index.json.jbuilder (8.7ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:47:40 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 63ms (Views: 62.4ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/users/3/experiences" for ::1 at 2022-08-19 16:47:40 -0400
+Started GET "/api/users/3/educations" for ::1 at 2022-08-19 16:47:40 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  Rendering api/experiences/index.json.jbuilder
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (3.0ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.5ms)
+  Rendered api/educations/index.json.jbuilder (6.6ms)
+Completed 200 OK in 19ms (Views: 15.5ms | ActiveRecord: 3.0ms)
+
+
+  [1m[36mExperience Load (9.1ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/index.json.jbuilder (29.3ms)
+Completed 200 OK in 42ms (Views: 32.2ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:47:43 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.6ms)
+  Rendered static_pages/root.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 54ms (Views: 52.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/users/4/experiences" for ::1 at 2022-08-19 16:47:44 -0400
+Started GET "/api/users/4/educations" for ::1 at 2022-08-19 16:47:44 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"4"}
+  Rendering api/experiences/index.json.jbuilder
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"4"}
+  [1m[36mExperience Load (13.5ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 4]]
+  Rendering api/educations/index.json.jbuilder
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/index.json.jbuilder (18.6ms)
+  [1m[36mEducation Load (0.6ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 4]]
+Completed 200 OK in 36ms (Views: 22.2ms | ActiveRecord: 13.5ms)
+
+
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/index.json.jbuilder (6.8ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2022-08-19 16:47:47 -0400
+Processing by StaticPagesController#root as HTML
+  Rendering static_pages/root.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT $2[0m  [["session_token", "JEyZGsvDjbf9GdCM55Lnbw"], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:11
+  Rendered api/users/_user.json.jbuilder (0.5ms)
+  Rendered static_pages/root.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 54ms (Views: 53.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/users/3/experiences" for ::1 at 2022-08-19 16:47:48 -0400
+Started GET "/api/users/3/educations" for ::1 at 2022-08-19 16:47:48 -0400
+Processing by Api::ExperiencesController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  Rendering api/experiences/index.json.jbuilder
+Processing by Api::EducationsController#index as JSON
+  Parameters: {"user_id"=>"3"}
+  Rendering api/educations/index.json.jbuilder
+  [1m[36mEducation Load (2.4ms)[0m  [1m[34mSELECT "educations".* FROM "educations" WHERE "educations"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/views/api/educations/index.json.jbuilder:1
+  Rendered api/educations/_education.json.jbuilder (0.6ms)
+  Rendered api/educations/index.json.jbuilder (9.9ms)
+Completed 200 OK in 24ms (Views: 20.7ms | ActiveRecord: 2.4ms)
+
+
+  [1m[36mExperience Load (4.0ms)[0m  [1m[34mSELECT "experiences".* FROM "experiences" WHERE "experiences"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/views/api/experiences/index.json.jbuilder:1
+  Rendered api/experiences/index.json.jbuilder (33.8ms)
+Completed 200 OK in 63ms (Views: 58.1ms | ActiveRecord: 4.0ms)
+
+
