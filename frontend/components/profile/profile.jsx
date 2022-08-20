@@ -19,7 +19,7 @@ class Profile extends React.Component {
             <div className="profile-page">
                 < GlobalNavBar />
                 <div className="profile-page-body">
-                    <div className="profile-page-education-experience">
+                    <div className="profile-page-header">
                         < ProfileHeaderContainer viewedPageId={this.props.viewedPageId} />
                     </div>
                     <div className="profile-page-education-experience">

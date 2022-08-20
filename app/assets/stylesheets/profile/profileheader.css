@@ -1,0 +1,33 @@
+.profile-page-header {
+    background-color: white;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding-bottom: 12px;
+    margin-top: 24px;
+    position: relative;
+    border-radius: 0.6rem;;
+    border: 1px solid rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+#profile-cover-image {
+    object-fit: cover;
+    position: relative;
+    width: 100%;
+}
+
+#profile-header-image {
+    height: 150px;
+    width: 150px;
+    margin-top: -110px;
+    border-radius: 50%;
+    z-index: 5;
+    border: 5px solid white;
+    background-color: lightgray
+}
+
+.profile-below-cover-image {
+    display: flex;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}

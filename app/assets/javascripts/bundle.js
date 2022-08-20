@@ -1454,20 +1454,50 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProfileHeader);
 
   function ProfileHeader(props) {
+    var _this;
+
     _classCallCheck(this, ProfileHeader);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      fetchedUser: false
+    };
+    return _this;
   }
 
   _createClass(ProfileHeader, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(this.props.viewedUserId);
+      var _this2 = this;
+
+      this.props.fetchUser(this.props.viewedUserId).then(function () {
+        return _this2.setState({
+          fetchedUser: Object.values(_this2.props.viewedUser)[0]
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, "Hello");
+      if (this.state.fetchedUser) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: "https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq",
+          id: "profile-cover-image"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "profile-below-cover-image"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: "https://archives.bulbagarden.net/media/upload/3/3e/039Jigglypuff.png",
+          id: "profile-header-image"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "profile-header-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+          id: "profile-bold-name"
+        }, this.state.fetchedUser.first_name.concat(" ", this.state.fetchedUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          id: "profile-dark-headline"
+        }, this.state.fetchedUser.headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          id: "profile-grey-location"
+        }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))));
+      }
     }
   }]);
 
@@ -1586,7 +1616,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-page-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-page-education-experience"
+        className: "profile-page-header"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_header_profile_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
         viewedPageId: this.props.viewedPageId
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2644,18 +2674,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 var profilesReducer = function profilesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var nextState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
-      return Object.assign({}, state, _defineProperty({}, action.user.id, action.user));
+      // return Object.assign({}, state, { [action.user.id]: action.user });
+      nextState[action.user.id] = action.user;
+      return nextState;
 
     default:
       return state;
