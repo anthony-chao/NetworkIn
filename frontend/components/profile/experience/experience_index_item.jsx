@@ -7,18 +7,23 @@ class ExperienceIndexItem extends React.Component {
     }
 
     render() {
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return (
-            <div className="experience-index-item">
+            <div className="education-experience-index-item">
                 <div className="experience-body">
-                    <div className="experience-title">{this.props.experience.title}</div>
-                    <div className="experience-company-name">{this.props.experience.company_name}</div>
+                    <div className="education-experience-bolded">{this.props.experience.title}</div>
+                    <div className="education-experience-dark-font">{this.props.experience.company_name}</div>
 
-                    { (this.props.experience.start_date && this.props.experience.end_date) ? <div className="experience-dates">{this.props.experience.start_date} - {this.props.experience.end_date}</div> : null}
-                    { (this.props.experience.start_date && !this.props.experience.end_date) ? <div className="experience-dates">{this.props.experience.start_date}</div> : null}
+                    { (this.props.experience.start_date && this.props.experience.end_date) ? <div className="education-experience-grey-font">
+                        {months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date.getYear()))} - {months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date.getYear()))}
+                        </div> : null}
+                    { (this.props.experience.start_date && !this.props.experience.end_date) ? <div className="education-experience-grey-font">
+                        {months[(new Date(this.props.experience.start_date)).getMonth()].concat(" ", (new Date(this.props.experience.start_date).getFullYear()))}
+                        </div> : null}
                     
-                    { (this.props.experience.location) ? <div className="experience-location">{this.props.experience.location}</div> : null} 
+                    { (this.props.experience.location) ? <div className="education-experience-grey-font">{this.props.experience.location}</div> : null} 
 
-                    { (this.props.experience.description) ? <div className="experience-description">{this.props.experience.description}</div> : null }
+                    { (this.props.experience.description) ? <div className="education-experience-dark-font">{this.props.experience.description}</div> : null }
                 </div>
             </div>
         )

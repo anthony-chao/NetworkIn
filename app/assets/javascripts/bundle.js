@@ -1054,7 +1054,9 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, Object.values(this.props.educations).map(function (education) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, Object.values(this.props.educations).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "experience-education-header"
+      }, "Education") : null, Object.values(this.props.educations).map(function (education) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: education.id,
           education: education
@@ -1161,27 +1163,27 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-index-item"
+        className: "education-experience-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-school"
+        className: "education-experience-bolded"
       }, this.props.education.school), this.props.education.degree && !this.props.education.field ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-degree"
+        className: "education-experience-dark-font"
       }, this.props.education.degree) : null, !this.props.education.degree && this.props.education.field ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-degree"
+        className: "education-experience-dark-font"
       }, this.props.education.field) : null, this.props.education.degree && this.props.education.field ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-degree"
+        className: "education-experience-dark-font"
       }, this.props.education.degree, ", ", this.props.education.field) : null, this.props.education.start_date && this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-dates"
+        className: "education-experience-grey-font"
       }, this.props.education.start_date, " - ", this.props.education.end_date) : null, this.props.education.start_date && !this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-dates"
+        className: "education-experience-grey-font"
       }, this.props.education.start_date) : null, !this.props.education.start_date && this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-dates"
+        className: "education-experience-grey-font"
       }, this.props.education.end_date) : null, this.props.education.activities ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-activities"
+        className: "education-experience-dark-font"
       }, "Activities and societies: ", this.props.education.activities) : null, this.props.education.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-description"
+        className: "education-experience-dark-font"
       }, this.props.education.description) : null));
     }
   }]);
@@ -1251,7 +1253,9 @@ var ExperienceIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, Object.values(this.props.experiences).map(function (experience) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, Object.values(this.props.experiences).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "experience-education-header"
+      }, "Experience") : null, Object.values(this.props.experiences).map(function (experience) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: experience.id,
           experience: experience
@@ -1356,22 +1360,23 @@ var ExperienceIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(ExperienceIndexItem, [{
     key: "render",
     value: function render() {
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-index-item"
+        className: "education-experience-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "experience-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-title"
+        className: "education-experience-bolded"
       }, this.props.experience.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-company-name"
+        className: "education-experience-dark-font"
       }, this.props.experience.company_name), this.props.experience.start_date && this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-dates"
-      }, this.props.experience.start_date, " - ", this.props.experience.end_date) : null, this.props.experience.start_date && !this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-dates"
-      }, this.props.experience.start_date) : null, this.props.experience.location ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-location"
+        className: "education-experience-grey-font"
+      }, months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date.getYear())), " - ", months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date.getYear()))) : null, this.props.experience.start_date && !this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-experience-grey-font"
+      }, months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date).getFullYear())) : null, this.props.experience.location ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-experience-grey-font"
       }, this.props.experience.location) : null, this.props.experience.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "experience-description"
+        className: "education-experience-dark-font"
       }, this.props.experience.description) : null));
     }
   }]);
@@ -1447,20 +1452,18 @@ var Profile = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "ProfilePage"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "The profile is showing!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-page-experience"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-        className: "experience-header"
-      }, "Experience"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_experience_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        className: "profile-page"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-education-experience"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_experience_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         viewedPageId: this.props.viewedPageId
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "profile-page-experience"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-        className: "education-header"
-      }, "Education"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_education_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        className: "profile-page-education-experience"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_education_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         viewedPageId: this.props.viewedPageId
-      })));
+      }))));
     }
   }]);
 

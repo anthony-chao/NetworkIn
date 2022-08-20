@@ -8,21 +8,21 @@ class EducationIndexItem extends React.Component {
 
     render() {
         return (
-            <div className="education-index-item">
+            <div className="education-experience-index-item">
                 <div className="education-body">
-                    <div className="education-school">{this.props.education.school}</div>
+                    <div className="education-experience-bolded">{this.props.education.school}</div>
 
-                    { (this.props.education.degree && !this.props.education.field) ? <div className="education-degree">{this.props.education.degree}</div> : null} 
-                    { (!this.props.education.degree && this.props.education.field) ? <div className="education-degree">{this.props.education.field}</div> : null} 
-                    { (this.props.education.degree && this.props.education.field) ? <div className="education-degree">{this.props.education.degree}, {this.props.education.field}</div> : null}
+                    { (this.props.education.degree && !this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}</div> : null} 
+                    { (!this.props.education.degree && this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.field}</div> : null} 
+                    { (this.props.education.degree && this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}, {this.props.education.field}</div> : null}
                     
-                    { (this.props.education.start_date && this.props.education.end_date) ? <div className="education-dates">{this.props.education.start_date} - {this.props.education.end_date}</div> : null}
-                    { (this.props.education.start_date && !this.props.education.end_date) ? <div className="education-dates">{this.props.education.start_date}</div> : null}
-                    { (!this.props.education.start_date && this.props.education.end_date) ? <div className="education-dates">{this.props.education.end_date}</div> : null}
+                    { (this.props.education.start_date && this.props.education.end_date) ? <div className="education-experience-grey-font">{this.props.education.start_date} - {this.props.education.end_date}</div> : null}
+                    { (this.props.education.start_date && !this.props.education.end_date) ? <div className="education-experience-grey-font">{this.props.education.start_date}</div> : null}
+                    { (!this.props.education.start_date && this.props.education.end_date) ? <div className="education-experience-grey-font">{this.props.education.end_date}</div> : null}
                     
-                    { (this.props.education.activities) ? <div className="education-activities">Activities and societies: {this.props.education.activities}</div> : null} 
+                    { (this.props.education.activities) ? <div className="education-experience-dark-font">Activities and societies: {this.props.education.activities}</div> : null} 
 
-                    { (this.props.education.description) ? <div className="education-description">{this.props.education.description}</div> : null }
+                    { (this.props.education.description) ? <div className="education-experience-dark-font">{this.props.education.description}</div> : null }
                 </div>
             </div>
         )

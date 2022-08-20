@@ -15,16 +15,15 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div className="ProfilePage">
+            <div className="profile-page">
                 < GlobalNavBar />
-                <h1>The profile is showing!</h1>
-                <div className="profile-page-experience">
-                    <label className="experience-header">Experience</label>
-                    < ExperienceIndexContainer viewedPageId={this.props.viewedPageId} />
-                </div>
-                <div className="profile-page-experience">
-                    <label className="education-header">Education</label>
-                    < EducationIndexContainer viewedPageId={this.props.viewedPageId} />
+                <div className="profile-page-body">
+                    <div className="profile-page-education-experience">
+                        < ExperienceIndexContainer viewedPageId={this.props.viewedPageId} />
+                    </div>
+                    <div className="profile-page-education-experience">
+                        < EducationIndexContainer viewedPageId={this.props.viewedPageId} />
+                    </div>
                 </div>
             </div>
         )

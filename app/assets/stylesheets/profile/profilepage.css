@@ -1,0 +1,60 @@
+.profile-page {
+    background-color: #f3f2ef;
+    height: 100vh;
+}
+
+.profile-page-body {
+    margin-left: 11vw;
+    width: 54vw;
+    height: 80vh;
+    display: block;
+}
+
+.profile-page-education-experience {
+    background-color: white;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding-bottom: 12px;
+    margin-top: 8px;
+    position: relative;
+    border-radius: 0.8rem;;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding-left: 1.5vw;
+    padding-right: 1.5vw;
+    padding-top: 25px;
+}
+
+.education-experience-index-item {
+    padding-left: 10px;
+    padding: 1.2rem 1.7rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.education-experience-index-item:last-child {
+    border-bottom: none;
+}
+
+.experience-education-header {
+    padding-left: 5px;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.education-experience-bolded {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.education-experience-dark-font {
+    color: black;
+    font-size: 15px;
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+.education-experience-grey-font {
+    color: rgba(0,0,0,0.6);
+    font-size: 15px;
+    font-weight: 300;
+    padding-top: 5px;
+}
