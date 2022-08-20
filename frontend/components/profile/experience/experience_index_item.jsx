@@ -15,10 +15,7 @@ class ExperienceIndexItem extends React.Component {
                     <div className="education-experience-dark-font">{this.props.experience.company_name}</div>
 
                     { (this.props.experience.start_date && this.props.experience.end_date) ? <div className="education-experience-grey-font">
-                        {months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date.getYear()))} - {months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date.getYear()))}
-                        </div> : null}
-                    { (this.props.experience.start_date && !this.props.experience.end_date) ? <div className="education-experience-grey-font">
-                        {months[(new Date(this.props.experience.start_date)).getMonth()].concat(" ", (new Date(this.props.experience.start_date).getFullYear()))}
+                        {months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date).getFullYear())} - {months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date).getFullYear())}
                         </div> : null}
                     
                     { (this.props.experience.location) ? <div className="education-experience-grey-font">{this.props.experience.location}</div> : null} 

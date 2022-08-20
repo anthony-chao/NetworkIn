@@ -59,8 +59,8 @@ class LoginForm extends React.Component {
     handleDemoLogin(e) {
         e.preventDefault();
         const demo = {
-            email: "anthony@gmail.com",
-            password: "abc123"
+            email: "DemoUser@networkin.com",
+            password: "networkin"
           }
           const speed = 80;
       

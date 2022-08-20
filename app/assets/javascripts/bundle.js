@@ -766,8 +766,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var demo = {
-        email: "anthony@gmail.com",
-        password: "abc123"
+        email: "DemoUser@networkin.com",
+        password: "networkin"
       };
       var speed = 80;
 
@@ -1162,6 +1162,7 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(EducationIndexItem, [{
     key: "render",
     value: function render() {
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1176,11 +1177,11 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "education-experience-dark-font"
       }, this.props.education.degree, ", ", this.props.education.field) : null, this.props.education.start_date && this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-grey-font"
-      }, this.props.education.start_date, " - ", this.props.education.end_date) : null, this.props.education.start_date && !this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, months[new Date(this.props.education.start_date).getMonth()].concat(" ", new Date(this.props.education.start_date).getFullYear()), " - ", months[new Date(this.props.education.end_date).getMonth()].concat(" ", new Date(this.props.education.end_date).getFullYear())) : null, this.props.education.start_date && !this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-grey-font"
-      }, this.props.education.start_date) : null, !this.props.education.start_date && this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, months[new Date(this.props.education.start_date).getMonth()].concat(" ", new Date(this.props.education.start_date).getFullYear())) : null, !this.props.education.start_date && this.props.education.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-grey-font"
-      }, this.props.education.end_date) : null, this.props.education.activities ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, months[new Date(this.props.education.end_date).getMonth()].concat(" ", new Date(this.props.education.end_date).getFullYear())) : null, this.props.education.activities ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-dark-font"
       }, "Activities and societies: ", this.props.education.activities) : null, this.props.education.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-dark-font"
@@ -1371,9 +1372,7 @@ var ExperienceIndexItem = /*#__PURE__*/function (_React$Component) {
         className: "education-experience-dark-font"
       }, this.props.experience.company_name), this.props.experience.start_date && this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-grey-font"
-      }, months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date.getYear())), " - ", months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date.getYear()))) : null, this.props.experience.start_date && !this.props.experience.end_date ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "education-experience-grey-font"
-      }, months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date).getFullYear())) : null, this.props.experience.location ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, months[new Date(this.props.experience.start_date).getMonth()].concat(" ", new Date(this.props.experience.start_date).getFullYear()), " - ", months[new Date(this.props.experience.end_date).getMonth()].concat(" ", new Date(this.props.experience.end_date).getFullYear())) : null, this.props.experience.location ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-grey-font"
       }, this.props.experience.location) : null, this.props.experience.description ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-dark-font"
