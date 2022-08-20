@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: ownProps.viewedPageId,
-        experiences: state.entities.viewedUserForExp
+        experiences: state.entities.viewedUserExperience
     }
 };
 

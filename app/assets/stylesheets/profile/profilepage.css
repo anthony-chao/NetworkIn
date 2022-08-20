@@ -1,13 +1,14 @@
 .profile-page {
     background-color: #f3f2ef;
-    height: 100vh;
+    height: 200vh;
 }
 
 .profile-page-body {
     margin-left: 11vw;
     width: 54vw;
-    height: 80vh;
     display: block;
+    padding-top: 50px;;
+    min-width: 400px;
 }
 
 .profile-page-education-experience {
@@ -25,9 +26,9 @@
 }
 
 .education-experience-index-item {
-    padding-left: 10px;
-    padding: 1.2rem 1.7rem;
+    padding: 1.2rem 5px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
+    overflow: auto;
 }
 
 .education-experience-index-item:last-child {
@@ -43,18 +44,31 @@
 .education-experience-bolded {
     font-size: 18px;
     font-weight: 500;
+    line-height: 140%;
 }
 
 .education-experience-dark-font {
     color: black;
     font-size: 15px;
     font-weight: 300;
-    padding-top: 5px;
+    line-height: 140%;
 }
 
 .education-experience-grey-font {
     color: rgba(0,0,0,0.6);
     font-size: 15px;
     font-weight: 300;
-    padding-top: 5px;
+    line-height: 140%;
+}
+
+.education-experience-body {
+    float: left;
+}
+
+.education-experience-image-logo {
+    float: left;
+    display: block;
+    width: 48px;
+    height: auto;
+    padding-right: 8px;
 }

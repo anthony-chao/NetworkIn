@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GlobalNavBar from '../globalnavbar/global_nav_bar'
 import EducationIndexContainer from './education/education_index_container';
 import ExperienceIndexContainer from "./experience/experience_index_container";
+import ProfileHeaderContainer from "./header/profile_header_container";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -18,6 +19,9 @@ class Profile extends React.Component {
             <div className="profile-page">
                 < GlobalNavBar />
                 <div className="profile-page-body">
+                    <div className="profile-page-education-experience">
+                        < ProfileHeaderContainer viewedPageId={this.props.viewedPageId} />
+                    </div>
                     <div className="profile-page-education-experience">
                         < ExperienceIndexContainer viewedPageId={this.props.viewedPageId} />
                     </div>

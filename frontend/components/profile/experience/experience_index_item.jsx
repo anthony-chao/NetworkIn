@@ -10,7 +10,8 @@ class ExperienceIndexItem extends React.Component {
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return (
             <div className="education-experience-index-item">
-                <div className="experience-body">
+                <img src="https://i.postimg.cc/yNSmf9GF/image.png" className="education-experience-image-logo"/>
+                <div className="education-experience-body">
                     <div className="education-experience-bolded">{this.props.experience.title}</div>
                     <div className="education-experience-dark-font">{this.props.experience.company_name}</div>
 

@@ -3,11 +3,10 @@ import { fetchEducations } from '../../../actions/education_actions';
 import EducationIndex from './education_index';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(ownProps)
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: ownProps.viewedPageId,
-        educations: state.entities.viewedUser
+        educations: state.entities.viewedUserEducation
     }
 };
 

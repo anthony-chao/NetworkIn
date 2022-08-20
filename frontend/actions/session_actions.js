@@ -71,3 +71,17 @@ export const receiveSignupJob = (data) => ({
     type: RECEIVE_SIGNUP_JOB,
     data: data
 })
+
+// action to fetch the user for the user show page
+
+export const RECEIVE_USER = 'RECEIVE_USER'
+
+const receiveUser = (user) => ({
+    type: RECEIVE_USER,
+    user: user
+})
+
+export const fetchUser = (userId) => dispatch => {
+    return APIUtil.fetchUser(userId)
+    .then((user) => dispatch(receiveUser(user)))
+}
