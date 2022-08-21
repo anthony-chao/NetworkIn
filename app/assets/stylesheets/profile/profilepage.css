@@ -1,6 +1,6 @@
 .profile-page {
     background-color: #f3f2ef;
-    height: 200vh;
+    padding-bottom: 5vh;
 }
 
 .profile-page-body {
@@ -39,12 +39,14 @@
     padding-left: 5px;
     font-size: 21px;
     font-weight: 500;
+    word-break: normal;
 }
 
 .education-experience-bolded {
     font-size: 18px;
     font-weight: 500;
     line-height: 140%;
+    word-break: normal;
 }
 
 .education-experience-dark-font {
@@ -52,6 +54,7 @@
     font-size: 15px;
     font-weight: 300;
     line-height: 140%;
+    word-break: normal;
 }
 
 .education-experience-grey-font {
@@ -59,10 +62,12 @@
     font-size: 15px;
     font-weight: 300;
     line-height: 140%;
+    word-break: normal;
 }
 
 .education-experience-body {
-    float: left;
+    /* float: left; */
+    padding-left: 55px;
 }
 
 .education-experience-image-logo {

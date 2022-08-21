@@ -12,8 +12,9 @@ class EducationIndex extends React.Component {
     }
 
     render() {
+        if (Object.values(this.props.educations).length !== 0) {
         return (
-            <section>
+            <section className="profile-page-education-experience">
             { (Object.values(this.props.educations).length !== 0) ? <label className="experience-education-header">Education</label> : null }
                 {Object.values(this.props.educations).map((education) => (
                     <EducationIndexItem key={education.id} education={education}/>
@@ -22,6 +23,7 @@ class EducationIndex extends React.Component {
 
             </section>
         )
+    }
     }
 }
 

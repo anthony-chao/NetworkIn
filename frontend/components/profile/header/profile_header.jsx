@@ -17,7 +17,7 @@ class ProfileHeader extends React.Component {
     render() {
         if (this.state.fetchedUser) {
             return (
-                <section>
+                <section className="profile-page-header">
                     <img src="https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq" id="profile-cover-image" />
                     <div className="profile-below-cover-image">
                         <img src="https://archives.bulbagarden.net/media/upload/3/3e/039Jigglypuff.png" id="profile-header-image" />
