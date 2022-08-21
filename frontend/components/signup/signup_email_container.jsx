@@ -53,7 +53,6 @@ class EmailForm extends React.Component {
                 this.setState({emailError: true});
             }
             else if (emailParts.length === 2 && emailParts[1].split('.').length === 2 && this.state.password.length >= 6) {
-                // this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
                 this.props.receiveEmailandPassword({email: this.state.email, password: this.state.password});
                 this.props.history.push('/signup/name');
             }

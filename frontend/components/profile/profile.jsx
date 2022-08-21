@@ -11,10 +11,6 @@ class Profile extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
-        //receive user action
-    }
-
     render() {
         return (
             <div className="profile-page">

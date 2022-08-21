@@ -1742,10 +1742,6 @@ var Profile = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Profile, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {//receive user action
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1921,7 +1917,6 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
             emailError: true
           });
         } else if (emailParts.length === 2 && emailParts[1].split('.').length === 2 && this.state.password.length >= 6) {
-          // this.props.history.push({pathname: '/signup/name', state: { email: this.state.email, password: this.state.password}});
           this.props.receiveEmailandPassword({
             email: this.state.email,
             password: this.state.password
