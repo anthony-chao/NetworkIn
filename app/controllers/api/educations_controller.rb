@@ -26,7 +26,7 @@ class Api::EducationsController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         @education = Education.find_by(id: params[:id])
 
         if @education

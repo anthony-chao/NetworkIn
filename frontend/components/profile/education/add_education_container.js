@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: ownProps.viewedPageId,
         education: {
+            user_id: "",
             school: "",
             degree: "",
             field: "",
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    addEducation: (education) => dispatch(addEducation(education))
+    educationFunction: (education) => dispatch(addEducation(education))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(EducationForm);

@@ -14,8 +14,9 @@ class EducationForm extends React.Component {
       e.preventDefault();
       this.setState(
         {start_date: (this.state.start_year.concat("-", this.state.start_month, "-01")), 
-        end_date: (this.state.end_year.concat("-", this.state.end_month, "-01"))}, 
-      () => console.log(this.state))
+        end_date: (this.state.end_year.concat("-", this.state.end_month, "-01")),
+        user_id: this.props.currentUser.id}, 
+      () => this.props.educationFunction(this.state))
   }
 
   handleUpdate(field) {

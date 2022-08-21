@@ -26,7 +26,7 @@ class Api::ExperiencesController < ApplicationController
         end
     end
 
-    def delete
+    def destroy
         @experience = Experience.find_by(id: params[:id])
 
         if @experience

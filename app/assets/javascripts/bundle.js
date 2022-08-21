@@ -1038,6 +1038,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     currentUser: state.entities.users[state.session.id],
     viewedUserId: ownProps.viewedPageId,
     education: {
+      user_id: "",
       school: "",
       degree: "",
       field: "",
@@ -1055,7 +1056,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    addEducation: function addEducation(education) {
+    educationFunction: function educationFunction(education) {
       return dispatch((0,_actions_education_actions__WEBPACK_IMPORTED_MODULE_2__.addEducation)(education));
     }
   };
@@ -1128,9 +1129,10 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       this.setState({
         start_date: this.state.start_year.concat("-", this.state.start_month, "-01"),
-        end_date: this.state.end_year.concat("-", this.state.end_month, "-01")
+        end_date: this.state.end_year.concat("-", this.state.end_month, "-01"),
+        user_id: this.props.currentUser.id
       }, function () {
-        return console.log(_this2.state);
+        return _this2.props.educationFunction(_this2.state);
       });
     }
   }, {

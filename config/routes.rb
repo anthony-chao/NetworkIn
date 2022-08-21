@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     end
     resource :session, only: [:create, :destroy]
 
-    resources :experiences, only: [:create, :update, :delete]
-    resources :educations, only: [:create, :update, :delete]
+    resources :experiences, only: [:create, :update, :destroy]
+    resources :educations, only: [:create, :update, :destroy]
   end
 
   root to: "static_pages#root"
