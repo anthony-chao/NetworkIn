@@ -5,6 +5,7 @@ import EducationIndexContainer from './education/education_index_container';
 import ExperienceIndexContainer from "./experience/experience_index_container";
 import ProfileHeaderContainer from "./header/profile_header_container";
 import ProfileAboutContainer from "./header/profile_about_container";
+import AddEducationContainer from "./education/add_education_container";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Profile extends React.Component {
                     < ProfileAboutContainer viewedPageId={this.props.viewedPageId} />
                     < ExperienceIndexContainer viewedPageId={this.props.viewedPageId} />
                     < EducationIndexContainer viewedPageId={this.props.viewedPageId} />
+                    < AddEducationContainer viewedPageId={this.props.viewedPageId} />
                 </div>
             </div>
         )
