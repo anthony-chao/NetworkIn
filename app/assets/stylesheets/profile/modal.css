@@ -1,0 +1,84 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.education-form-container {
+  background-color: white;
+  margin-top: -5vh;
+  height: 615px;
+  width: 745px;
+  border-radius: 0.6rem;
+  overflow-y: auto;
+}
+
+.education-form-header {
+  font-size: 20px;
+  font-weight: 330;
+  word-break: normal;
+  padding: 20px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.education-form-input-container {
+  margin-left: 24px;
+  padding-left: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.9);
+  height: 28px;
+  width: 92%;
+  border: 1px solid rgba(0,0,0,0.6);
+  border-radius: 3px;
+  background-color: transparent;
+  align-items: center;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.education-form-labels {
+  margin-left: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(0,0,0,0.6);
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#education-form-textarea {
+  height: 60px;
+  line-height: 150%;
+  resize: vertical;
+}
+
+.education-form-month-selector {
+  margin-left: 24px;
+  width: 46%;
+  height: 28px;
+  border: 1px solid rgba(0,0,0,0.6);
+  margin-bottom: 15px;
+}
+
+.education-form-year-selector {
+  margin-left: 10px;
+  width: 46%;
+  height: 28px;
+  border: 1px solid rgba(0,0,0,0.6);
+  margin-bottom: 15px;
+}

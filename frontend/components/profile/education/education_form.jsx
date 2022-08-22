@@ -31,43 +31,53 @@ class EducationForm extends React.Component {
     const monthsArray = [  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>School*</label>
-            <input type="text" value={this.state.school} onChange={this.handleUpdate('school')} placeholder="Ex: Stanford University"/>
-          <label>Degree</label>
-            <input type="text" value={this.state.degree} onChange={this.handleUpdate('degree')} placeholder="Ex: Bachelor's"/>
-          <label>Field of Study</label>
-            <input type="text" value={this.state.field} onChange={this.handleUpdate('field')} placeholder="Ex: Computer Science"/>
-          <label>Start date</label>
-            <select onChange={this.handleUpdate('start_month')}>
+        <form className="education-form-container" onSubmit={this.handleSubmit}>
+          <h1 className="education-form-header">Add education</h1>
+          <label className="education-form-labels">School*</label>
+            <input className="education-form-input-container" type="text" value={this.state.school} onChange={this.handleUpdate('school')} placeholder="Ex: Stanford University"/>
+            <br />
+          <label className="education-form-labels">Degree</label>
+            <input className="education-form-input-container" type="text" value={this.state.degree} onChange={this.handleUpdate('degree')} placeholder="Ex: Bachelor's"/>
+            <br />
+          <label className="education-form-labels">Field of Study</label>
+            <input className="education-form-input-container" type="text" value={this.state.field} onChange={this.handleUpdate('field')} placeholder="Ex: Computer Science"/>
+            <br />
+          <label className="education-form-labels">Start date</label>
+            <br />
+            <select className="education-form-month-selector" onChange={this.handleUpdate('start_month')}>
               <option value="Month">Month</option>
               {monthsArray.map((month) => (
                 <option key={month} value={month}>{month}</option>
               ))}
             </select>
-            <select onChange={this.handleUpdate('start_year')}>
+            <select className="education-form-year-selector" onChange={this.handleUpdate('start_year')}>
               <option value="Year">Year</option>
               {startYearArray.map((year) => (
                 <option key={year} value={year}>{year}</option>
               ))}
             </select>
-          <label>End date (or expected)</label>
-              <select onChange={this.handleUpdate('end_month')}>
+            <br />
+          <label className="education-form-labels">End date (or expected)</label>
+            <br />
+              <select className="education-form-month-selector" onChange={this.handleUpdate('end_month')}>
                 <option value="Month">Month</option>
                 {monthsArray.map((month) => (
                   <option key={month} value={month}>{month}</option>
                 ))}
               </select>
-            <select onChange={this.handleUpdate('end_year')}>
+            <select className="education-form-year-selector" onChange={this.handleUpdate('end_year')}>
               <option value="Year">Year</option>
                 {endYearArray.map((year) => (
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
-            <label>Activities and societies</label>
-            <input type="text" value={this.state.activities} onChange={this.handleUpdate('activities')} placeholder="Ex: Alpha Phi Omega, Marching Band, Volleyball"/>
-            <label>Description</label>
-            <input type="text" value={this.state.description} onChange={this.handleUpdate('description')}/>
+              <br />
+            <label className="education-form-labels">Activities and societies</label>
+            <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.activities} onChange={this.handleUpdate('activities')} placeholder="Ex: Alpha Phi Omega, Marching Band, Volleyball"></textarea>
+              <br />
+            <label className="education-form-labels">Description</label>
+            <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.description} onChange={this.handleUpdate('description')}></textarea>
+              <br />
             <button type="submit">Save</button>
         </form>
       </div>
