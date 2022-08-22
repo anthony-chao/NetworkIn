@@ -20,7 +20,7 @@ class ProfileHeader extends React.Component {
                 <section className="profile-page-header">
                     <img src="https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq" id="profile-cover-image" />
                     <div className="profile-below-cover-image">
-                        <img src="https://archives.bulbagarden.net/media/upload/3/3e/039Jigglypuff.png" id="profile-header-image" />
+                        <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="profile-header-image" />
                         <div className="profile-header-body">
                             <h1 id="profile-bold-name">{this.state.fetchedUser.first_name.concat(" ", this.state.fetchedUser.last_name)}</h1>
                             <div id="profile-dark-headline">{this.state.fetchedUser.headline}</div>

@@ -12,7 +12,7 @@ class GlobalNavBar extends React.Component {
       return (
           <nav className="global-nav-bar">
             <div className="global-left-nav-bar">
-              <Link to="/feed">NetworkIn</Link>
+              <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /> </Link>
             </div>
             <div className="global-right-nav-bar">
                 <button onClick={this.props.logout}>Log Out</button>

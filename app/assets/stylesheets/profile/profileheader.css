@@ -23,7 +23,7 @@
     border-radius: 50%;
     z-index: 5;
     border: 5px solid white;
-    background-color: lightgray
+    background-color: #e7e2dc
 }
 
 .profile-below-cover-image {
@@ -31,10 +31,11 @@
     padding-left: 1.7vw;
     padding-right: 1.5vw;
     height: 21vh;
+    max-height: 150px;
 }
 
 .profile-header-body {
-    padding-top: 10vh;
+    padding-top: 70px;
     margin-top: -8px;
     position: absolute;
     word-break: normal;

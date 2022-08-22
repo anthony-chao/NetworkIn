@@ -1,14 +1,26 @@
 .global-nav-bar {
     background-color: white;
     border-bottom: 1px solid rgba(0,0,0,0.08);
-    padding-left: 11vw;
-    padding-right: 20vw;
     height: 50px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     display: flex;
     position: fixed;
     top: 0;
-    width: 80vw;
+    width: 100vw;
     z-index: 999;
+}
+
+#nav-bar-logo {
+    width: 35px;
+    height: 35px;
+}
+
+.global-left-nav-bar {
+    margin-right: max(17vw, 400px);
+}
+
+.global-right-nav-bar {
+    margin-left: 18vw;
+    margin-right: 15vw;
 }

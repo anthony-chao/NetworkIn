@@ -531,7 +531,10 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
         className: "global-left-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/feed"
-      }, "NetworkIn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        id: "nav-bar-logo",
+        src: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+      }), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.props.logout
@@ -1998,7 +2001,7 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "profile-below-cover-image"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: "https://archives.bulbagarden.net/media/upload/3/3e/039Jigglypuff.png",
+          src: "https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png",
           id: "profile-header-image"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "profile-header-body"
