@@ -24,3 +24,40 @@
     margin-left: 18vw;
     margin-right: 15vw;
 }
+
+.nav-bar-dropdown-button {
+  border: 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 200;
+  text-align: center;
+  text-decoration: none;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.nav-bar-dropdown {
+    position: absolute;
+    top: 6vh;
+    left: 57vw;
+    border: 1px solid rgba(0,0,0,0.6);
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 0.6rem;
+    display: flex;
+}
+
+.nav-bar-logout-button {
+    /* display: flex;
+    align-items: flex-end;
+    padding-left: 5px;
+    border-top: 1px solid rgba(0,0,0,0.08); */
+}

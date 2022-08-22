@@ -11,6 +11,7 @@ class EducationIndexItem extends React.Component {
         return (
             <div className="education-experience-index-item">
                 <img src="https://i.postimg.cc/pdtrHFTQ/image.png" className="education-experience-image-logo"/>
+                <button className="add-education-experience-button" onClick={() => this.props.openModal()}></button>
                 <div className="education-experience-body">
                     <div className="education-experience-bolded">{this.props.education.school}</div>
                     { (this.props.education.degree && !this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}</div> : null} 
@@ -39,3 +40,5 @@ class EducationIndexItem extends React.Component {
 }
 
 export default EducationIndexItem;
+
+//this.props in onClick gives back the item - do I need to make a container for the index item to pass along open modal and etc.?

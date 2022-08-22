@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import AddEducationContainer from '../profile/education/add_education_container';
+import UpdateEducationContainer from '../profile/education/update_education_container';
 
 function Modal({modal, closeModal}) {
   if (!modal) {
@@ -13,7 +14,9 @@ function Modal({modal, closeModal}) {
     case 'addEducation':
       component = <AddEducationContainer />;
       break;
-
+    case 'updateEducation':
+      component = <UpdateEducationContainer />;
+      break;
     default:
       return null;
   }

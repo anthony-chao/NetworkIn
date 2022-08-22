@@ -517,12 +517,36 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(GlobalNavBar);
 
   function GlobalNavBar(props) {
+    var _this;
+
     _classCallCheck(this, GlobalNavBar);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      dropdown: false
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleLeave = _this.handleLeave.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(GlobalNavBar, [{
+    key: "handleClick",
+    value: function handleClick() {
+      !this.state.dropdown ? this.setState({
+        dropdown: true
+      }) : this.setState({
+        dropdown: false
+      });
+    }
+  }, {
+    key: "handleLeave",
+    value: function handleLeave() {
+      this.setState({
+        dropdown: false
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
@@ -537,6 +561,14 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
       }), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "nav-bar-dropdown-button",
+        onClick: this.handleClick,
+        onBlur: this.handleLeave
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq",
+        className: "nav-bar-profile-picture"
+      }), " Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "nav-bar-logout-button",
         onClick: this.props.logout
       }, "Log Out")));
     }
@@ -1066,6 +1098,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile_education_add_education_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/education/add_education_container */ "./frontend/components/profile/education/add_education_container.js");
+/* harmony import */ var _profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/education/update_education_container */ "./frontend/components/profile/education/update_education_container.js");
+
 
 
 
@@ -1084,6 +1118,10 @@ function Modal(_ref) {
   switch (modal) {
     case 'addEducation':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_add_education_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      break;
+
+    case 'updateEducation':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
       break;
 
     default:
@@ -1440,6 +1478,8 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (Object.values(this.props.educations).length !== 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "profile-page-education-experience"
@@ -1450,7 +1490,9 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
         }, "Education") : null, parseInt(this.props.viewedUserId) === this.props.currentUser.id ? this.props.otherForm : null), Object.values(this.props.educations).map(function (education) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: education.id,
-            education: education
+            education: education,
+            openModal: _this.props.openModal,
+            closeModal: _this.props.closeModal
           });
         }));
       }
@@ -1508,6 +1550,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     }, "+"),
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    openModal: function openModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)('updateEducation'));
     }
   };
 };
@@ -1567,12 +1612,19 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(EducationIndexItem, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/pdtrHFTQ/image.png",
         className: "education-experience-image-logo"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "add-education-experience-button",
+        onClick: function onClick() {
+          return _this.props.openModal();
+        }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1600,7 +1652,68 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
   return EducationIndexItem;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EducationIndexItem);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EducationIndexItem); //this.props in onClick gives back the item - do I need to make a container for the index item to pass along open modal and etc.?
+
+/***/ }),
+
+/***/ "./frontend/components/profile/education/update_education_container.js":
+/*!*****************************************************************************!*\
+  !*** ./frontend/components/profile/education/update_education_container.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _education_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./education_form */ "./frontend/components/profile/education/education_form.jsx");
+/* harmony import */ var _actions_education_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/education_actions */ "./frontend/actions/education_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  return {
+    currentUser: state.entities.users[state.session.id],
+    viewedUserId: ownProps.viewedPageId,
+    education: {
+      id: 1,
+      user_id: state.entities.viewedUser[1].id,
+      school: "",
+      degree: "",
+      field: "",
+      start_date: "",
+      end_date: "",
+      activities: "",
+      description: "",
+      start_year: "",
+      start_month: "",
+      end_year: "",
+      end_month: ""
+    }
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    educationFunction: function educationFunction(education) {
+      return dispatch((0,_actions_education_actions__WEBPACK_IMPORTED_MODULE_2__.updateEducation)(education));
+    },
+    deleteEducation: function deleteEducation(education) {
+      return dispatch((0,_actions_education_actions__WEBPACK_IMPORTED_MODULE_2__.deleteEducation)(education));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_education_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
