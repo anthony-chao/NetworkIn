@@ -1130,6 +1130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _education_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./education_form */ "./frontend/components/profile/education/education_form.jsx");
 /* harmony import */ var _actions_education_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/education_actions */ "./frontend/actions/education_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -1159,6 +1161,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     educationFunction: function educationFunction(education) {
       return dispatch((0,_actions_education_actions__WEBPACK_IMPORTED_MODULE_2__.addEducation)(education));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
     }
   };
 };
@@ -1248,6 +1253,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var startYearArray = [];
 
       for (var i = new Date().getFullYear(); i >= 1950; i--) {
@@ -1264,9 +1271,16 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "education-form-container",
         onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-form-header-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "education-form-header"
-      }, "Add education"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }, "Add education"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "close-modal-button",
+        onClick: function onClick() {
+          return _this4.props.closeModal();
+        }
+      }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "education-form-labels"
       }, "School*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         className: "education-form-input-container",
@@ -1349,9 +1363,12 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         id: "education-form-textarea",
         value: this.state.description,
         onChange: this.handleUpdate('description')
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-form-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "education-form-button",
         type: "submit"
-      }, "Save")));
+      }, "Save"))));
     }
   }]);
 
@@ -1425,7 +1442,7 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
           className: "profile-page-education-experience"
         }, Object.values(this.props.educations).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
           className: "experience-education-header"
-        }, "Education") : null, this.props.otherForm, Object.values(this.props.educations).map(function (education) {
+        }, "Education") : null, parseInt(this.props.viewedUserId) === this.props.currentUser.id ? this.props.otherForm : null, Object.values(this.props.educations).map(function (education) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: education.id,
             education: education

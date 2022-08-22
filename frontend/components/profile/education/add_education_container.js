@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import EducationForm from "./education_form";
 import { addEducation } from '../../../actions/education_actions';
+import { closeModal } from '../../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -24,7 +25,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    educationFunction: (education) => dispatch(addEducation(education))
+    educationFunction: (education) => dispatch(addEducation(education)),
+    closeModal: () => dispatch(closeModal())
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(EducationForm);

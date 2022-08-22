@@ -32,7 +32,10 @@ class EducationForm extends React.Component {
     return (
       <div>
         <form className="education-form-container" onSubmit={this.handleSubmit}>
-          <h1 className="education-form-header">Add education</h1>
+          <div className="education-form-header-container">
+            <h1 className="education-form-header">Add education</h1>
+            <button className="close-modal-button" onClick={() => this.props.closeModal()}>X</button>
+          </div>
           <label className="education-form-labels">School*</label>
             <input className="education-form-input-container" type="text" value={this.state.school} onChange={this.handleUpdate('school')} placeholder="Ex: Stanford University"/>
             <br />
@@ -78,7 +81,9 @@ class EducationForm extends React.Component {
             <label className="education-form-labels">Description</label>
             <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.description} onChange={this.handleUpdate('description')}></textarea>
               <br />
-            <button type="submit">Save</button>
+              <div className="education-form-button-container">
+            <button className="education-form-button" type="submit">Save</button>
+              </div>
         </form>
       </div>
     )
