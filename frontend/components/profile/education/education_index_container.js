@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => ({
     fetchEducations: (userId) => dispatch(fetchEducations(userId)),
     otherForm: (
-        <button onClick={() => dispatch(openModal('addEducation'))}>
+        <button className="add-education-experience-button" onClick={() => dispatch(openModal('addEducation'))}>
           +
         </button>
       ),

@@ -1241,7 +1241,7 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         end_date: this.state.end_year.concat("-", this.state.end_month, "-01"),
         user_id: this.props.currentUser.id
       }, function () {
-        return _this2.props.educationFunction(_this2.state);
+        _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
       });
     }
   }, {
@@ -1443,9 +1443,11 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
       if (Object.values(this.props.educations).length !== 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "profile-page-education-experience"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "education-experience-header-container"
         }, Object.values(this.props.educations).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-          className: "experience-education-header"
-        }, "Education") : null, parseInt(this.props.viewedUserId) === this.props.currentUser.id ? this.props.otherForm : null, Object.values(this.props.educations).map(function (education) {
+          className: "education-experience-header"
+        }, "Education") : null, parseInt(this.props.viewedUserId) === this.props.currentUser.id ? this.props.otherForm : null), Object.values(this.props.educations).map(function (education) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: education.id,
             education: education
@@ -1499,6 +1501,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch((0,_actions_education_actions__WEBPACK_IMPORTED_MODULE_1__.fetchEducations)(userId));
     },
     otherForm: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default().createElement("button", {
+      className: "add-education-experience-button",
       onClick: function onClick() {
         return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)('addEducation'));
       }
@@ -1663,7 +1666,7 @@ var ExperienceIndex = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "profile-page-education-experience"
         }, Object.values(this.props.experiences).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-          className: "experience-education-header"
+          className: "education-experience-header"
         }, "Experience") : null, Object.values(this.props.experiences).map(function (experience) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: experience.id,
