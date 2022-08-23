@@ -106,13 +106,13 @@
     justify-content: center;
     background-color: transparent;
     margin-top: -5px;
-  }
+}
   
-  .add-education-experience-button:hover {
+.add-education-experience-button:hover {
     background-color: rgba(0,0,0,0.1);
-  }
+}
 
-  .update-education-experience-button {
+.update-education-experience-button {
     padding: 18px 18px;
     border: 0;
     color: gray;
@@ -130,14 +130,13 @@
     background-color: transparent;
     margin-top: -5px;
     float: right;
-  }
+}
 
 .update-education-experience-button:hover {
     background-color: rgba(0,0,0,0.1);
 }
 
-
 #edit-button-pencil {
     height: 30px;
     width: 30px;
-  }
+}

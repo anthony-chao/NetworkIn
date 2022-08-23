@@ -20,7 +20,7 @@ user5 = User.create!(email: 'brock@networkin.com', password: "abc123", first_nam
 # create experiences
 
 experience1 = Experience.create!(user_id: user1.id, title: "Software Engineer", company_name: 'NetworkIn', location: 'Greater New York City Area', start_date: "2022-05-13", end_date: "2022-08-13", description: "This is the best job I've ever had in my life!")
-experience2 = Experience.create!(user_id: user1.id, title: "Software Engineer Apprentice", company_name: 'LinkedIn', location: 'Greater New York City Area', start_date: "2020-08-13", end_date: "2022-04-13", description: "This is the best job I've ever had in my life!")
+experience2 = Experience.create!(user_id: user1.id, title: "Software Engineer Apprentice", company_name: 'LinkedIn', location: 'Greater New York City Area', start_date: "2020-08-13", end_date: "2022-04-13")
 experience3 = Experience.create!(user_id: user2.id, title: "CEO", company_name: 'NetworkIn', location: 'Greater New York City Area', start_date: "2022-05-13", end_date: "2022-08-13")
 experience4 = Experience.create!(user_id: user2.id, title: "Assurance Senior", company_name: 'EY', location: 'Greater New York City Area', start_date: "2019-09-18", end_date: "2022-03-31")
 experience5 = Experience.create!(user_id: user3.id, title: "Pokemon Trainer", company_name: 'Pokemon World', location: 'Pallet Town', start_date: "1996-09-18", end_date: "2018-05-20")

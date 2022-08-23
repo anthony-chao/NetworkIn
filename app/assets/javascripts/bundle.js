@@ -875,8 +875,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var demo = {
-        email: "DemoUser@networkin.com",
-        password: "networkin"
+        email: "demouser@networkin.com",
+        password: "abc123"
       };
       var speed = 80;
 
@@ -2155,10 +2155,11 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       fetchedUser: false,
-      dropdown: false
+      fakeModalOpened: false
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
-    _this.handleLeave = _this.handleLeave.bind(_assertThisInitialized(_this));
+    _this.openFakeModal = _this.openFakeModal.bind(_assertThisInitialized(_this));
+    _this.closeFakeModal = _this.closeFakeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2176,18 +2177,25 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick() {
-      !this.state.dropdown ? this.setState({
+      !this.state.fakeModalOpened ? this.setState({
         dropdown: true
       }) : this.setState({
         dropdown: false
       });
     }
   }, {
-    key: "handleLeave",
-    value: function handleLeave() {
-      this.setState({
-        dropdown: false
-      });
+    key: "openFakeModal",
+    value: function openFakeModal() {
+      document.getElementById("profile-header-add-profile-section").classList.add("invisible");
+      document.getElementById("profile-header-add-buttons").classList.remove("invisible");
+      document.getElementById("profile-header-add-buttons").classList.remove("invisible");
+    }
+  }, {
+    key: "closeFakeModal",
+    value: function closeFakeModal() {
+      document.getElementById("profile-header-add-profile-section").classList.remove("invisible");
+      document.getElementById("profile-header-add-buttons").classList.add("invisible");
+      document.getElementById("profile-header-add-buttons").classList.add("invisible");
     }
   }, {
     key: "render",
@@ -2214,17 +2222,21 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         }, this.state.fetchedUser.headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           id: "profile-grey-location"
         }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          onClick: this.handleClick,
-          onBlur: this.handleLeave,
+          onClick: this.openFakeModal,
+          onBlur: this.closeFakeModal,
           id: "profile-header-add-profile-section"
-        }, "Add Profile Section"), this.state.dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "profile-header-dropdown-container"
+        }, "Add Profile Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "profile-header-buttons"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          id: "profile-header-add-buttons",
+          className: "invisible"
+        }, "Add Experience"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           onClick: function onClick() {
             return _this3.props.openModal('addEducation');
           },
-          id: "profile-header-add-education"
-        }, "Add Education")) : null);
+          id: "profile-header-add-buttons",
+          className: "invisible"
+        }, "Add Education")));
       }
     }
   }]);
