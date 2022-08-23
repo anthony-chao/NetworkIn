@@ -76,3 +76,18 @@
     word-break: normal;
     padding-bottom: 12px;
 }
+
+#profile-header-add-profile-section {
+    margin-left: 1.7vw;
+    cursor: pointer;
+    text-decoration-line: none;
+    border-radius: 24px;
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    width: 150px;
+    border: 0.1rem solid #0a66c2;
+    color: #0a66c2;
+    margin-bottom: 10px;
+}

@@ -6,13 +6,25 @@ class ProfileHeader extends React.Component {
         super(props)
 
         this.state = {
-            fetchedUser: false
+            fetchedUser: false,
+            dropdown: false
         }
+        
+        this.handleClick = this.handleClick.bind(this);
+        this.handleLeave = this.handleLeave.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchUser(this.props.viewedUserId).then(() => this.setState({fetchedUser: Object.values(this.props.viewedUser)[0]}))
     }
+
+    handleClick() {
+        !this.state.dropdown ? this.setState({dropdown: true}) : this.setState({dropdown: false});
+      }
+  
+      handleLeave() {
+        this.setState({dropdown: false});
+      }
 
     render() {
         if (this.state.fetchedUser) {
@@ -26,7 +38,12 @@ class ProfileHeader extends React.Component {
                             <div id="profile-dark-headline">{this.state.fetchedUser.headline}</div>
                             <div id="profile-grey-location">{this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)}</div>
                         </div>
+
                     </div>
+                    <div onClick={this.handleClick} onBlur={this.handleLeave} id="profile-header-add-profile-section">Add Profile Section</div>
+                        {(this.state.dropdown) ? 
+                        <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education">Add Education</div>
+                        : null}
                 </section>
             )
         }

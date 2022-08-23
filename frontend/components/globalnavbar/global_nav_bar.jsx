@@ -36,12 +36,10 @@ class GlobalNavBar extends React.Component {
               </div>
               {(this.state.dropdown) ? 
               <div className="nav-bar-dropdown"> 
-                {/* <div className="nav-bar-profile-container"> */}
                 <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="nav-bar-profile-container">
                   <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
                   <div className="dropdown-profile-name">{this.props.currentUser.first_name.concat(" " ,this.props.currentUser.last_name)}</div>
                   <div className="dropdown-profile-headline">{this.props.currentUser.headline}</div>
-                {/* </div> */}
                 </Link>
                 <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="dropdown-profile-link">View Profile</Link>
                 <div className="nav-bar-logout-button" onClick={this.props.logout}>Sign Out</div>

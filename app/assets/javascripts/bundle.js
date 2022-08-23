@@ -2112,8 +2112,11 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      fetchedUser: false
+      fetchedUser: false,
+      dropdown: false
     };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.handleLeave = _this.handleLeave.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2129,8 +2132,26 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleClick",
+    value: function handleClick() {
+      !this.state.dropdown ? this.setState({
+        dropdown: true
+      }) : this.setState({
+        dropdown: false
+      });
+    }
+  }, {
+    key: "handleLeave",
+    value: function handleLeave() {
+      this.setState({
+        dropdown: false
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       if (this.state.fetchedUser) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "profile-page-header"
@@ -2150,7 +2171,16 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
           id: "profile-dark-headline"
         }, this.state.fetchedUser.headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           id: "profile-grey-location"
-        }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))));
+        }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          onClick: this.handleClick,
+          onBlur: this.handleLeave,
+          id: "profile-header-add-profile-section"
+        }, "Add Profile Section"), this.state.dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          onClick: function onClick() {
+            return _this3.props.openModal('addEducation');
+          },
+          id: "profile-header-add-education"
+        }, "Add Education") : null);
       }
     }
   }]);
@@ -2176,6 +2206,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _profile_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_header */ "./frontend/components/profile/header/profile_header.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -2192,6 +2224,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: function fetchUser(userId) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
+    },
+    openModal: function openModal(type) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(type));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
     }
   };
 };
