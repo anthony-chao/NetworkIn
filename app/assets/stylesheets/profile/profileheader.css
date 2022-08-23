@@ -93,7 +93,7 @@
 }
 
 #profile-header-add-profile-section:hover {
-    background-color: rgba(112, 181, 249, 0.1);
+    background-color: rgba(112, 181, 249, 0.2);
 }
 
 .profile-header-dropdown-container {
@@ -154,4 +154,12 @@
     border: 0.1rem solid #0a66c2;
     color: #0a66c2;
     margin-bottom: 10px;
+}
+
+#profile-header-add-experience:hover {
+    background-color: #004182;
+}
+
+#profile-header-add-education:hover {
+    background-color: rgba(112, 181, 249, 0.2);
 }

@@ -2221,7 +2221,7 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
           id: "profile-dark-headline"
         }, this.state.fetchedUser.headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           id: "profile-grey-location"
-        }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))), parseInt(this.props.currentUser.id) === parseInt(this.props.viewedPageId) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           onClick: this.openFakeModal,
           onBlur: this.closeFakeModal,
           id: "profile-header-add-profile-section"
@@ -2236,7 +2236,7 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
           },
           id: "profile-header-add-education",
           className: "invisible"
-        }, "Add Education")));
+        }, "Add Education"))) : null);
       }
     }
   }]);
@@ -2369,7 +2369,23 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         viewedPageId: this.props.viewedPageId
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_education_education_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         viewedPageId: this.props.viewedPageId
-      })));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-right-bar"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "right-bar-networkin-news"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "NetworkIn News"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Who is Anthony Chao?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Anthony Chao is an ex-accountant turned software engineer. He has experience working with Ruby, JavaScript, React, Redux, Rails, etc. He is the creator and CEO of NetworkIn!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Where can I connect with Anthony?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        href: "https://www.linkedin.com/in/anthony-chao-cpa-983299133/",
+        target: "_blank"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+        id: "nav-bar-logo"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        href: "https://github.com/anthony-chao",
+        target: "_blank"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://www.ab-it.io/wp-content/uploads/2017/09/github-logo.png",
+        id: "nav-bar-logo"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "Bananas are good for you?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "According to some scientists, bananas, are in fact, good for you. Shocking!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Second Container")));
     }
   }]);
 

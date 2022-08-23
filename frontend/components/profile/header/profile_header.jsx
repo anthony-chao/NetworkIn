@@ -48,11 +48,15 @@ class ProfileHeader extends React.Component {
                             <div id="profile-grey-location">{this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)}</div>
                         </div>
                     </div>
-                    <div onClick={this.openFakeModal} onBlur={this.closeFakeModal} id="profile-header-add-profile-section">Add Profile Section</div>
-                        <div className="profile-header-buttons">
-                            <div id="profile-header-add-experience" className="invisible">Add Experience</div>
-                            <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education" className="invisible">Add Education</div>
-                        </div>
+                    { (parseInt(this.props.currentUser.id) === parseInt(this.props.viewedPageId)) ? 
+                    <div>
+                        <div onClick={this.openFakeModal} onBlur={this.closeFakeModal} id="profile-header-add-profile-section">Add Profile Section</div>
+                            <div className="profile-header-buttons">
+                                <div id="profile-header-add-experience" className="invisible">Add Experience</div>
+                                <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education" className="invisible">Add Education</div>
+                            </div>
+                    </div>
+                    : null}
                 </section>
             )
         }

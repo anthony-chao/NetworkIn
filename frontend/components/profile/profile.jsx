@@ -21,6 +21,21 @@ class Profile extends React.Component {
                     < ExperienceIndexContainer viewedPageId={this.props.viewedPageId} />
                     < EducationIndexContainer viewedPageId={this.props.viewedPageId} />
                 </div>
+                <div className="profile-page-right-bar">
+                    <div className="right-bar-networkin-news">
+                        <h1>NetworkIn News</h1>
+                        <ul>
+                            <li>Who is Anthony Chao?</li>
+                            <p>Anthony Chao is an ex-accountant turned software engineer. He has experience working with Ruby, JavaScript, React, Redux, Rails, etc. He is the creator and CEO of NetworkIn!</p>
+                            <li>Where can I connect with Anthony?</li>
+                            <a href="https://www.linkedin.com/in/anthony-chao-cpa-983299133/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" id="nav-bar-logo"/></a>
+                            <a href="https://github.com/anthony-chao" target="_blank"><img src="https://www.ab-it.io/wp-content/uploads/2017/09/github-logo.png" id="nav-bar-logo"/></a>
+                            <li>Bananas are good for you?</li>
+                            <p>According to some scientists, bananas, are in fact, good for you. Shocking!</p>
+                        </ul>
+                    </div>
+                    <p>Second Container</p>
+                </div>
             </div>
         )
     }

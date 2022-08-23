@@ -2,13 +2,13 @@
     background-color: #f3f2ef;
     padding-bottom: 5vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     min-height: 95vh;
 }
 
 .profile-page-body {
-    margin-right: 15vw;
+    margin-left: 18vw;
     width: 54vw;
     max-width: 820px;
     display: block;
@@ -139,4 +139,16 @@
 #edit-button-pencil {
     height: 30px;
     width: 30px;
+}
+
+.profile-page-right-bar {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border: 1px solid red;
+    overflow: hidden;
+    width: 300px;
+    height: 80vh;
 }
