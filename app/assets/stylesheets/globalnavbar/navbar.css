@@ -45,7 +45,7 @@
 
 .nav-bar-dropdown {
     position: absolute;
-    top: 6vh;
+    top: 60px;
     left: 57vw;
     border: 1px solid rgba(0,0,0,0.2);
     width: 270px;

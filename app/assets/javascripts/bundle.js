@@ -2176,11 +2176,13 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
           onBlur: this.handleLeave,
           id: "profile-header-add-profile-section"
         }, "Add Profile Section"), this.state.dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "profile-header-dropdown-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           onClick: function onClick() {
             return _this3.props.openModal('addEducation');
           },
           id: "profile-header-add-education"
-        }, "Add Education") : null);
+        }, "Add Education")) : null);
       }
     }
   }]);

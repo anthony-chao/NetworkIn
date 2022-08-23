@@ -91,3 +91,13 @@
     color: #0a66c2;
     margin-bottom: 10px;
 }
+
+#profile-header-add-profile-section:hover {
+    background-color: rgba(112, 181, 249, 0.1);
+}
+
+.profile-header-dropdown-container {
+    position: absolute;
+    top: 10vh;
+    border: 1px solid red;
+}

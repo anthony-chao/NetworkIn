@@ -42,7 +42,9 @@ class ProfileHeader extends React.Component {
                     </div>
                     <div onClick={this.handleClick} onBlur={this.handleLeave} id="profile-header-add-profile-section">Add Profile Section</div>
                         {(this.state.dropdown) ? 
-                        <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education">Add Education</div>
+                        <div className="profile-header-dropdown-container">
+                            <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education">Add Education</div>
+                        </div>
                         : null}
                 </section>
             )
