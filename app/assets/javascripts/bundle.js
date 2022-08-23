@@ -2187,15 +2187,15 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
     key: "openFakeModal",
     value: function openFakeModal() {
       document.getElementById("profile-header-add-profile-section").classList.add("invisible");
-      document.getElementById("profile-header-add-buttons").classList.remove("invisible");
-      document.getElementById("profile-header-add-buttons").classList.remove("invisible");
+      document.getElementById("profile-header-add-experience").classList.remove("invisible");
+      document.getElementById("profile-header-add-education").classList.remove("invisible");
     }
   }, {
     key: "closeFakeModal",
     value: function closeFakeModal() {
       document.getElementById("profile-header-add-profile-section").classList.remove("invisible");
-      document.getElementById("profile-header-add-buttons").classList.add("invisible");
-      document.getElementById("profile-header-add-buttons").classList.add("invisible");
+      document.getElementById("profile-header-add-experience").classList.add("invisible");
+      document.getElementById("profile-header-add-education").classList.add("invisible");
     }
   }, {
     key: "render",
@@ -2228,13 +2228,13 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         }, "Add Profile Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "profile-header-buttons"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          id: "profile-header-add-buttons",
+          id: "profile-header-add-experience",
           className: "invisible"
         }, "Add Experience"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           onClick: function onClick() {
             return _this3.props.openModal('addEducation');
           },
-          id: "profile-header-add-buttons",
+          id: "profile-header-add-education",
           className: "invisible"
         }, "Add Education")));
       }

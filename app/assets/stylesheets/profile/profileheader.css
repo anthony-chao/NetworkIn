@@ -126,7 +126,23 @@
     margin-left: 1.7vw;
 }
 
-#profile-header-add-buttons {
+#profile-header-add-experience {
+    cursor: pointer;
+    text-decoration-line: none;
+    border-radius: 24px;
+    padding: 6px 12px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    width: 120px;
+    border: 0.1rem solid #0a66c2;
+    background-color: #0a66c2;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#profile-header-add-education {
+    margin-left: 10px;
     cursor: pointer;
     text-decoration-line: none;
     border-radius: 24px;
