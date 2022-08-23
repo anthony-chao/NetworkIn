@@ -5,18 +5,51 @@ class EducationForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = this.props.education
+    // this.state = this.props.education
+    this.state = {
+        id: this.props.education.id,
+        user_id: this.props.education.user_id,
+        school: this.props.education.school,
+        degree: this.props.education.degree,
+        field: this.props.education.field,
+        start_date: this.props.education.start_date,
+        end_date: this.props.education.end_date,
+        activities: this.props.education.activities,
+        description: this.props.education.description,
+        start_year: this.props.education.start_year,
+        start_month: this.props.education.start_month,
+        end_year: this.props.education.end_year,
+        end_month: this.props.education.end_month,
+        school_error: false,
+        year_error: false
+    }
+
+    this.errorMessages = {
+      schoolError: "School is a required field",
+      yearError: "End date can't be earlier than start date"
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
   handleSubmit(e) {
       e.preventDefault();
-      this.setState(
-        {start_date: (this.state.start_year.concat("-", this.state.start_month, "-01")), 
-        end_date: (this.state.end_year.concat("-", this.state.end_month, "-01")),
-        user_id: this.props.currentUser.id}, 
-      () => {this.props.educationFunction(this.state), this.props.closeModal()})
+      const inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13")
+      const inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13")
+        if( (inputted_end_date > inputted_start_date || (this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month) || (this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month) || (!this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month)) && this.state.school.length !== 0) { 
+        this.setState(
+          {start_date: inputted_start_date, 
+          end_date: inputted_end_date,
+          user_id: this.props.currentUser.id}, 
+        () => {this.props.educationFunction(this.state), this.props.closeModal()})
+      }
+      else if (inputted_end_date < inputted_start_date && (this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month)) {
+        this.setState({year_error: true})
+      }
+      else if (this.state.school.length === 0) {
+        this.setState({school_error: true})
+      }
   }
 
   handleUpdate(field) {
@@ -38,6 +71,7 @@ class EducationForm extends React.Component {
           </div>
           <label className="education-form-labels">School*</label>
             <input className="education-form-input-container" type="text" value={this.state.school} onChange={this.handleUpdate('school')} placeholder="Ex: Stanford University"/>
+            { this.state.school_error ? <p className="education-form-error-message">{this.errorMessages.schoolError}</p> : null }
             <br />
           <label className="education-form-labels">Degree</label>
             <input className="education-form-input-container" type="text" value={this.state.degree} onChange={this.handleUpdate('degree')} placeholder="Ex: Bachelor's"/>
@@ -74,6 +108,7 @@ class EducationForm extends React.Component {
                   <option key={year} value={year}>{year}</option>
                 ))}
               </select>
+              { this.state.year_error ? <p className="education-form-error-message">{this.errorMessages.yearError}</p> : null }
               <br />
             <label className="education-form-labels">Activities and societies</label>
             <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.activities} onChange={this.handleUpdate('activities')} placeholder="Ex: Alpha Phi Omega, Marching Band, Volleyball"></textarea>

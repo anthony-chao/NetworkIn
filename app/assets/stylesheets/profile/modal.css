@@ -143,3 +143,11 @@
   display: flex;
   justify-content: end;
 }
+
+.education-form-error-message {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #d11124;
+  margin-top: -10px;
+  margin-left: 28px;
+}

@@ -7,11 +7,12 @@ class EducationIndexItem extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         return (
             <div className="education-experience-index-item">
                 <img src="https://i.postimg.cc/pdtrHFTQ/image.png" className="education-experience-image-logo"/>
-                <button className="add-education-experience-button" onClick={() => this.props.openModal()}></button>
+                <button className="update-education-experience-button" onClick={() => this.props.openModal()}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-pencil" /></button>
                 <div className="education-experience-body">
                     <div className="education-experience-bolded">{this.props.education.school}</div>
                     { (this.props.education.degree && !this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}</div> : null} 

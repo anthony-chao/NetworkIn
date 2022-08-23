@@ -1285,8 +1285,29 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, EducationForm);
 
-    _this = _super.call(this, props);
-    _this.state = _this.props.education;
+    _this = _super.call(this, props); // this.state = this.props.education
+
+    _this.state = {
+      id: _this.props.education.id,
+      user_id: _this.props.education.user_id,
+      school: _this.props.education.school,
+      degree: _this.props.education.degree,
+      field: _this.props.education.field,
+      start_date: _this.props.education.start_date,
+      end_date: _this.props.education.end_date,
+      activities: _this.props.education.activities,
+      description: _this.props.education.description,
+      start_year: _this.props.education.start_year,
+      start_month: _this.props.education.start_month,
+      end_year: _this.props.education.end_year,
+      end_month: _this.props.education.end_month,
+      school_error: false,
+      year_error: false
+    };
+    _this.errorMessages = {
+      schoolError: "School is a required field",
+      yearError: "End date can't be earlier than start date"
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1297,13 +1318,26 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
-      this.setState({
-        start_date: this.state.start_year.concat("-", this.state.start_month, "-01"),
-        end_date: this.state.end_year.concat("-", this.state.end_month, "-01"),
-        user_id: this.props.currentUser.id
-      }, function () {
-        _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
-      });
+      var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
+      var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
+
+      if ((inputted_end_date > inputted_start_date || this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month || this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month || !this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month) && this.state.school.length !== 0) {
+        this.setState({
+          start_date: inputted_start_date,
+          end_date: inputted_end_date,
+          user_id: this.props.currentUser.id
+        }, function () {
+          _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
+        });
+      } else if (inputted_end_date < inputted_start_date && this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month) {
+        this.setState({
+          year_error: true
+        });
+      } else if (this.state.school.length === 0) {
+        this.setState({
+          school_error: true
+        });
+      }
     }
   }, {
     key: "handleUpdate",
@@ -1352,7 +1386,9 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.school,
         onChange: this.handleUpdate('school'),
         placeholder: "Ex: Stanford University"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      }), this.state.school_error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "education-form-error-message"
+      }, this.errorMessages.schoolError) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "education-form-labels"
       }, "Degree"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         className: "education-form-input-container",
@@ -1412,7 +1448,9 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
           key: year,
           value: year
         }, year);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+      })), this.state.year_error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        className: "education-form-error-message"
+      }, this.errorMessages.yearError) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         className: "education-form-labels"
       }, "Activities and societies"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         className: "education-form-input-container",
@@ -1637,6 +1675,7 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      console.log(this.props);
       var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-index-item"
@@ -1644,11 +1683,14 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
         src: "https://i.postimg.cc/pdtrHFTQ/image.png",
         className: "education-experience-image-logo"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        className: "add-education-experience-button",
+        className: "update-education-experience-button",
         onClick: function onClick() {
           return _this.props.openModal();
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
+        id: "edit-button-pencil"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-bolded"
@@ -1699,11 +1741,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state, ownProps) {
+var mapStateToProps = function mapStateToProps(state) {
   debugger;
   return {
     currentUser: state.entities.users[state.session.id],
-    viewedUserId: ownProps.viewedPageId,
+    viewedUserId: state.entities.viewedUser,
     education: {
       id: 1,
       user_id: state.entities.viewedUser[1].id,

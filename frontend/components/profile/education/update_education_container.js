@@ -3,11 +3,11 @@ import EducationForm from "./education_form";
 import { updateEducation, deleteEducation } from '../../../actions/education_actions';
 import { closeModal } from "../../../actions/modal_actions";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     debugger;
     return {
         currentUser: state.entities.users[state.session.id],
-        viewedUserId: ownProps.viewedPageId,
+        viewedUserId: state.entities.viewedUser,
         education: {
             id: 1,
             user_id: state.entities.viewedUser[1].id,
