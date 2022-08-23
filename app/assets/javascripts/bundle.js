@@ -560,17 +560,40 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
         src: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
       }), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        className: "nav-bar-dropdown-button",
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: this.handleClick,
         onBlur: this.handleLeave
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: "https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq",
-        className: "nav-bar-profile-picture"
-      }), " Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        src: "https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png",
+        id: "nav-bar-profile-picture"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "nav-bar-dropdown-button"
+      }, " Me ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/Xvf03CFb/image.png",
+        id: "down-button"
+      }), " ")), this.state.dropdown ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "nav-bar-dropdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+        to: {
+          pathname: "/users/".concat(this.props.currentUser.id)
+        },
+        className: "nav-bar-profile-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png",
+        id: "nav-bar-open-picture"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "dropdown-profile-name"
+      }, this.props.currentUser.first_name.concat(" ", this.props.currentUser.last_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "dropdown-profile-headline"
+      }, this.props.currentUser.headline)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+        to: {
+          pathname: "/users/".concat(this.props.currentUser.id)
+        },
+        className: "dropdown-profile-link"
+      }, "View Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "nav-bar-logout-button",
         onClick: this.props.logout
-      }, "Log Out")));
+      }, "Sign Out")) : null));
     }
   }]);
 

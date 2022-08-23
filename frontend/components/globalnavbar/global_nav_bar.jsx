@@ -30,12 +30,23 @@ class GlobalNavBar extends React.Component {
               <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /> </Link>
             </div>
             <div className="global-right-nav-bar">
-              <button className="nav-bar-dropdown-button" onClick={this.handleClick} onBlur={this.handleLeave}><img src="https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq" className="nav-bar-profile-picture" /> Me</button>
-              {/* {(this.state.dropdown) ? 
-              <div className="nav-bar-dropdown">  */}
-                <div className="nav-bar-logout-button" onClick={this.props.logout}>Log Out</div>
-              {/* </div>
-              : null} */}
+              <div onClick={this.handleClick} onBlur={this.handleLeave}>
+                <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
+                <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
+              </div>
+              {(this.state.dropdown) ? 
+              <div className="nav-bar-dropdown"> 
+                {/* <div className="nav-bar-profile-container"> */}
+                <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="nav-bar-profile-container">
+                  <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
+                  <div className="dropdown-profile-name">{this.props.currentUser.first_name.concat(" " ,this.props.currentUser.last_name)}</div>
+                  <div className="dropdown-profile-headline">{this.props.currentUser.headline}</div>
+                {/* </div> */}
+                </Link>
+                <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="dropdown-profile-link">View Profile</Link>
+                <div className="nav-bar-logout-button" onClick={this.props.logout}>Sign Out</div>
+              </div>
+              : null}
               
             </div>
           </nav>
