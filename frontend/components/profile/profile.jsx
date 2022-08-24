@@ -23,18 +23,26 @@ class Profile extends React.Component {
                 </div>
                 <div className="profile-page-right-bar">
                     <div className="right-bar-networkin-news">
-                        <h1>NetworkIn News</h1>
+                        <h1 id="networkin-news-header">NetworkIn News</h1>
                         <ul>
-                            <li>Who is Anthony Chao?</li>
-                            <p>Anthony Chao is an ex-accountant turned software engineer. He has experience working with Ruby, JavaScript, React, Redux, Rails, etc. He is the creator and CEO of NetworkIn!</p>
-                            <li>Where can I connect with Anthony?</li>
-                            <a href="https://www.linkedin.com/in/anthony-chao-cpa-983299133/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" id="nav-bar-logo"/></a>
-                            <a href="https://github.com/anthony-chao" target="_blank"><img src="https://www.ab-it.io/wp-content/uploads/2017/09/github-logo.png" id="nav-bar-logo"/></a>
-                            <li>Bananas are good for you?</li>
-                            <p>According to some scientists, bananas, are in fact, good for you. Shocking!</p>
+                            <li id="networking-news-bullet">
+                                <span>Who is Anthony Chao?</span>
+                            </li>
+                            <p id="networking-news-response">Anthony Chao is an ex-accountant turned software engineer. He has experience working with Ruby, JavaScript, React, Redux, Rails. He is the creator of NetworkIn!</p>
+                            <li id="networking-news-bullet">
+                                <span>Where can I connect with Anthony?</span>
+                            </li>
+                            <div id="networking-news-links">
+                                <a href="https://www.linkedin.com/in/anthony-chao-cpa-983299133/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" id="nav-bar-logo"/></a>
+                                <a href="https://github.com/anthony-chao" target="_blank"><img src="https://www.ab-it.io/wp-content/uploads/2017/09/github-logo.png" id="nav-bar-logo"/></a>
+                            </div>
+                            <li id="networking-news-bullet">
+                                <span>Bananas are good for you?</span>
+                            </li>
+                            <p id="networking-news-response">According to some scientists, bananas, are in fact, good for you. Shocking!</p>
                         </ul>
                     </div>
-                    <p>Second Container</p>
+                    <p>Second Container Placeholder</p>
                 </div>
             </div>
         )

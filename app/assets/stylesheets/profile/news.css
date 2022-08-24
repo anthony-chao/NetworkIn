@@ -1,0 +1,48 @@
+.right-bar-networkin-news {
+    background-color: white;
+    word-wrap: break-word;
+    padding-bottom: 12px;
+    position: relative;
+    border-radius: 0.8rem;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+#networkin-news-header {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 8px;
+}
+
+#networking-news-bullet {
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    margin-left: 10px; 
+}
+
+#networking-news-bullet > span {
+    color: black;
+    margin-left: -10px;
+}
+
+#networking-news-response {
+    padding: 5px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.6);
+    line-height: 120%;
+}
+
+#networking-news-links {
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#networking-news-links a {
+    margin-right: 10px;
+}
+
