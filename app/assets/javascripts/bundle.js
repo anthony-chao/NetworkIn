@@ -1219,6 +1219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_education_add_education_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/education/add_education_container */ "./frontend/components/profile/education/add_education_container.js");
 /* harmony import */ var _profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/education/update_education_container */ "./frontend/components/profile/education/update_education_container.js");
 /* harmony import */ var _feed_feed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../feed/feed_container */ "./frontend/components/feed/feed_container.jsx");
+/* harmony import */ var _profile_experience_add_experience_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/experience/add_experience_container */ "./frontend/components/profile/experience/add_experience_container.js");
+
 
 
 
@@ -1244,6 +1246,16 @@ function Modal(_ref) {
     case 'updateEducation':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         educationId: modal.id
+      });
+      break;
+
+    case 'addExperience':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_experience_add_experience_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+      break;
+
+    case 'updateExperience':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(UpdateExperienceContainer, {
+        experienceId: modal.id
       });
       break;
 
@@ -1844,7 +1856,26 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     viewedUserId: state.entities.viewedUser,
-    education: state.entities.viewedUserEducation[ownProps.educationId],
+    // education: state.entities.viewedUserEducation[ownProps.educationId],
+    education: {
+      id: state.entities.viewedUserEducation[ownProps.educationId].id,
+      user_id: state.entities.viewedUserEducation[ownProps.educationId].user_id,
+      school: state.entities.viewedUserEducation[ownProps.educationId].school,
+      degree: state.entities.viewedUserEducation[ownProps.educationId].degree,
+      field: state.entities.viewedUserEducation[ownProps.educationId].field,
+      start_date: state.entities.viewedUserEducation[ownProps.educationId].start_date,
+      end_date: state.entities.viewedUserEducation[ownProps.educationId].end_date,
+      activities: state.entities.viewedUserEducation[ownProps.educationId].activities,
+      description: state.entities.viewedUserEducation[ownProps.educationId].description,
+      start_month: "",
+      start_year: "",
+      end_month: "",
+      end_year: "" // start_month: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(5, 7),
+      // start_year: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(0, 4),
+      // end_month: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(5, 7),
+      // end_year: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(0, 4)
+
+    },
     formType: 'Edit Education'
   };
 };
@@ -1864,6 +1895,333 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_education_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/experience/add_experience_container.js":
+/*!****************************************************************************!*\
+  !*** ./frontend/components/profile/experience/add_experience_container.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _experience_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./experience_form */ "./frontend/components/profile/experience/experience_form.jsx");
+/* harmony import */ var _actions_experience_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/experience_actions */ "./frontend/actions/experience_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    viewedUserId: ownProps.viewedPageId,
+    experience: {
+      user_id: "",
+      title: "",
+      company_name: "",
+      location: "",
+      start_date: "",
+      end_date: "",
+      description: "",
+      start_year: "",
+      start_month: "",
+      end_year: "",
+      end_month: ""
+    },
+    formType: 'Add Experience'
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    experienceFunction: function experienceFunction(experience) {
+      return dispatch((0,_actions_experience_actions__WEBPACK_IMPORTED_MODULE_2__.addExperience)(experience));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_experience_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/experience/experience_form.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/profile/experience/experience_form.jsx ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ExperienceForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ExperienceForm, _React$Component);
+
+  var _super = _createSuper(ExperienceForm);
+
+  function ExperienceForm(props) {
+    var _this;
+
+    _classCallCheck(this, ExperienceForm);
+
+    _this = _super.call(this, props);
+    _this.state = _this.props.experience;
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.checkDateError = _this.checkDateError.bind(_assertThisInitialized(_this));
+    _this.checkTitleError = _this.checkTitleError.bind(_assertThisInitialized(_this));
+    _this.checkCompanyError = _this.checkCompanyError.bind(_assertThisInitialized(_this));
+    _this.checkDateInputError = _this.checkDateInputError.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ExperienceForm, [{
+    key: "handleUpdate",
+    value: function handleUpdate(field) {
+      var _this2 = this;
+
+      return function (e) {
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var checkDate = this.checkDateError();
+      var checkTitle = this.checkTitleError();
+      var checkCompany = this.checkCompanyError();
+      var checkDateInput = this.checkDateInputError();
+
+      if (!checkDate && !checkTitle && !checkCompany && !checkDateInput) {
+        var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
+        var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
+        this.setState({
+          start_date: inputted_start_date,
+          end_date: inputted_end_date,
+          user_id: this.props.currentUser.id
+        }, function () {
+          _this3.props.experienceFunction(_this3.state), _this3.props.closeModal();
+        });
+      }
+    }
+  }, {
+    key: "checkDateError",
+    value: function checkDateError() {
+      var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
+      var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
+
+      if (inputted_end_date < inputted_start_date) {
+        document.getElementById("date-error-handler").classList.remove("invisible");
+        return true;
+      } else {
+        document.getElementById("date-error-handler").classList.add("invisible");
+        return false;
+      }
+    }
+  }, {
+    key: "checkTitleError",
+    value: function checkTitleError() {
+      if (this.state.title.length === 0) {
+        document.getElementById("title-error-handler").classList.remove("invisible");
+        return true;
+      } else {
+        document.getElementById("title-error-handler").classList.add("invisible");
+        return false;
+      }
+    }
+  }, {
+    key: "checkCompanyError",
+    value: function checkCompanyError() {
+      if (this.state.company_name.length === 0) {
+        document.getElementById("company-error-handler").classList.remove("invisible");
+        return true;
+      } else {
+        document.getElementById("company-error-handler").classList.add("invisible");
+        return false;
+      }
+    }
+  }, {
+    key: "checkDateInputError",
+    value: function checkDateInputError() {
+      if (this.state.start_month.length === 0 && this.state.start_year.length === 0 && this.state.end_month.length === 0 && this.state.end_year.length === 0) {
+        document.getElementById("date-input-error-handler").classList.remove("invisible");
+        return true;
+      } else {
+        document.getElementById("date-input-error-handler").classList.add("invisible");
+        return false;
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var startYearArray = [];
+
+      for (var i = new Date().getFullYear(); i >= 1950; i--) {
+        startYearArray.push(i);
+      }
+
+      var endYearArray = [];
+
+      for (var _i = new Date().getFullYear() + 10; _i >= 1950; _i--) {
+        endYearArray.push(_i);
+      }
+
+      var monthsArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "education-form-container",
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-form-header-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "education-form-header"
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "close-modal-button",
+        onClick: function onClick() {
+          return _this4.props.closeModal();
+        }
+      }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "Title*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: "education-form-input-container",
+        type: "text",
+        value: this.state.title,
+        onChange: this.handleUpdate('title'),
+        placeholder: "Ex: Retail Sales Manager"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "title-error-handler",
+        className: "experience-form-errors invisible"
+      }, "Title is a required field"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "Company Name*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: "education-form-input-container",
+        type: "text",
+        value: this.state.company_name,
+        onChange: this.handleUpdate('company_name'),
+        placeholder: "Ex: Microsoft"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "company-error-handler",
+        className: "experience-form-errors invisible"
+      }, "Company name is a required field"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: "education-form-input-container",
+        type: "text",
+        value: this.state.location,
+        onChange: this.handleUpdate('location'),
+        placeholder: "Ex: London, United Kingdom"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "Start date*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+        className: "education-form-month-selector",
+        onChange: this.handleUpdate('start_month')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: "Month"
+      }, "Month"), monthsArray.map(function (month) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: month,
+          value: month
+        }, month);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+        className: "education-form-year-selector",
+        onChange: this.handleUpdate('start_year')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: "Year"
+      }, "Year"), startYearArray.map(function (year) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: year,
+          value: year
+        }, year);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "End date (or expected)*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+        className: "education-form-month-selector",
+        onChange: this.handleUpdate('end_month')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: "Month"
+      }, "Month"), monthsArray.map(function (month) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: month,
+          value: month
+        }, month);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+        className: "education-form-year-selector",
+        onChange: this.handleUpdate('end_year')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+        value: "Year"
+      }, "Year"), endYearArray.map(function (year) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+          key: year,
+          value: year
+        }, year);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "date-error-handler",
+        className: "experience-form-errors invisible"
+      }, "End date can\u2019t be earlier than start date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "date-input-error-handler",
+        className: "experience-form-errors invisible"
+      }, "Start and end dates are required"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "education-form-labels"
+      }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+        className: "education-form-input-container",
+        id: "education-form-textarea",
+        value: this.state.description,
+        onChange: this.handleUpdate('description')
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "education-form-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "education-form-button",
+        type: "submit"
+      }, "Save"))));
+    }
+  }]);
+
+  return ExperienceForm;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExperienceForm);
 
 /***/ }),
 
@@ -1925,12 +2283,21 @@ var ExperienceIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       if (Object.values(this.props.experiences).length !== 0) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "profile-page-education-experience"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "education-experience-header-container"
         }, Object.values(this.props.experiences).length !== 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
           className: "education-experience-header"
-        }, "Experience") : null, Object.values(this.props.experiences).map(function (experience) {
+        }, "Experience") : null, parseInt(this.props.viewedUserId) === this.props.currentUser.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          className: "add-education-experience-button",
+          onClick: function onClick() {
+            return _this.props.openModal('addExperience');
+          }
+        }, "+") : null), Object.values(this.props.experiences).map(function (experience) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: experience.id,
             experience: experience
@@ -1961,6 +2328,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_experience_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/experience_actions */ "./frontend/actions/experience_actions.js");
 /* harmony import */ var _experience_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./experience_index */ "./frontend/components/profile/experience/experience_index.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -1977,6 +2346,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchExperiences: function fetchExperiences(userId) {
       return dispatch((0,_actions_experience_actions__WEBPACK_IMPORTED_MODULE_1__.fetchExperiences)(userId));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    openModal: function openModal(type, id) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(type, id));
     }
   };
 };

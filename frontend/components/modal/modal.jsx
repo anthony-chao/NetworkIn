@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AddEducationContainer from '../profile/education/add_education_container';
 import UpdateEducationContainer from '../profile/education/update_education_container';
 import FeedContainer from '../feed/feed_container'
+import AddExperienceContainer from '../profile/experience/add_experience_container';
 
 function Modal({modal, closeModal}) {
   if (!modal) {
@@ -17,6 +18,12 @@ function Modal({modal, closeModal}) {
       break;
     case 'updateEducation':
       component = <UpdateEducationContainer educationId={modal.id} />;
+      break;
+    case 'addExperience':
+      component = <AddExperienceContainer />;
+      break;
+    case 'updateExperience':
+      component = <UpdateExperienceContainer experienceId={modal.id} />;
       break;
     case 'createPost':
       component = <FeedContainer />;

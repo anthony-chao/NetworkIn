@@ -15,7 +15,12 @@ class ExperienceIndex extends React.Component {
         if (Object.values(this.props.experiences).length !== 0) {
         return (
             <section className='profile-page-education-experience'>
-                { (Object.values(this.props.experiences).length !== 0) ? <label className="education-experience-header">Experience</label> : null }
+                <div className="education-experience-header-container">
+                    { (Object.values(this.props.experiences).length !== 0) ? <label className="education-experience-header">Experience</label> : null }
+                    { (parseInt(this.props.viewedUserId) === this.props.currentUser.id) ? 
+                    <button className="add-education-experience-button" onClick={() => this.props.openModal('addExperience')}>+</button>
+                    : null}
+                </div>
                 {Object.values(this.props.experiences).map((experience) => (
                     <ExperienceIndexItem key={experience.id} experience={experience}/>
                 ))

@@ -167,3 +167,12 @@
 .education-form-delete:hover {
   background-color: rgba(0,0,0,0.1);
 }
+
+.experience-form-errors {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #d11124;
+  margin-top: -10px;
+  padding-bottom: 10px;
+  margin-left: 28px;
+}

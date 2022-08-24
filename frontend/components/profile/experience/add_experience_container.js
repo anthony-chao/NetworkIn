@@ -7,14 +7,13 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: ownProps.viewedPageId,
-        education: {
+        experience: {
             user_id: "",
-            school: "",
-            degree: "",
-            field: "",
+            title: "",
+            company_name: "",
+            location: "",
             start_date: "",
             end_date: "",
-            activities: "",
             description: "",
             start_year: "",
             start_month: "",
