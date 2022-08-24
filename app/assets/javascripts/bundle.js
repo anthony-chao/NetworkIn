@@ -1410,36 +1410,25 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
+      var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
+      var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
 
-      if (this.props.formType === "Add Education") {
-        var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
-        var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
-
-        if ((inputted_end_date > inputted_start_date || this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month || this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month || !this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month) && this.state.school.length !== 0) {
-          this.setState({
-            start_date: inputted_start_date,
-            end_date: inputted_end_date,
-            user_id: this.props.currentUser.id
-          }, function () {
-            _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
-          });
-        } else if (inputted_end_date < inputted_start_date && this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month) {
-          this.setState({
-            year_error: true
-          });
-        } else if (this.state.school.length === 0) {
-          this.setState({
-            school_error: true
-          });
-        }
-      } else {
-        console.log("wtf");
-        var start_month = this.state.start_date.slice(5, 7);
-        var start_year = this.state.start_date.slice(0, 4);
-        var end_month = this.state.end_date.slice(5, 7);
-        var end_year = this.state.end_date.slice(0, 4);
-        this.props.educationFunction(this.state);
-        this.props.closeModal();
+      if ((inputted_end_date > inputted_start_date || this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month || this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month || !this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month) && this.state.school.length !== 0) {
+        this.setState({
+          start_date: inputted_start_date,
+          end_date: inputted_end_date,
+          user_id: this.props.currentUser.id
+        }, function () {
+          _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
+        });
+      } else if (inputted_end_date < inputted_start_date && this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month) {
+        this.setState({
+          year_error: true
+        });
+      } else if (this.state.school.length === 0) {
+        this.setState({
+          school_error: true
+        });
       }
     }
   }, {
@@ -1570,7 +1559,12 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleUpdate('description')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-form-button-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, this.props.formType === "Edit Education" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "education-form-delete",
+        onClick: function onClick() {
+          _this4.props.deleteEducation(_this4.state), _this4.props.closeModal();
+        }
+      }, "Delete education") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "education-form-button",
         type: "submit"
       }, "Save"))));

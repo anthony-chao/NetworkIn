@@ -18,8 +18,6 @@ class EducationForm extends React.Component {
 
   handleSubmit(e) {
       e.preventDefault();
-
-      if (this.props.formType === "Add Education") {
       const inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13")
       const inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13")
         if( (inputted_end_date > inputted_start_date || (this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month) || (this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month) || (!this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month)) && this.state.school.length !== 0) { 
@@ -35,17 +33,6 @@ class EducationForm extends React.Component {
         else if (this.state.school.length === 0) {
           this.setState({school_error: true})
         }
-      }
-      else {
-        console.log("wtf")
-        const start_month = this.state.start_date.slice(5, 7);
-        const start_year = this.state.start_date.slice(0, 4);
-        const end_month = this.state.end_date.slice(5, 7);
-        const end_year = this.state.end_date.slice(0, 4);
-
-        this.props.educationFunction(this.state);
-        this.props.closeModal();
-      }
   }
 
   handleUpdate(field) {
@@ -113,6 +100,9 @@ class EducationForm extends React.Component {
             <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.description} onChange={this.handleUpdate('description')}></textarea>
               <br />
               <div className="education-form-button-container">
+              {(this.props.formType === "Edit Education") ? 
+            <button className="education-form-delete" onClick={() => { this.props.deleteEducation(this.state), this.props.closeModal()}}>Delete education</button>
+               : null }
             <button className="education-form-button" type="submit">Save</button>
               </div>
         </form>
