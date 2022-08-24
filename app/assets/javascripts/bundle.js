@@ -646,8 +646,7 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
       }), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        onClick: this.handleClick,
-        onBlur: this.handleLeave
+        onClick: this.handleClick
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png",
         id: "nav-bar-profile-picture"
@@ -2455,6 +2454,8 @@ var Profile = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_globalnavbar_global_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "profile-page-centered"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-page-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_header_profile_header_container__WEBPACK_IMPORTED_MODULE_5__["default"], {
         viewedPageId: this.props.viewedPageId
@@ -2494,7 +2495,7 @@ var Profile = /*#__PURE__*/function (_React$Component) {
         id: "networking-news-bullet"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Bananas are good for you?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "networking-news-response"
-      }, "According to some scientists, bananas, are in fact, good for you. Shocking!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Second Container Placeholder")));
+      }, "According to some scientists, bananas, are in fact, good for you. Shocking!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Second Container Placeholder"))));
     }
   }]);
 

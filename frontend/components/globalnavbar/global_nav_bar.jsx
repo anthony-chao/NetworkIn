@@ -30,7 +30,7 @@ class GlobalNavBar extends React.Component {
               <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /> </Link>
             </div>
             <div className="global-right-nav-bar">
-              <div onClick={this.handleClick} onBlur={this.handleLeave}>
+              <div onClick={this.handleClick}>
                 <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
                 <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
               </div>

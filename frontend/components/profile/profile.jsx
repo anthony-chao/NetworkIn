@@ -15,6 +15,7 @@ class Profile extends React.Component {
         return (
             <div className="profile-page">
                 < GlobalNavBar />
+                <div className="profile-page-centered">
                 <div className="profile-page-body">
                     < ProfileHeaderContainer viewedPageId={this.props.viewedPageId} />
                     < ProfileAboutContainer viewedPageId={this.props.viewedPageId} />
@@ -43,6 +44,7 @@ class Profile extends React.Component {
                         </ul>
                     </div>
                     <p>Second Container Placeholder</p>
+                </div>
                 </div>
             </div>
         )
