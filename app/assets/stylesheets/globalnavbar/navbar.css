@@ -25,7 +25,9 @@
 
 .global-left-nav-bar {
     width: 54vw;
-    max-width: 820px
+    max-width: 820px;
+    display: flex;
+    align-items: center;
 }
 
 .global-right-nav-bar {
@@ -133,4 +135,25 @@
 
 .nav-bar-logout-button:hover {
     text-decoration: underline 1px solid rgba(0,0,0,0.5);
+}
+
+#nav-bar-search-bar {
+    margin-left: 20px;
+    line-height: 1.75;
+    font-size: 14px;
+    height: 34px;
+    font-weight: 200;
+    background-color: #eef3f8;
+    border: none;
+    border-radius: 0.3rem;
+    padding-left: 30px;
+    width: 33%;
+}
+
+#search-bar-logo {
+    margin-left: 10px;
+    height: 22px;
+    width: auto;
+    margin-right: -48px;
+    z-index: 100;
 }

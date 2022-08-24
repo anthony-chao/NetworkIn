@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => ({
         </button>
       ),
     closeModal: () => dispatch(closeModal()),
-    openModal: () => dispatch(openModal('updateEducation'))
+    openModal: (type, id) => dispatch(openModal(type, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EducationIndex)

@@ -11,12 +11,12 @@ function Modal({modal, closeModal}) {
   }
 
   let component;
-  switch (modal) {
+  switch (modal.modal) {
     case 'addEducation':
       component = <AddEducationContainer />;
       break;
     case 'updateEducation':
-      component = <UpdateEducationContainer />;
+      component = <UpdateEducationContainer educationId={modal.id} />;
       break;
     case 'createPost':
       component = <FeedContainer />;

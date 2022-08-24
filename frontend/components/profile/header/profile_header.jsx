@@ -12,7 +12,6 @@ class ProfileHeader extends React.Component {
         
         this.handleClick = this.handleClick.bind(this);
         this.openFakeModal = this.openFakeModal.bind(this);
-        this.closeFakeModal = this.closeFakeModal.bind(this);
     }
 
     componentDidMount() {
@@ -27,12 +26,6 @@ class ProfileHeader extends React.Component {
         document.getElementById("profile-header-add-profile-section").classList.add("invisible");
         document.getElementById("profile-header-add-experience").classList.remove("invisible");
         document.getElementById("profile-header-add-education").classList.remove("invisible");
-      }
-
-    closeFakeModal() {
-        document.getElementById("profile-header-add-profile-section").classList.remove("invisible");
-        document.getElementById("profile-header-add-experience").classList.add("invisible");
-        document.getElementById("profile-header-add-education").classList.add("invisible");
       }
 
     render() {
@@ -50,7 +43,7 @@ class ProfileHeader extends React.Component {
                     </div>
                     { (parseInt(this.props.currentUser.id) === parseInt(this.props.viewedPageId)) ? 
                     <div>
-                        <div onClick={this.openFakeModal} onBlur={this.closeFakeModal} id="profile-header-add-profile-section">Add Profile Section</div>
+                        <div onClick={this.openFakeModal} id="profile-header-add-profile-section">Add Profile Section</div>
                             <div className="profile-header-buttons">
                                 <div id="profile-header-add-experience" className="invisible">Add Experience</div>
                                 <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education" className="invisible">Add Education</div>

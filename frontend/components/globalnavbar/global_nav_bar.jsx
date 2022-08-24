@@ -28,7 +28,9 @@ class GlobalNavBar extends React.Component {
           <nav className="global-nav-bar">
             <div className="nav-bar-body">
             <div className="global-left-nav-bar">
-              <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /> </Link>
+              <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /></Link>
+              <img src="https://i.postimg.cc/6pK7d510/image-removebg-preview.png" id="search-bar-logo"/>
+              <input type="text" id="nav-bar-search-bar" placeholder="Search"/>
             </div>
             <div className="global-right-nav-bar">
               <div onClick={this.handleClick}>

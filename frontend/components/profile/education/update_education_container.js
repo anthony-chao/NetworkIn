@@ -3,26 +3,12 @@ import EducationForm from "./education_form";
 import { updateEducation, deleteEducation } from '../../../actions/education_actions';
 import { closeModal } from "../../../actions/modal_actions";
 
-const mapStateToProps = (state) => {
-    debugger;
+const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: state.entities.viewedUser,
-        education: {
-            id: 1,
-            user_id: state.entities.viewedUser[1].id,
-            school: "",
-            degree: "",
-            field: "",
-            start_date: "",
-            end_date: "",
-            activities: "",
-            description: "",
-            start_year: "",
-            start_month: "",
-            end_year: "",
-            end_month: ""
-        }
+        education: state.entities.viewedUserEducation[ownProps.educationId],
+        formType: 'Edit Education'
     }
 };
 

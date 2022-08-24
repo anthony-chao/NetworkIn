@@ -5,24 +5,7 @@ class EducationForm extends React.Component {
   constructor(props) {
     super(props)
 
-    // this.state = this.props.education
-    this.state = {
-        id: this.props.education.id,
-        user_id: this.props.education.user_id,
-        school: this.props.education.school,
-        degree: this.props.education.degree,
-        field: this.props.education.field,
-        start_date: this.props.education.start_date,
-        end_date: this.props.education.end_date,
-        activities: this.props.education.activities,
-        description: this.props.education.description,
-        start_year: this.props.education.start_year,
-        start_month: this.props.education.start_month,
-        end_year: this.props.education.end_year,
-        end_month: this.props.education.end_month,
-        school_error: false,
-        year_error: false
-    }
+    this.state = props.education
 
     this.errorMessages = {
       schoolError: "School is a required field",
@@ -35,6 +18,8 @@ class EducationForm extends React.Component {
 
   handleSubmit(e) {
       e.preventDefault();
+
+      if (this.props.formType === "Add Education") {
       const inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13")
       const inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13")
         if( (inputted_end_date > inputted_start_date || (this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month) || (this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month) || (!this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month)) && this.state.school.length !== 0) { 
@@ -43,12 +28,23 @@ class EducationForm extends React.Component {
           end_date: inputted_end_date,
           user_id: this.props.currentUser.id}, 
         () => {this.props.educationFunction(this.state), this.props.closeModal()})
+        }
+        else if (inputted_end_date < inputted_start_date && (this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month)) {
+          this.setState({year_error: true})
+        }
+        else if (this.state.school.length === 0) {
+          this.setState({school_error: true})
+        }
       }
-      else if (inputted_end_date < inputted_start_date && (this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month)) {
-        this.setState({year_error: true})
-      }
-      else if (this.state.school.length === 0) {
-        this.setState({school_error: true})
+      else {
+        console.log("wtf")
+        const start_month = this.state.start_date.slice(5, 7);
+        const start_year = this.state.start_date.slice(0, 4);
+        const end_month = this.state.end_date.slice(5, 7);
+        const end_year = this.state.end_date.slice(0, 4);
+
+        this.props.educationFunction(this.state);
+        this.props.closeModal();
       }
   }
 
@@ -66,7 +62,7 @@ class EducationForm extends React.Component {
       <div>
         <form className="education-form-container" onSubmit={this.handleSubmit}>
           <div className="education-form-header-container">
-            <h1 className="education-form-header">Add education</h1>
+            <h1 className="education-form-header">{this.props.formType}</h1>
             <button className="close-modal-button" onClick={() => this.props.closeModal()}>X</button>
           </div>
           <label className="education-form-labels">School*</label>

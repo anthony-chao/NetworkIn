@@ -20,7 +20,8 @@ const mapStateToProps = (state, ownProps) => {
             start_month: "",
             end_year: "",
             end_month: ""
-        }
+        },
+        formType: 'Add Education'
     }
 };
 

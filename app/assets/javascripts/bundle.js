@@ -167,10 +167,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var OPEN_MODAL = 'OPEN_MODAL';
 var CLOSE_MODAL = 'CLOSE_MODAL';
-var openModal = function openModal(modal) {
+var openModal = function openModal(modal, id) {
   return {
     type: OPEN_MODAL,
-    modal: modal
+    modal: {
+      modal: modal,
+      id: id
+    }
   };
 };
 var closeModal = function closeModal() {
@@ -645,7 +648,14 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         id: "nav-bar-logo",
         src: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
-      }), " ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/6pK7d510/image-removebg-preview.png",
+        id: "search-bar-logo"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        id: "nav-bar-search-bar",
+        placeholder: "Search"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: this.handleClick
@@ -1226,13 +1236,15 @@ function Modal(_ref) {
 
   var component;
 
-  switch (modal) {
+  switch (modal.modal) {
     case 'addEducation':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_add_education_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
     case 'updateEducation':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        educationId: modal.id
+      });
       break;
 
     case 'createPost':
@@ -1313,7 +1325,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       start_month: "",
       end_year: "",
       end_month: ""
-    }
+    },
+    formType: 'Add Education'
   };
 };
 
@@ -1381,25 +1394,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, EducationForm);
 
-    _this = _super.call(this, props); // this.state = this.props.education
-
-    _this.state = {
-      id: _this.props.education.id,
-      user_id: _this.props.education.user_id,
-      school: _this.props.education.school,
-      degree: _this.props.education.degree,
-      field: _this.props.education.field,
-      start_date: _this.props.education.start_date,
-      end_date: _this.props.education.end_date,
-      activities: _this.props.education.activities,
-      description: _this.props.education.description,
-      start_year: _this.props.education.start_year,
-      start_month: _this.props.education.start_month,
-      end_year: _this.props.education.end_year,
-      end_month: _this.props.education.end_month,
-      school_error: false,
-      year_error: false
-    };
+    _this = _super.call(this, props);
+    _this.state = props.education;
     _this.errorMessages = {
       schoolError: "School is a required field",
       yearError: "End date can't be earlier than start date"
@@ -1414,25 +1410,36 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
-      var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
-      var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
 
-      if ((inputted_end_date > inputted_start_date || this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month || this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month || !this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month) && this.state.school.length !== 0) {
-        this.setState({
-          start_date: inputted_start_date,
-          end_date: inputted_end_date,
-          user_id: this.props.currentUser.id
-        }, function () {
-          _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
-        });
-      } else if (inputted_end_date < inputted_start_date && this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month) {
-        this.setState({
-          year_error: true
-        });
-      } else if (this.state.school.length === 0) {
-        this.setState({
-          school_error: true
-        });
+      if (this.props.formType === "Add Education") {
+        var inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13");
+        var inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13");
+
+        if ((inputted_end_date > inputted_start_date || this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month || this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month || !this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month) && this.state.school.length !== 0) {
+          this.setState({
+            start_date: inputted_start_date,
+            end_date: inputted_end_date,
+            user_id: this.props.currentUser.id
+          }, function () {
+            _this2.props.educationFunction(_this2.state), _this2.props.closeModal();
+          });
+        } else if (inputted_end_date < inputted_start_date && this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month) {
+          this.setState({
+            year_error: true
+          });
+        } else if (this.state.school.length === 0) {
+          this.setState({
+            school_error: true
+          });
+        }
+      } else {
+        console.log("wtf");
+        var start_month = this.state.start_date.slice(5, 7);
+        var start_year = this.state.start_date.slice(0, 4);
+        var end_month = this.state.end_date.slice(5, 7);
+        var end_year = this.state.end_date.slice(0, 4);
+        this.props.educationFunction(this.state);
+        this.props.closeModal();
       }
     }
   }, {
@@ -1469,7 +1476,7 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         className: "education-form-header-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "education-form-header"
-      }, "Add education"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "close-modal-button",
         onClick: function onClick() {
           return _this4.props.closeModal();
@@ -1708,8 +1715,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
     },
-    openModal: function openModal() {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)('updateEducation'));
+    openModal: function openModal(type, id) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(type, id));
     }
   };
 };
@@ -1781,7 +1788,7 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "update-education-experience-button",
         onClick: function onClick() {
-          return _this.props.openModal();
+          return _this.props.openModal('updateEducation', _this.props.education.id);
         }
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
@@ -1837,26 +1844,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
-  debugger;
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     viewedUserId: state.entities.viewedUser,
-    education: {
-      id: 1,
-      user_id: state.entities.viewedUser[1].id,
-      school: "",
-      degree: "",
-      field: "",
-      start_date: "",
-      end_date: "",
-      activities: "",
-      description: "",
-      start_year: "",
-      start_month: "",
-      end_year: "",
-      end_month: ""
-    }
+    education: state.entities.viewedUserEducation[ownProps.educationId],
+    formType: 'Edit Education'
   };
 };
 
@@ -2255,7 +2248,6 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.openFakeModal = _this.openFakeModal.bind(_assertThisInitialized(_this));
-    _this.closeFakeModal = _this.closeFakeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2287,13 +2279,6 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
       document.getElementById("profile-header-add-education").classList.remove("invisible");
     }
   }, {
-    key: "closeFakeModal",
-    value: function closeFakeModal() {
-      document.getElementById("profile-header-add-profile-section").classList.remove("invisible");
-      document.getElementById("profile-header-add-experience").classList.add("invisible");
-      document.getElementById("profile-header-add-education").classList.add("invisible");
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -2319,7 +2304,6 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
           id: "profile-grey-location"
         }, this.state.fetchedUser.location_city.concat(", ", this.state.fetchedUser.location_country)))), parseInt(this.props.currentUser.id) === parseInt(this.props.viewedPageId) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           onClick: this.openFakeModal,
-          onBlur: this.closeFakeModal,
           id: "profile-header-add-profile-section"
         }, "Add Profile Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "profile-header-buttons"
