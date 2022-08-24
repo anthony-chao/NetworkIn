@@ -1514,7 +1514,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         className: "education-form-labels"
       }, "Start date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-month-selector",
-        onChange: this.handleUpdate('start_month')
+        onChange: this.handleUpdate('start_month'),
+        value: monthsArray[parseInt(this.state.start_month) - 1]
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Month"
       }, "Month"), monthsArray.map(function (month) {
@@ -1524,7 +1525,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         }, month);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-year-selector",
-        onChange: this.handleUpdate('start_year')
+        onChange: this.handleUpdate('start_year'),
+        value: this.state.start_year
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Year"
       }, "Year"), startYearArray.map(function (year) {
@@ -1536,7 +1538,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         className: "education-form-labels"
       }, "End date (or expected)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-month-selector",
-        onChange: this.handleUpdate('end_month')
+        onChange: this.handleUpdate('end_month'),
+        value: monthsArray[parseInt(this.state.end_month) - 1]
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Month"
       }, "Month"), monthsArray.map(function (month) {
@@ -1546,7 +1549,8 @@ var EducationForm = /*#__PURE__*/function (_React$Component) {
         }, month);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-year-selector",
-        onChange: this.handleUpdate('end_year')
+        onChange: this.handleUpdate('end_year'),
+        value: this.state.end_year
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Year"
       }, "Year"), endYearArray.map(function (year) {
