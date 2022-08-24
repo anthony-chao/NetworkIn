@@ -181,6 +181,81 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/post_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/post_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_POST": () => (/* binding */ RECEIVE_POST),
+/* harmony export */   "RECEIVE_POSTS": () => (/* binding */ RECEIVE_POSTS),
+/* harmony export */   "REMOVE_POST": () => (/* binding */ REMOVE_POST),
+/* harmony export */   "addPost": () => (/* binding */ addPost),
+/* harmony export */   "deletePost": () => (/* binding */ deletePost),
+/* harmony export */   "fetchPosts": () => (/* binding */ fetchPosts),
+/* harmony export */   "updatePost": () => (/* binding */ updatePost)
+/* harmony export */ });
+/* harmony import */ var _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/post_api_util */ "./frontend/util/post_api_util.jsx");
+
+var RECEIVE_POSTS = 'RECEIVE_POSTS';
+var RECEIVE_POST = 'RECEIVE_POST';
+var REMOVE_POST = 'REMOVE_POST';
+
+var receivePosts = function receivePosts(posts) {
+  return {
+    type: RECEIVE_POSTS,
+    posts: posts
+  };
+};
+
+var receivePost = function receivePost(post) {
+  return {
+    type: RECEIVE_POST,
+    post: post
+  };
+};
+
+var removePost = function removePost(post) {
+  return {
+    type: REMOVE_POST,
+    post: post
+  };
+};
+
+var fetchPosts = function fetchPosts() {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPosts().then(function (posts) {
+      return dispatch(receivePosts(posts));
+    });
+  };
+};
+var addPost = function addPost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.addPost(post).then(function (post) {
+      return dispatch(receivePost(post));
+    });
+  };
+};
+var updatePost = function updatePost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.updatePost(post).then(function (post) {
+      return dispatch(receivePost(post));
+    });
+  };
+};
+var deletePost = function deletePost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.deletePost(post).then(function (post) {
+      return dispatch(removePost(post));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -450,21 +525,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _feed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./feed */ "./frontend/components/feed/feed.jsx");
 
 
- // const mapStateToProps = ({ session, entities: { users } }) => {
-//     return {
-//         currentUser: users[session.id]
-//     }
-// };
-// const mapDispatchToProps = dispatch => ({
-//     logout: () => dispatch(logout())
-// });
-// export default connect(mapStateToProps, mapDispatchToProps)(Feed);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_feed__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var session = _ref.session,
+      users = _ref.entities.users;
+  return {
+    currentUser: users[session.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    openModal: function openModal(type) {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__.openModal)(type));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_feed__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1122,6 +1207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile_education_add_education_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../profile/education/add_education_container */ "./frontend/components/profile/education/add_education_container.js");
 /* harmony import */ var _profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/education/update_education_container */ "./frontend/components/profile/education/update_education_container.js");
+/* harmony import */ var _feed_feed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../feed/feed_container */ "./frontend/components/feed/feed_container.jsx");
+
 
 
 
@@ -1145,6 +1232,14 @@ function Modal(_ref) {
 
     case 'updateEducation':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
+      break;
+
+    case 'createPost':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_feed_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      break;
+
+    case 'updatePost':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_feed_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
       break;
 
     default:
@@ -3785,6 +3880,53 @@ var updateExperience = function updateExperience(experience) {
 var deleteExperience = function deleteExperience(experience) {
   return $.ajax({
     url: "/api/experiences/".concat(experience.id),
+    method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/post_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/post_api_util.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addPost": () => (/* binding */ addPost),
+/* harmony export */   "deletePost": () => (/* binding */ deletePost),
+/* harmony export */   "fetchPosts": () => (/* binding */ fetchPosts),
+/* harmony export */   "updatePost": () => (/* binding */ updatePost)
+/* harmony export */ });
+var fetchPosts = function fetchPosts() {
+  return $.ajax({
+    url: "api/posts",
+    method: 'GET'
+  });
+};
+var addPost = function addPost(post) {
+  return $.ajax({
+    url: '/api/posts',
+    method: 'POST',
+    data: {
+      post: post
+    }
+  });
+};
+var updatePost = function updatePost(post) {
+  return $.ajax({
+    url: "/api/posts/".concat(post.id),
+    method: 'PATCH',
+    data: {
+      post: post
+    }
+  });
+};
+var deletePost = function deletePost(post) {
+  return $.ajax({
+    url: "/api/posts/".concat(post.id),
     method: 'DELETE'
   });
 };

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import {} from '../../actions/post_actions'
+import { openModal } from '../../actions/modal_actions'
 import Feed from './feed';
 
 const mapStateToProps = ({ session, entities: { users } }) => {
@@ -8,8 +9,8 @@ const mapStateToProps = ({ session, entities: { users } }) => {
     }
 };
 
-// const mapDispatchToProps = dispatch => ({
-//     logout: () => dispatch(logout())
-// });
+const mapDispatchToProps = dispatch => ({
+    openModal: (type) => dispatch(openModal(type))
+});
 
-export default connect(mapStateToProps, null)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);

@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import AddEducationContainer from '../profile/education/add_education_container';
 import UpdateEducationContainer from '../profile/education/update_education_container';
+import FeedContainer from '../feed/feed_container'
 
 function Modal({modal, closeModal}) {
   if (!modal) {
@@ -16,6 +17,12 @@ function Modal({modal, closeModal}) {
       break;
     case 'updateEducation':
       component = <UpdateEducationContainer />;
+      break;
+    case 'createPost':
+      component = <FeedContainer />;
+      break;
+    case 'updatePost':
+      component = <FeedContainer />;
       break;
     default:
       return null;
