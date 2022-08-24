@@ -91,7 +91,7 @@ class ExperienceForm extends React.Component {
         const startYearArray = [];
         for (let i = new Date().getFullYear(); i >= 1950; i--) { startYearArray.push(i)}
         const endYearArray = [];
-        for (let i = new Date().getFullYear() + 10; i >= 1950; i--) { endYearArray.push(i)}
+        for (let i = new Date().getFullYear(); i >= 1950; i--) { endYearArray.push(i)}
         const monthsArray = [  'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
         return (
@@ -114,13 +114,13 @@ class ExperienceForm extends React.Component {
                     <br />
                 <label className="education-form-labels">Start date*</label>
                     <br />
-                    <select className="education-form-month-selector" onChange={this.handleUpdate('start_month')}>
+                    <select className="education-form-month-selector" onChange={this.handleUpdate('start_month')} value={monthsArray[parseInt(this.state.start_month) - 1]} >
                     <option value="Month">Month</option>
                     {monthsArray.map((month) => (
                         <option key={month} value={month}>{month}</option>
                     ))}
                     </select>
-                    <select className="education-form-year-selector" onChange={this.handleUpdate('start_year')}>
+                    <select className="education-form-year-selector" onChange={this.handleUpdate('start_year')} value={this.state.start_year}>
                     <option value="Year">Year</option>
                     {startYearArray.map((year) => (
                         <option key={year} value={year}>{year}</option>
@@ -129,13 +129,13 @@ class ExperienceForm extends React.Component {
                     <br />
                 <label className="education-form-labels">End date (or expected)*</label>
                     <br />
-                    <select className="education-form-month-selector" onChange={this.handleUpdate('end_month')}>
+                    <select className="education-form-month-selector" onChange={this.handleUpdate('end_month')} value={monthsArray[parseInt(this.state.end_month) - 1]}>
                         <option value="Month">Month</option>
                         {monthsArray.map((month) => (
                         <option key={month} value={month}>{month}</option>
                         ))}
                     </select>
-                    <select className="education-form-year-selector" onChange={this.handleUpdate('end_year')}>
+                    <select className="education-form-year-selector" onChange={this.handleUpdate('end_year')} value={this.state.end_year}>
                     <option value="Year">Year</option>
                         {endYearArray.map((year) => (
                         <option key={year} value={year}>{year}</option>
@@ -148,6 +148,9 @@ class ExperienceForm extends React.Component {
                     <textarea className="education-form-input-container" id="education-form-textarea" value={this.state.description} onChange={this.handleUpdate('description')}></textarea>
                     <br />
                     <div className="education-form-button-container">
+                        {(this.props.formType === "Edit Experience") ? 
+                        <button className="experience-form-delete" onClick={() => { this.props.deleteExperience(this.state), this.props.closeModal()}}>Delete experience</button>
+                        : null }
                     <button className="education-form-button" type="submit">Save</button>
                     </div>
                 </form>

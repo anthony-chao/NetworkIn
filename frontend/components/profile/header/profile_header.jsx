@@ -45,7 +45,7 @@ class ProfileHeader extends React.Component {
                     <div>
                         <div onClick={this.openFakeModal} id="profile-header-add-profile-section">Add Profile Section</div>
                             <div className="profile-header-buttons">
-                                <div id="profile-header-add-experience" className="invisible">Add Experience</div>
+                                <div onClick={() => this.props.openModal('addExperience')} id="profile-header-add-experience" className="invisible">Add Experience</div>
                                 <div onClick={() => this.props.openModal('addEducation')} id="profile-header-add-education" className="invisible">Add Education</div>
                             </div>
                     </div>

@@ -1220,6 +1220,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_education_update_education_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../profile/education/update_education_container */ "./frontend/components/profile/education/update_education_container.js");
 /* harmony import */ var _feed_feed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../feed/feed_container */ "./frontend/components/feed/feed_container.jsx");
 /* harmony import */ var _profile_experience_add_experience_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/experience/add_experience_container */ "./frontend/components/profile/experience/add_experience_container.js");
+/* harmony import */ var _profile_experience_update_experience_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../profile/experience/update_experience_container */ "./frontend/components/profile/experience/update_experience_container.js");
+
 
 
 
@@ -1254,7 +1256,7 @@ function Modal(_ref) {
       break;
 
     case 'updateExperience':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(UpdateExperienceContainer, {
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_profile_experience_update_experience_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
         experienceId: modal.id
       });
       break;
@@ -1786,7 +1788,6 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      console.log(this.props);
       var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-index-item"
@@ -1856,7 +1857,6 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     viewedUserId: state.entities.viewedUser,
-    // education: state.entities.viewedUserEducation[ownProps.educationId],
     education: {
       id: state.entities.viewedUserEducation[ownProps.educationId].id,
       user_id: state.entities.viewedUserEducation[ownProps.educationId].user_id,
@@ -1867,14 +1867,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       end_date: state.entities.viewedUserEducation[ownProps.educationId].end_date,
       activities: state.entities.viewedUserEducation[ownProps.educationId].activities,
       description: state.entities.viewedUserEducation[ownProps.educationId].description,
-      start_month: "",
-      start_year: "",
-      end_month: "",
-      end_year: "" // start_month: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(5, 7),
-      // start_year: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(0, 4),
-      // end_month: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(5, 7),
-      // end_year: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(0, 4)
-
+      // start_month: "",
+      // start_year: "",
+      // end_month: "",
+      // end_year: "",
+      start_month: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(5, 7),
+      start_year: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(0, 4),
+      end_month: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(5, 7),
+      end_year: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(0, 4)
     },
     formType: 'Edit Education'
   };
@@ -2105,7 +2105,7 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
 
       var endYearArray = [];
 
-      for (var _i = new Date().getFullYear() + 10; _i >= 1950; _i--) {
+      for (var _i = new Date().getFullYear(); _i >= 1950; _i--) {
         endYearArray.push(_i);
       }
 
@@ -2156,7 +2156,8 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
         className: "education-form-labels"
       }, "Start date*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-month-selector",
-        onChange: this.handleUpdate('start_month')
+        onChange: this.handleUpdate('start_month'),
+        value: monthsArray[parseInt(this.state.start_month) - 1]
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Month"
       }, "Month"), monthsArray.map(function (month) {
@@ -2166,7 +2167,8 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
         }, month);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-year-selector",
-        onChange: this.handleUpdate('start_year')
+        onChange: this.handleUpdate('start_year'),
+        value: this.state.start_year
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Year"
       }, "Year"), startYearArray.map(function (year) {
@@ -2178,7 +2180,8 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
         className: "education-form-labels"
       }, "End date (or expected)*"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-month-selector",
-        onChange: this.handleUpdate('end_month')
+        onChange: this.handleUpdate('end_month'),
+        value: monthsArray[parseInt(this.state.end_month) - 1]
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Month"
       }, "Month"), monthsArray.map(function (month) {
@@ -2188,7 +2191,8 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
         }, month);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         className: "education-form-year-selector",
-        onChange: this.handleUpdate('end_year')
+        onChange: this.handleUpdate('end_year'),
+        value: this.state.end_year
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
         value: "Year"
       }, "Year"), endYearArray.map(function (year) {
@@ -2211,7 +2215,12 @@ var ExperienceForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleUpdate('description')
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-form-button-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, this.props.formType === "Edit Experience" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "experience-form-delete",
+        onClick: function onClick() {
+          _this4.props.deleteExperience(_this4.state), _this4.props.closeModal();
+        }
+      }, "Delete experience") : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "education-form-button",
         type: "submit"
       }, "Save"))));
@@ -2300,7 +2309,11 @@ var ExperienceIndex = /*#__PURE__*/function (_React$Component) {
         }, "+") : null), Object.values(this.props.experiences).map(function (experience) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_experience_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: experience.id,
-            experience: experience
+            experience: experience,
+            openModal: _this.props.openModal,
+            closeModal: _this.props.closeModal,
+            viewedUserId: _this.props.viewedUserId,
+            currentUserId: _this.props.currentUser.id
           });
         }));
       }
@@ -2411,13 +2424,23 @@ var ExperienceIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(ExperienceIndexItem, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-index-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/yNSmf9GF/image.png",
         className: "education-experience-image-logo"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }), parseInt(this.props.viewedUserId) === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "update-education-experience-button",
+        onClick: function onClick() {
+          return _this.props.openModal('updateExperience', _this.props.experience.id);
+        }
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
+        id: "edit-button-pencil"
+      })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-bolded"
@@ -2437,6 +2460,71 @@ var ExperienceIndexItem = /*#__PURE__*/function (_React$Component) {
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ExperienceIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/experience/update_experience_container.js":
+/*!*******************************************************************************!*\
+  !*** ./frontend/components/profile/experience/update_experience_container.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _experience_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./experience_form */ "./frontend/components/profile/experience/experience_form.jsx");
+/* harmony import */ var _actions_experience_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/experience_actions */ "./frontend/actions/experience_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    viewedUserId: state.entities.viewedUser,
+    // education: state.entities.viewedUserEducation[ownProps.educationId],
+    experience: {
+      id: state.entities.viewedUserExperience[ownProps.experienceId].id,
+      user_id: state.entities.viewedUserExperience[ownProps.experienceId].user_id,
+      title: state.entities.viewedUserExperience[ownProps.experienceId].title,
+      company_name: state.entities.viewedUserExperience[ownProps.experienceId].company_name,
+      location: state.entities.viewedUserExperience[ownProps.experienceId].location,
+      start_date: state.entities.viewedUserExperience[ownProps.experienceId].start_date,
+      end_date: state.entities.viewedUserExperience[ownProps.experienceId].end_date,
+      description: state.entities.viewedUserExperience[ownProps.experienceId].description,
+      // start_month: "",
+      // start_year: "",
+      // end_month: "",
+      // end_year: "",
+      start_month: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(5, 7),
+      start_year: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(0, 4),
+      end_month: String(state.entities.viewedUserExperience[ownProps.experienceId].end_date).slice(5, 7),
+      end_year: String(state.entities.viewedUserExperience[ownProps.experienceId].end_date).slice(0, 4)
+    },
+    formType: 'Edit Experience'
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    experienceFunction: function experienceFunction(experience) {
+      return dispatch((0,_actions_experience_actions__WEBPACK_IMPORTED_MODULE_2__.updateExperience)(experience));
+    },
+    deleteExperience: function deleteExperience(experience) {
+      return dispatch((0,_actions_experience_actions__WEBPACK_IMPORTED_MODULE_2__.deleteExperience)(experience));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_experience_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -2679,6 +2767,9 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         }, "Add Profile Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "profile-header-buttons"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          onClick: function onClick() {
+            return _this3.props.openModal('addExperience');
+          },
           id: "profile-header-add-experience",
           className: "invisible"
         }, "Add Experience"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

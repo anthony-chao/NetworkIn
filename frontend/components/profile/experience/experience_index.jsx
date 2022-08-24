@@ -22,7 +22,7 @@ class ExperienceIndex extends React.Component {
                     : null}
                 </div>
                 {Object.values(this.props.experiences).map((experience) => (
-                    <ExperienceIndexItem key={experience.id} experience={experience}/>
+                    <ExperienceIndexItem key={experience.id} experience={experience} openModal={this.props.openModal} closeModal={this.props.closeModal} viewedUserId={this.props.viewedUserId} currentUserId={this.props.currentUser.id}/>
                 ))
                 }
 
