@@ -12,7 +12,10 @@ class EducationIndexItem extends React.Component {
         return (
             <div className="education-experience-index-item">
                 <img src="https://i.postimg.cc/pdtrHFTQ/image.png" className="education-experience-image-logo"/>
+            
+                { (parseInt(this.props.viewedUserId) === this.props.currentUserId) ? 
                 <button className="update-education-experience-button" onClick={() => this.props.openModal('updateEducation', this.props.education.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-pencil" /></button>
+                    : null }
                 <div className="education-experience-body">
                     <div className="education-experience-bolded">{this.props.education.school}</div>
                     { (this.props.education.degree && !this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}</div> : null} 

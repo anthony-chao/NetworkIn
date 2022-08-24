@@ -1650,7 +1650,9 @@ var EducationIndex = /*#__PURE__*/function (_React$Component) {
             key: education.id,
             education: education,
             openModal: _this.props.openModal,
-            closeModal: _this.props.closeModal
+            closeModal: _this.props.closeModal,
+            viewedUserId: _this.props.viewedUserId,
+            currentUserId: _this.props.currentUser.id
           });
         }));
       }
@@ -1779,7 +1781,7 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/pdtrHFTQ/image.png",
         className: "education-experience-image-logo"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), parseInt(this.props.viewedUserId) === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "update-education-experience-button",
         onClick: function onClick() {
           return _this.props.openModal('updateEducation', _this.props.education.id);
@@ -1787,7 +1789,7 @@ var EducationIndexItem = /*#__PURE__*/function (_React$Component) {
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
         id: "edit-button-pencil"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "education-experience-bolded"

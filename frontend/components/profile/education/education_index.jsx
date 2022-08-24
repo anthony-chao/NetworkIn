@@ -20,7 +20,7 @@ class EducationIndex extends React.Component {
                     { (parseInt(this.props.viewedUserId) === this.props.currentUser.id) ? this.props.otherForm : null}
                 </div>
                 {Object.values(this.props.educations).map((education) => (
-                    <EducationIndexItem key={education.id} education={education} openModal={this.props.openModal} closeModal={this.props.closeModal}/>
+                    <EducationIndexItem key={education.id} education={education} openModal={this.props.openModal} closeModal={this.props.closeModal} viewedUserId={this.props.viewedUserId} currentUserId={this.props.currentUser.id}/>
                 ))
                 }
 
