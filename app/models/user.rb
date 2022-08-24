@@ -28,6 +28,11 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :Education
+
+    has_many :posts,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Post
     
     validates :email, :session_token, presence: true, uniqueness: true
     validates :password_digest, :first_name, :last_name, :headline, :location_country, :location_city, presence: true

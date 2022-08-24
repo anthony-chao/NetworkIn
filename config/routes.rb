@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
     resources :experiences, only: [:create, :update, :destroy]
     resources :educations, only: [:create, :update, :destroy]
+
+    resources :posts, only: [:index, :create, :update, :destroy]
   end
 
   root to: "static_pages#root"
