@@ -26,6 +26,7 @@ class GlobalNavBar extends React.Component {
     render() {
       return (
           <nav className="global-nav-bar">
+            <div className="nav-bar-body">
             <div className="global-left-nav-bar">
               <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /> </Link>
             </div>
@@ -34,6 +35,7 @@ class GlobalNavBar extends React.Component {
                 <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
                 <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
               </div>
+            </div>
               {(this.state.dropdown) ? 
               <div className="nav-bar-dropdown"> 
                 <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="nav-bar-profile-container">
