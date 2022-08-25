@@ -7,8 +7,8 @@ class PostForm extends React.Component {
 
         this.state = this.props.post;
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmitButton = this.handleSubmitButton.bind(this);
 
-        // this.checkBodyError = this.checkBodyError.bind(this);
     }
 
     handleUpdate(field) {
@@ -17,8 +17,19 @@ class PostForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.postFunction(this.state);
+        this.props.postFunction(this.state)
         this.props.closeModal();
+    }
+
+    handleSubmitButton() {
+        let button = document.getElementById('post-form-button')
+
+        if (this.state.body.length === 0) {
+            button.setAttribute('disabled', "")
+        }
+        else {
+            button.removeAttribute('disabled', "")
+        }
     }
 
     render() {
@@ -41,11 +52,10 @@ class PostForm extends React.Component {
                 </div>
                 <div className="post-form-input">
                     <textarea className="post-form-input-field" type="text" value={this.state.body} onChange={this.handleUpdate('body')} placeholder="What do you want to talk about?"></textarea>
-                    {/* <input className="post-form-input-field" type="text" value={this.state.body} onChange={this.handleUpdate('body')} placeholder="What do you want to talk about?"/> */}
                 </div>
                 <div id="body-error-handler" className="post-form-errors invisible">Post cannot be empty</div>
                     <br />
-                    <button className="education-form-button" id="post-form-button" type="submit" disabled={(this.state.body.length === 0)}>Post</button>
+                    <button className="education-form-button" id="post-form-button" type="submit" disabled={ (this.state.body.length === 0)}>Post</button>
                 </form>
             </div>
         )

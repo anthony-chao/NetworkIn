@@ -7,7 +7,6 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: state.entities.viewedUser,
-        // education: state.entities.viewedUserEducation[ownProps.educationId],
         experience: {
             id: state.entities.viewedUserExperience[ownProps.experienceId].id,
             user_id: state.entities.viewedUserExperience[ownProps.experienceId].user_id,
@@ -17,10 +16,6 @@ const mapStateToProps = (state, ownProps) => {
             start_date: state.entities.viewedUserExperience[ownProps.experienceId].start_date,
             end_date: state.entities.viewedUserExperience[ownProps.experienceId].end_date,
             description: state.entities.viewedUserExperience[ownProps.experienceId].description,
-            // start_month: "",
-            // start_year: "",
-            // end_month: "",
-            // end_year: "",
             start_month: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(5, 7),
             start_year: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(0, 4),
             end_month: String(state.entities.viewedUserExperience[ownProps.experienceId].end_date).slice(5, 7),
