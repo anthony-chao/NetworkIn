@@ -880,6 +880,8 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           return _this.props.openModal('addPost');
         }
       }, "Start a post"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "feed-page-empty-line"
+      }, "Sort by: Recent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "feed-post-index-body"
       }, Object.values(this.props.posts).map(function (post) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_post_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -887,7 +889,6 @@ var PostIndex = /*#__PURE__*/function (_React$Component) {
           post: post,
           openModal: _this.props.openModal,
           closeModal: _this.props.closeModal,
-          fetchUser: _this.props.fetchUser,
           deletePost: _this.props.deletePost,
           currentUserId: _this.props.currentUser.id,
           users: _this.props.users
@@ -943,9 +944,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     openModal: function openModal(type, id) {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(type, id));
-    },
-    fetchUser: function fetchUser(userId) {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.fetchUser)(userId));
     },
     deletePost: function deletePost(post) {
       return dispatch((0,_actions_post_actions__WEBPACK_IMPORTED_MODULE_1__.deletePost)(post));
@@ -1013,39 +1011,71 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
       body: props.post.body,
       authorId: props.post.user_id
     };
+    _this.openFakeModal = _this.openFakeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PostIndexItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchUser(this.props.post.user_id).then(
-      //     (user) => {this.setState({author: user.first_name})})
+    key: "openFakeModal",
+    value: function openFakeModal(id) {
+      document.getElementById(id).classList.add("invisible");
+      document.getElementById(id).classList.remove("invisible");
+      document.getElementById(id).classList.remove("invisible");
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "individual-post-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "post-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "post-user-entire"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: {
           pathname: "/users/".concat(this.state.authorId)
         }
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png",
-        id: "post-index-profile-image"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, " ", this.props.users[this.props.post.user_id].first_name, " ", this.props.users[this.props.post.user_id].last_name, " "), this.state.authorId === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        className: "edit-post-button",
+        id: "post-profile-image"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "post-user-background"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        id: "post-user-name"
+      }, " ", this.props.users[this.props.post.user_id].first_name, " ", this.props.users[this.props.post.user_id].last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        id: "post-user-headline"
+      }, " ", this.props.users[this.props.post.user_id].headline))), this.state.authorId === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        onClick: function onClick() {
+          return _this2.openFakeModal("post-functions-button".concat(_this2.props.post.id));
+        },
+        id: "post-functions-button".concat(this.props.post.id),
+        className: ""
+      }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "post-edit-button".concat(this.props.post.id),
+        className: "edit-post-button invisible",
+        onClick: function onClick() {
+          return _this2.props.deletePost(_this2.props.post);
+        }
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/vBKzgJc6/image.png",
+        id: "edit-button-pencil"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "post-delete-button".concat(this.props.post.id),
+        className: "edit-post-button invisible",
         onClick: function onClick() {
           return _this2.props.openModal('updatePost', _this2.props.post.id);
         }
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
         id: "edit-button-pencil"
-      })) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, this.state.body));
+      }))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        id: "post-body"
+      }, this.state.body));
     }
   }]);
 

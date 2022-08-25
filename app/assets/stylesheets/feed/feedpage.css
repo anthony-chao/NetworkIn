@@ -11,7 +11,6 @@
 .feed-page-centered {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -19,12 +18,10 @@
     width: 550px;
     display: block;
     margin-top: 70px;
-    border: 1px solid red;
 }
 
 .feed-post-index-body {
-    margin-top: 15px;
-    border: 1px solid blue;
+    margin-top: 5px;
     display: flex;
     flex-direction: column-reverse;
 }
@@ -208,4 +205,72 @@
 .post-header {
     display: flex;
     flex-direction: row;
+    padding-right: 15px;
+    justify-content: space-between;
+}
+
+.edit-post-button {
+    padding: 18px 18px;
+    border: 0;
+    color: gray;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 200;
+    text-align: center;
+    text-decoration: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: transparent;
+    margin-top: -5px;
+    float: right;
+}
+
+.post-user-entire {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-user-background {
+    margin-left: 10px;
+}
+
+#post-user-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+#post-user-headline {
+    color: rgba(0,0,0,0.6);
+}
+
+#post-profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #e7e2dc;
+}
+
+#feed-page-empty-line {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+
+#feed-page-empty-line::before {
+    background-color: rgba(0,0,0,0.35);
+    content: '';
+    height: 1px;
+    margin-right: 5px;
+    width: 82%;
+    align-items: center;
+}
+
+#post-body {
+    margin-bottom: 10px;
 }

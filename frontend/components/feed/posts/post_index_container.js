@@ -16,7 +16,6 @@ const mapDispatchToProps = (dispatch) => ({
     fetchPosts: () => dispatch(fetchPosts()),
     closeModal: () => dispatch(closeModal()),
     openModal: (type, id) => dispatch(openModal(type, id)),
-    fetchUser: (userId) => dispatch(fetchUser(userId)),
     deletePost: (post) => dispatch(deletePost(post))
 })
 
