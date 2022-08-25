@@ -6,6 +6,7 @@ import UpdateEducationContainer from '../profile/education/update_education_cont
 import FeedContainer from '../feed/feed_container'
 import AddExperienceContainer from '../profile/experience/add_experience_container';
 import UpdateExperienceContainer from '../profile/experience/update_experience_container';
+import AddPostContainer from '../feed/posts/add_post_container';
 
 function Modal({modal, closeModal}) {
   if (!modal) {
@@ -26,8 +27,8 @@ function Modal({modal, closeModal}) {
     case 'updateExperience':
       component = <UpdateExperienceContainer experienceId={modal.id} />;
       break;
-    case 'createPost':
-      component = <FeedContainer />;
+    case 'addPost':
+      component = <AddPostContainer />;
       break;
     case 'updatePost':
       component = <FeedContainer />;

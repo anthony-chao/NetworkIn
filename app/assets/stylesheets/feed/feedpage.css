@@ -1,0 +1,171 @@
+.feed-page {
+    background-color: #f3f2ef;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 95vh;
+    width: 100vw;
+}
+
+.feed-page-centered {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.feed-page-body {
+    /* margin-left: 12vw; */
+    width: 37vw;
+    max-width: 820px;
+    display: block;
+    margin-top: 70px;
+    min-width: 400px;
+    border: 1px solid red;
+}
+
+.feed-post-index-body {
+    margin-top: 15px;
+    border: 1px solid blue;
+}
+
+.individual-post-body {
+    background-color: white;
+    word-break: normal;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-size: 14px;
+}
+
+.post-form-container {
+    background-color: white;
+    margin-top: -40vh;
+    height: 350px;
+    width: 552px;
+    border-radius: 0.6rem;
+    overflow-y: auto;
+}
+
+.post-form-header {
+    font-size: 20px;
+    color: rgba(0,0,0,0.9);
+}
+
+.post-form-current-user-section {
+    display: flex;
+    flex-direction: row;
+}
+
+#post-form-profile-image {
+    height: 50px;
+    width: 50px;
+    /* margin-top: -110px; */
+    border-radius: 50%;
+    background-color: #e7e2dc;
+    margin-left: 20px;
+    margin-top: -7px;
+}
+
+.post-form-current-user-name-anyone {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: -3px;
+}
+
+#post-form-current-user-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#post-form-anyone {
+    background-color: transparent;
+    color: rgba(0,0,0,0.6);
+    border: 0.1rem solid rgba(0,0,0,0.6);
+    text-decoration-line: none;
+    border-radius: 24px;
+    padding: 4px 8px;
+    padding-left: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 3px;
+    width: 70px;
+    margin-left: -28px;
+}
+
+#post-form-globe-image {
+    height: 20px;
+    width: auto;
+    padding-top: 4px;
+}
+
+.post-form-globe-anyone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-form-input {
+    padding: 12px 15px;
+    margin-top: 5px;
+}
+
+.post-form-input-field {
+    border: none;
+    width: 100%;
+    height: 120px;   
+    font-size: 16px;
+}
+
+.post-form-input-field:focus {
+    outline: none;
+}
+
+#post-form-button {
+    margin-left: 460px;
+}
+
+#post-index-profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #e7e2dc;
+    margin-left: 5px;
+}
+
+.add-post-button-container {
+    width: 100%;
+    background-color: white;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-fake-input-field {
+    margin-left: 10px;
+    border-radius: 35px;
+    padding-left: 15px;
+    height: 60%;
+    width: 100%;
+    border: 0.1rem solid rgba(0,0,0,0.4);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: rgba(0,0,0,0.6);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.post-fake-input-field:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.feed-page-post-button {
+    padding: 5px 10px;
+    background-color: white;
+}

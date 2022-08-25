@@ -11,7 +11,7 @@ class Api::PostsController < ApplicationController
         if @post.save
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
             @post.update(post_params)
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
@@ -33,7 +33,7 @@ class Api::PostsController < ApplicationController
             @post.delete
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
