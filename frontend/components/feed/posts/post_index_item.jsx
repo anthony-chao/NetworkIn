@@ -15,29 +15,28 @@ class PostIndexItem extends React.Component {
         this.openFakeModal = this.openFakeModal.bind(this);
     }
 
-    openFakeModal(id) {
-        document.getElementById(id).classList.add("invisible");
-        document.getElementById(id).classList.remove("invisible");
-        document.getElementById(id).classList.remove("invisible");
+    openFakeModal(postId) {
+        document.getElementById(`post-functions-button${postId}`).classList.add("invisible");
+        document.getElementById(`post-edit-button${postId}`).classList.remove("invisible");
+        document.getElementById(`post-delete-button${postId}`).classList.remove("invisible");
     }
 
     render() {
-        // debugger
         return (
             <div className="individual-post-body">
                 <div className="post-header">
                     <div className="post-user-entire">
                         <Link to={{pathname: `/users/${this.state.authorId}`}}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-profile-image" /></Link>
                         <div className="post-user-background">
-                            <p id="post-user-name"> {this.props.users[this.props.post.user_id].first_name} {this.props.users[this.props.post.user_id].last_name} </p>
-                            <p id="post-user-headline"> {this.props.users[this.props.post.user_id].headline}</p>
+                        <Link to={{pathname: `/users/${this.state.authorId}`}} id="post-user-name"> {this.props.users[this.props.post.user_id].first_name} {this.props.users[this.props.post.user_id].last_name} </Link>
+                        <p id="post-user-headline"> {this.props.users[this.props.post.user_id].headline}</p>
                         </div>
                     </div>
                     { (this.state.authorId === this.props.currentUserId) ? 
                     <div className="">
-                        <div onClick={() => this.openFakeModal(`post-functions-button${this.props.post.id}`)} id={`post-functions-button${this.props.post.id}`} className="">...</div>
-                        <button id={`post-edit-button${this.props.post.id}`} className="edit-post-button invisible" onClick={() => this.props.deletePost(this.props.post)}> <img src="https://i.postimg.cc/vBKzgJc6/image.png" id="edit-button-pencil" /></button>
-                        <button id={`post-delete-button${this.props.post.id}`} className="edit-post-button invisible" onClick={() => this.props.openModal('updatePost', this.props.post.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-pencil" /></button>
+                        <div onClick={() => this.openFakeModal(this.props.post.id)} id={`post-functions-button${this.props.post.id}`} className="post-functions-button"><p>...</p></div>
+                        <button id={`post-edit-button${this.props.post.id}`} className="edit-post-button invisible" onClick={() => this.props.deletePost(this.props.post)}> <img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="edit-button-feed" /></button>
+                        <button id={`post-delete-button${this.props.post.id}`} className="edit-post-button invisible" onClick={() => this.props.openModal('updatePost', this.props.post.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-feed" /></button>
                     </div>
                     : null }
                 </div>

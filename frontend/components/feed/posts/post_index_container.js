@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../../../actions/post_actions';
 import PostIndex from './post_index';
 import { openModal, closeModal } from '../../../actions/modal_actions';
-import { fetchUser } from '../../../actions/session_actions';
 
 const mapStateToProps = (state) => {
     return {

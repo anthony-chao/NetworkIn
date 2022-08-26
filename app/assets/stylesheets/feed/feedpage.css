@@ -200,6 +200,7 @@
     margin-top: 20px;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .post-header {
@@ -239,11 +240,11 @@
 #post-user-name {
     font-size: 16px;
     font-weight: 500;
-    margin-bottom: 5px;
 }
 
 #post-user-headline {
     color: rgba(0,0,0,0.6);
+    margin-top: 5px;
 }
 
 #post-profile-image {
@@ -273,4 +274,57 @@
 
 #post-body {
     margin-bottom: 10px;
+}
+
+.post-functions-button {
+    color: gray;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.post-functions-button > p {
+    margin-top: -14px;
+}
+
+.post-functions-button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+#edit-button-feed {
+    height: 30px;
+    width: 30px;
+    margin-top: -10px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+#edit-button-feed:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+#left-bar-user-headline {
+    margin-top: 10px;
+    color: rgba(0,0,0,0.6);
+    padding: 5px;
+    font-size: 14px;
+    word-wrap: normal;
+}
+
+#left-bar-header {
+    font-weight: 500;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
 }

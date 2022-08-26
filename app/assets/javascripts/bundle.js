@@ -527,9 +527,15 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         className: "feed-page-profile-picture"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "left-bar-current-user"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+        to: {
+          pathname: "/users/".concat(this.props.currentUser.id)
+        }
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         id: "left-bar-header"
-      }, "Welcome, ", this.props.currentUser.first_name, "!"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Welcome, ", this.props.currentUser.first_name, "!"), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "left-bar-user-headline"
+      }, this.props.currentUser.headline))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "feed-page-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_posts_post_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "profile-page-right-bar"
@@ -559,9 +565,9 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         id: "nav-bar-logo"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         id: "networking-news-bullet"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Bananas are good for you?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Life altering pieces of knowledge")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "networking-news-response"
-      }, "According to some scientists, bananas, are in fact, good for you. Shocking!"))))));
+      }, "Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive."))))));
     }
   }]);
 
@@ -919,8 +925,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/post_actions */ "./frontend/actions/post_actions.js");
 /* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post_index */ "./frontend/components/feed/posts/post_index.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
-
 
 
 
@@ -1017,17 +1021,16 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
 
   _createClass(PostIndexItem, [{
     key: "openFakeModal",
-    value: function openFakeModal(id) {
-      document.getElementById(id).classList.add("invisible");
-      document.getElementById(id).classList.remove("invisible");
-      document.getElementById(id).classList.remove("invisible");
+    value: function openFakeModal(postId) {
+      document.getElementById("post-functions-button".concat(postId)).classList.add("invisible");
+      document.getElementById("post-edit-button".concat(postId)).classList.remove("invisible");
+      document.getElementById("post-delete-button".concat(postId)).classList.remove("invisible");
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      // debugger
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "individual-post-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1043,7 +1046,10 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
         id: "post-profile-image"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "post-user-background"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        to: {
+          pathname: "/users/".concat(this.state.authorId)
+        },
         id: "post-user-name"
       }, " ", this.props.users[this.props.post.user_id].first_name, " ", this.props.users[this.props.post.user_id].last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "post-user-headline"
@@ -1051,19 +1057,19 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
         className: ""
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: function onClick() {
-          return _this2.openFakeModal("post-functions-button".concat(_this2.props.post.id));
+          return _this2.openFakeModal(_this2.props.post.id);
         },
         id: "post-functions-button".concat(this.props.post.id),
-        className: ""
-      }, "..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "post-functions-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         id: "post-edit-button".concat(this.props.post.id),
         className: "edit-post-button invisible",
         onClick: function onClick() {
           return _this2.props.deletePost(_this2.props.post);
         }
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: "https://i.postimg.cc/vBKzgJc6/image.png",
-        id: "edit-button-pencil"
+        src: "https://i.postimg.cc/tRh0B38K/image-removebg-preview.png",
+        id: "edit-button-feed"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         id: "post-delete-button".concat(this.props.post.id),
         className: "edit-post-button invisible",
@@ -1072,7 +1078,7 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
         }
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: "https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png",
-        id: "edit-button-pencil"
+        id: "edit-button-feed"
       }))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "post-body"
       }, this.state.body));
