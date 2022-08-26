@@ -1,0 +1,331 @@
+.feed-page {
+    background-color: #f3f2ef;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 95vh;
+    width: 100vw;
+}
+
+.feed-page-centered {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.feed-page-body {
+    width: 550px;
+    display: block;
+    margin-top: 70px;
+}
+
+.feed-post-index-body {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.individual-post-body {
+    background-color: white;
+    word-break: normal;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    font-size: 14px;
+}
+
+.post-form-container {
+    background-color: white;
+    margin-top: -40vh;
+    height: 350px;
+    width: 552px;
+    border-radius: 0.6rem;
+    overflow-y: auto;
+}
+
+.post-form-header {
+    font-size: 20px;
+    color: rgba(0,0,0,0.9);
+}
+
+.post-form-current-user-section {
+    display: flex;
+    flex-direction: row;
+}
+
+#post-form-profile-image {
+    height: 50px;
+    width: 50px;
+    /* margin-top: -110px; */
+    border-radius: 50%;
+    background-color: #e7e2dc;
+    margin-left: 20px;
+    margin-top: -7px;
+}
+
+.post-form-current-user-name-anyone {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: -3px;
+}
+
+#post-form-current-user-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#post-form-anyone {
+    background-color: transparent;
+    color: rgba(0,0,0,0.6);
+    border: 0.1rem solid rgba(0,0,0,0.6);
+    text-decoration-line: none;
+    border-radius: 24px;
+    padding: 6px 8px;
+    padding-left: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 3px;
+    width: 70px;
+    margin-left: -28px;
+}
+
+#post-form-globe-image {
+    height: 20px;
+    width: auto;
+    padding-top: 2px;
+}
+
+.post-form-globe-anyone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-form-input {
+    padding: 12px 15px;
+    margin-top: 5px;
+}
+
+.post-form-input-field {
+    border: none;
+    width: 100%;
+    height: 120px;   
+    font-size: 16px;
+}
+
+.post-form-input-field:focus {
+    outline: none;
+}
+
+#post-form-button {
+    margin-left: 460px;
+}
+
+#post-index-profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #e7e2dc;
+    margin-left: 5px;
+}
+
+.add-post-button-container {
+    width: 100%;
+    background-color: white;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-fake-input-field {
+    margin-left: 10px;
+    border-radius: 35px;
+    padding-left: 15px;
+    height: 60%;
+    width: 100%;
+    border: 0.1rem solid rgba(0,0,0,0.4);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    color: rgba(0,0,0,0.6);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.post-fake-input-field:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.feed-page-post-button {
+    padding: 5px 10px;
+    background-color: white;
+}
+
+.feed-page-left-bar {
+    margin-right: 20px;
+    display: block;
+    width: 215px;
+    margin-top: 70px;
+    height: 250px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+#feed-page-cover-image {
+    object-fit: cover;
+    height: 52px;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.feed-page-profile-picture {
+    height: 60px;
+    width: 60px;
+    margin-top: -35px;
+    border-radius: 50%;
+    z-index: 5;
+    border: 1px solid white;
+    background-color: #e7e2dc;
+    margin-left: 78px;
+}
+
+.left-bar-current-user {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row;
+    padding-right: 15px;
+    justify-content: space-between;
+}
+
+.edit-post-button {
+    padding: 18px 18px;
+    border: 0;
+    color: gray;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 200;
+    text-align: center;
+    text-decoration: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: transparent;
+    margin-top: -5px;
+    float: right;
+}
+
+.post-user-entire {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-user-background {
+    margin-left: 10px;
+}
+
+#post-user-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#post-user-headline {
+    color: rgba(0,0,0,0.6);
+    margin-top: 5px;
+}
+
+#post-profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #e7e2dc;
+}
+
+#feed-page-empty-line {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+
+#feed-page-empty-line::before {
+    background-color: rgba(0,0,0,0.35);
+    content: '';
+    height: 1px;
+    margin-right: 5px;
+    width: 82%;
+    align-items: center;
+}
+
+#post-body {
+    margin-bottom: 10px;
+    line-height: 120%;
+}
+
+.post-functions-button {
+    color: gray;
+    cursor: pointer;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.post-functions-button > p {
+    margin-top: -14px;
+}
+
+.post-functions-button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+#edit-button-feed {
+    height: 30px;
+    width: 30px;
+    margin-top: -10px;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+#edit-button-feed:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+#left-bar-user-headline {
+    margin-top: 10px;
+    color: rgba(0,0,0,0.6);
+    padding: 5px;
+    font-size: 14px;
+    word-wrap: normal;
+}
+
+#left-bar-header {
+    font-weight: 500;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: inherit;
+}

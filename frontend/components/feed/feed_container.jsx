@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import {} from '../../actions/post_actions'
 import { openModal } from '../../actions/modal_actions'
 import Feed from './feed';
 

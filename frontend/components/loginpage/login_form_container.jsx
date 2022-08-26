@@ -88,8 +88,6 @@ class LoginForm extends React.Component {
                       }, speed);
                   }
               }
-
-        
     }
 
     render() {

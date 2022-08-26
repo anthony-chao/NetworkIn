@@ -9,6 +9,7 @@
 User.destroy_all
 Experience.destroy_all
 Education.destroy_all
+Post.destroy_all
 
 # create users
 user1 = User.create!(email: 'demouser@networkin.com', password: "abc123", first_name: 'Demo', last_name: 'User', headline: 'Software Engineer at NetworkIn', location_country: 'United States', location_city: 'Greater New York City Area', about: 'Hello! Welcome to NetworkIn.')
@@ -34,3 +35,14 @@ education3 = Education.create!(user_id: user2.id, school: 'Baruch College', degr
 education4 = Education.create!(user_id: user2.id, school: 'App Academy', field: "Software Engineering", start_date: "2022-05-13", end_date: "2022-09-13", description: "1000-hour immersive full-stack web development intensive with <3% acceptance rate.")
 education5 = Education.create!(user_id: user3.id, school: 'Pokemon Academy', degree: "Master's", field: "Pokemon Battling", start_date: "1994-08-13", end_date: "1995-09-13")
 education6 = Education.create!(user_id: user5.id, school: 'Pokemon Academy', degree: "Master's", field: "Pokemon Breeding", start_date: "1993-05-13", end_date: "1996-01-13")
+
+# create posts
+
+post8 = Post.create!(user_id: user3.id, body: 'Pika Pika! -Pikachu')
+post1 = Post.create!(user_id: user4.id, body: "Hello everyone! I'm looking to gain more experience as a ServiceNow Admin/Developer role. I've already taken the ServiceNow Fundamentals course, but I'm looking to find other material to help me learn best practice.")
+post2 = Post.create!(user_id: user5.id, body: "I am a junior at the University of North Carolina Chapel Hill studying Business Administration and Economics. My focus is Real Estate and Entrepreneurship. Currently, I am seeking internship opportunities in real estate, more specifically, analyst roles for this summer. If anyone have any opportunities open, feel free to contact me. In addition, if you have any pointers on recruiting for real estate, I would love to have a chat! Thank you.")
+post3 = Post.create!(user_id: user1.id, body: 'I am pleased to announce that I have joined my dream company at NeworkIn. I want to thank everyone who supported me thus far, and I wish the best of luck to everyone back at LinkedIn.')
+post4 = Post.create!(user_id: user2.id, body: 'This website has officially drained me! I am no longer a functioning human being after today.')
+post5 = Post.create!(user_id: user1.id, body: 'Yesterday I was walking to an interview. There was a starving dog on the road. I stopped to feed him and missed my interview. The next day, I got a call asking to come in to do the interview. I was surprised, but I went. Then the interviewer came in. He was the dog.')
+post6 = Post.create!(user_id: user3.id, body: 'Hi NetworkIn family! My name is Ash and my best friend is Pikachu. I have over 20 years of experience and I am only 14 years old! Employers must love me.')
+post7 = Post.create!(user_id: user1.id, body: 'I was in a job interview today when the manager handed me his laptop and said, "I want you to try to sell this to me." So I put it under my arm, walked out of the building and went home. Eventually he called my mobile and said, "Bring it back here right now!" I said, "$200 and it is yours."')

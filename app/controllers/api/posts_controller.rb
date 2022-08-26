@@ -1,17 +1,17 @@
 class Api::PostsController < ApplicationController
 
     def index
-        @posts = Post.all
+        @posts = Post.all.order(:id)
         render :index
     end
 
     def create
-        @post = Post.new(posts_params)
+        @post = Post.new(post_params)
 
         if @post.save
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
@@ -22,7 +22,7 @@ class Api::PostsController < ApplicationController
             @post.update(post_params)
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
@@ -33,12 +33,12 @@ class Api::PostsController < ApplicationController
             @post.delete
             render :show
         else
-            render json: @experience.errors.full_messages, status: 422
+            render json: @post.errors.full_messages, status: 422
         end
     end
 
-    def posts_params
-        params.require(:post).permit(:user_id, :body)
+    def post_params
+        params.require(:post).permit(:user_id, :body, :created_at)
     end
 
 end

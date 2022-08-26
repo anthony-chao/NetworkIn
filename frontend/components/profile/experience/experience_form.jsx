@@ -14,7 +14,6 @@ class ExperienceForm extends React.Component {
         this.checkDateInputError = this.checkDateInputError.bind(this);
     }
 
-
     handleUpdate(field) {
         return (e) => this.setState({[field]: e.currentTarget.value})
     }
