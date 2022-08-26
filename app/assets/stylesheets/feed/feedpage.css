@@ -325,7 +325,7 @@
     font-weight: 500;
 }
 
-a:-webkit-any-link {
+.feed-page-centered a:-webkit-any-link {
     text-decoration: none;
     color: inherit;
 }
