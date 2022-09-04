@@ -8,6 +8,7 @@ const educationsReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_EDUCATIONS:
             // return action.educations;
+            nextState = {};
             Object.assign(nextState, action.educations);
             return nextState;
         case RECEIVE_EDUCATION:

@@ -80,11 +80,11 @@ class EmailForm extends React.Component {
                 <h1 className="signup-form-header">Make the most of your professional life</h1>
                 <form className="signup-form" onSubmit={this.handleSubmit}>
                         <label className="signup-labels">Email</label>
-                        <input className={`signup-input-container ${this.state.emailError ? 'sign-up-error-input' : ''}`} type="text" value={this.state.email} onChange={this.handleUpdate('email')} required />
+                        <input className={`signup-input-container ${this.state.emailError ? 'sign-up-error-input' : ''}`} type="text" value={this.state.email} onChange={this.handleUpdate('email')} />
                         { this.state.emailError ? <p className="sign-up-error-message">{this.errorMessages.emailErrorMessage}</p> : null }
                     <br />
                         <label className="signup-labels">Password (6 or more characters)</label>
-                        <input className={`signup-input-container ${this.state.passwordError ? 'sign-up-error-input' : ''}`} type="password" value={this.state.password} onChange={this.handleUpdate('password')} required />
+                        <input className={`signup-input-container ${this.state.passwordError ? 'sign-up-error-input' : ''}`} type="password" value={this.state.password} onChange={this.handleUpdate('password')} />
                         { this.state.passwordError ? <p className="sign-up-error-message">{this.errorMessages.passwordErrorMessage}</p> : null }
                     <br />
                     <p className="signup-disclaimer">By clicking Agree & Join, you agree to the NetworkIn User Agreement, Privacy Policy, and Cookie Policy.</p>

@@ -3737,8 +3737,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-input-container ".concat(this.state.emailError ? 'sign-up-error-input' : ''),
         type: "text",
         value: this.state.email,
-        onChange: this.handleUpdate('email'),
-        required: true
+        onChange: this.handleUpdate('email')
       }), this.state.emailError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "sign-up-error-message"
       }, this.errorMessages.emailErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
@@ -3747,8 +3746,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
         className: "signup-input-container ".concat(this.state.passwordError ? 'sign-up-error-input' : ''),
         type: "password",
         value: this.state.password,
-        onChange: this.handleUpdate('password'),
-        required: true
+        onChange: this.handleUpdate('password')
       }), this.state.passwordError ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         className: "sign-up-error-message"
       }, this.errorMessages.passwordErrorMessage) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -4450,6 +4448,7 @@ var educationsReducer = function educationsReducer() {
   switch (action.type) {
     case _actions_education_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EDUCATIONS:
       // return action.educations;
+      nextState = {};
       Object.assign(nextState, action.educations);
       return nextState;
 
@@ -4548,6 +4547,7 @@ var experiencesReducer = function experiencesReducer() {
 
   switch (action.type) {
     case _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EXPERIENCES:
+      nextState = {};
       return action.experiences;
 
     case _actions_experience_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_EXPERIENCE:
@@ -4670,6 +4670,7 @@ var profilesReducer = function profilesReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
       // return Object.assign({}, state, { [action.user.id]: action.user });
+      nextState = {};
       nextState[action.user.id] = action.user;
       return nextState;
 

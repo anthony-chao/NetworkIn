@@ -7,6 +7,7 @@ const experiencesReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_EXPERIENCES:
+            nextState = {};
             return action.experiences;
         case RECEIVE_EXPERIENCE:
             nextState[action.experience.id] = action.experience;
