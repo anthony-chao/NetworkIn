@@ -15,7 +15,8 @@ class ProfileHeader extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchUser(this.props.viewedUserId).then(() => this.setState({fetchedUser: Object.values(this.props.viewedUser)[0]}))
+        this.props.fetchUser(this.props.viewedUserId).then(() => this.setState({fetchedUser: Object.values(this.props.viewedUser)[0]})).then(() => 
+        document.title = `${this.state.fetchedUser.first_name.concat(" ", this.state.fetchedUser.last_name)} | NetworkIn`)
     }
 
     handleClick() {

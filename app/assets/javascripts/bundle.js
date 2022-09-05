@@ -259,6 +259,47 @@ var deletePost = function deletePost(post) {
 
 /***/ }),
 
+/***/ "./frontend/actions/profile_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/profile_actions.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
+/* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
+/* harmony export */   "updateUser": () => (/* binding */ updateUser)
+/* harmony export */ });
+/* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.jsx");
+
+var RECEIVE_USER = 'RECEIVE_USER';
+
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var updateUser = function updateUser(user) {
+  return function (dispatch) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.updateUser(user).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -276,9 +317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_SIGNUP_JOB": () => (/* binding */ RECEIVE_SIGNUP_JOB),
 /* harmony export */   "RECEIVE_SIGNUP_LOCATION": () => (/* binding */ RECEIVE_SIGNUP_LOCATION),
 /* harmony export */   "RECEIVE_SIGNUP_NAMES": () => (/* binding */ RECEIVE_SIGNUP_NAMES),
-/* harmony export */   "RECEIVE_USER": () => (/* binding */ RECEIVE_USER),
 /* harmony export */   "clearSessionErrors": () => (/* binding */ clearSessionErrors),
-/* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout),
 /* harmony export */   "receiveEmailandPassword": () => (/* binding */ receiveEmailandPassword),
@@ -373,23 +412,6 @@ var receiveSignupJob = function receiveSignupJob(data) {
   return {
     type: RECEIVE_SIGNUP_JOB,
     data: data
-  };
-}; // action to fetch the user for the user show page
-
-var RECEIVE_USER = 'RECEIVE_USER';
-
-var receiveUser = function receiveUser(user) {
-  return {
-    type: RECEIVE_USER,
-    user: user
-  };
-};
-
-var fetchUser = function fetchUser(userId) {
-  return function (dispatch) {
-    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchUser(userId).then(function (user) {
-      return dispatch(receiveUser(user));
-    });
   };
 };
 
@@ -507,6 +529,11 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Feed, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.title = 'Feed | NetworkIn';
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2452,23 +2479,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var toUpdateEducation = state.entities.viewedUserEducation[ownProps.educationId];
   return {
     currentUser: state.entities.users[state.session.id],
     viewedUserId: state.entities.viewedUser,
     education: {
-      id: state.entities.viewedUserEducation[ownProps.educationId].id,
-      user_id: state.entities.viewedUserEducation[ownProps.educationId].user_id,
-      school: state.entities.viewedUserEducation[ownProps.educationId].school,
-      degree: state.entities.viewedUserEducation[ownProps.educationId].degree,
-      field: state.entities.viewedUserEducation[ownProps.educationId].field,
-      start_date: state.entities.viewedUserEducation[ownProps.educationId].start_date,
-      end_date: state.entities.viewedUserEducation[ownProps.educationId].end_date,
-      activities: state.entities.viewedUserEducation[ownProps.educationId].activities,
-      description: state.entities.viewedUserEducation[ownProps.educationId].description,
-      start_month: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(5, 7),
-      start_year: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(0, 4),
-      end_month: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(5, 7),
-      end_year: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(0, 4)
+      id: toUpdateEducation.id,
+      user_id: toUpdateEducation.user_id,
+      school: toUpdateEducation.school,
+      degree: toUpdateEducation.degree,
+      field: toUpdateEducation.field,
+      start_date: toUpdateEducation.start_date,
+      end_date: toUpdateEducation.end_date,
+      activities: toUpdateEducation.activities,
+      description: toUpdateEducation.description,
+      start_month: String(toUpdateEducation.start_date).slice(5, 7),
+      start_year: String(toUpdateEducation.start_date).slice(0, 4),
+      end_month: String(toUpdateEducation.end_date).slice(5, 7),
+      end_year: String(toUpdateEducation.end_date).slice(0, 4)
     },
     formType: 'Edit Education'
   };
@@ -3216,7 +3244,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
 /* harmony import */ var _profile_about__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_about */ "./frontend/components/profile/header/profile_about.jsx");
 
 
@@ -3233,7 +3261,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: function fetchUser(userId) {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
+      return dispatch((0,_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
     }
   };
 };
@@ -3308,6 +3336,8 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
         return _this2.setState({
           fetchedUser: Object.values(_this2.props.viewedUser)[0]
         });
+      }).then(function () {
+        return document.title = "".concat(_this2.state.fetchedUser.first_name.concat(" ", _this2.state.fetchedUser.last_name), " | NetworkIn");
       });
     }
   }, {
@@ -3391,7 +3421,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
 /* harmony import */ var _profile_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_header */ "./frontend/components/profile/header/profile_header.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
@@ -3410,13 +3440,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUser: function fetchUser(userId) {
-      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
+      return dispatch((0,_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__.fetchUser)(userId));
     },
     openModal: function openModal(type) {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.openModal)(type));
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    updateUser: function updateUser(user) {
+      return dispatch((0,_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__.updateUser)(user));
     }
   };
 };
@@ -4660,7 +4693,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profile_actions */ "./frontend/actions/profile_actions.js");
 
 
 var profilesReducer = function profilesReducer() {
@@ -4670,7 +4703,7 @@ var profilesReducer = function profilesReducer() {
   var nextState = Object.assign({}, state);
 
   switch (action.type) {
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
+    case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_USER:
       // return Object.assign({}, state, { [action.user.id]: action.user });
       nextState = {};
       nextState[action.user.id] = action.user;
@@ -5097,7 +5130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchUser": () => (/* binding */ fetchUser),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout),
-/* harmony export */   "signup": () => (/* binding */ signup)
+/* harmony export */   "signup": () => (/* binding */ signup),
+/* harmony export */   "updateUser": () => (/* binding */ updateUser)
 /* harmony export */ });
 var login = function login(user) {
   return $.ajax({
@@ -5127,6 +5161,15 @@ var fetchUser = function fetchUser(userId) {
   return $.ajax({
     url: "api/users/".concat(userId),
     method: 'GET'
+  });
+};
+var updateUser = function updateUser(user) {
+  return $.ajax({
+    url: "api/users/".concat(user.id),
+    method: 'PATCH',
+    data: {
+      user: user
+    }
   });
 };
 

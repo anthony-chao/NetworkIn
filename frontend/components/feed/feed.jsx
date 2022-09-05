@@ -8,6 +8,10 @@ class Feed extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    document.title = 'Feed | NetworkIn'
+  }
+
   render() {
     return (
       <div className="feed-page">

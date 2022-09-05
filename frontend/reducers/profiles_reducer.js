@@ -1,4 +1,4 @@
-import { RECEIVE_USER } from "../actions/session_actions";
+import { RECEIVE_USER } from "../actions/profile_actions";
 
 const profilesReducer = (state = {}, action) => {
     Object.freeze(state);

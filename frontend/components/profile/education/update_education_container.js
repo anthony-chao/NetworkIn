@@ -4,23 +4,24 @@ import { updateEducation, deleteEducation } from '../../../actions/education_act
 import { closeModal } from "../../../actions/modal_actions";
 
 const mapStateToProps = (state, ownProps) => {
+    const toUpdateEducation = state.entities.viewedUserEducation[ownProps.educationId]
     return {
         currentUser: state.entities.users[state.session.id],
         viewedUserId: state.entities.viewedUser,
         education: {
-            id: state.entities.viewedUserEducation[ownProps.educationId].id,
-            user_id: state.entities.viewedUserEducation[ownProps.educationId].user_id,
-            school: state.entities.viewedUserEducation[ownProps.educationId].school,
-            degree: state.entities.viewedUserEducation[ownProps.educationId].degree,
-            field: state.entities.viewedUserEducation[ownProps.educationId].field,
-            start_date: state.entities.viewedUserEducation[ownProps.educationId].start_date,
-            end_date: state.entities.viewedUserEducation[ownProps.educationId].end_date,
-            activities: state.entities.viewedUserEducation[ownProps.educationId].activities,
-            description: state.entities.viewedUserEducation[ownProps.educationId].description,
-            start_month: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(5, 7),
-            start_year: String(state.entities.viewedUserEducation[ownProps.educationId].start_date).slice(0, 4),
-            end_month: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(5, 7),
-            end_year: String(state.entities.viewedUserEducation[ownProps.educationId].end_date).slice(0, 4)
+            id: toUpdateEducation.id,
+            user_id: toUpdateEducation.user_id,
+            school: toUpdateEducation.school,
+            degree: toUpdateEducation.degree,
+            field: toUpdateEducation.field,
+            start_date: toUpdateEducation.start_date,
+            end_date: toUpdateEducation.end_date,
+            activities: toUpdateEducation.activities,
+            description: toUpdateEducation.description,
+            start_month: String(toUpdateEducation.start_date).slice(5, 7),
+            start_year: String(toUpdateEducation.start_date).slice(0, 4),
+            end_month: String(toUpdateEducation.end_date).slice(5, 7),
+            end_year: String(toUpdateEducation.end_date).slice(0, 4)
         },
         formType: 'Edit Education'
     }
