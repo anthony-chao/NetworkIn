@@ -19,6 +19,10 @@ class ProfileHeader extends React.Component {
         document.title = `${this.state.fetchedUser.first_name.concat(" ", this.state.fetchedUser.last_name)} | NetworkIn`)
     }
 
+    componentWillUnmount() {
+        document.title = 'NetworkIn'
+      }
+
     handleClick() {
         !this.state.fakeModalOpened ? this.setState({dropdown: true}) : this.setState({dropdown: false});
       }

@@ -534,6 +534,11 @@ var Feed = /*#__PURE__*/function (_React$Component) {
       document.title = 'Feed | NetworkIn';
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.title = 'NetworkIn';
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3339,6 +3344,11 @@ var ProfileHeader = /*#__PURE__*/function (_React$Component) {
       }).then(function () {
         return document.title = "".concat(_this2.state.fetchedUser.first_name.concat(" ", _this2.state.fetchedUser.last_name), " | NetworkIn");
       });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.title = 'NetworkIn';
     }
   }, {
     key: "handleClick",

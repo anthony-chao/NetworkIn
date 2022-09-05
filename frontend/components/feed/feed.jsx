@@ -12,6 +12,10 @@ class Feed extends React.Component {
     document.title = 'Feed | NetworkIn'
   }
 
+  componentWillUnmount() {
+    document.title = 'NetworkIn'
+  }
+
   render() {
     return (
       <div className="feed-page">
