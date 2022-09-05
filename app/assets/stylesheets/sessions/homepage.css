@@ -1,10 +1,15 @@
+.homepage-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 5vw;
+}
+
 .homepage-body-area {
-    margin-left: 10vw;
-    max-width: 1128px;
     display: flex;
     align-items: center;
     padding-top: 30px;
-    min-height: 560px;
+    width: 90%
 }
 
 .homepage-header {
@@ -18,7 +23,7 @@
     align-self: flex-start;
     flex-shrink: 0;
     position: relative;
-    width: 55%
+    width: 580px;
 }
 
 .login-form-container {
@@ -68,7 +73,6 @@
     height: 560px;
     margin-left: -40px;
 }
-
 
 .login-button {
     border: 0;
@@ -134,14 +138,18 @@
 /* Nav Bar */
 
 .homepage-buttons {
-    max-width: 1200px;
-    margin-left: 10vw;
+    width: 90%;
+    max-width: 1220px;
     padding-bottom: 16px;
     padding-top: 30px;
     justify-content: space-between;
     align-items: center;
     display: flex;
     position: relative;
+}
+
+.homepage-signup-login-buttons {
+    margin-right: 5vw;
 }
 
 .homepage-signup-button {
