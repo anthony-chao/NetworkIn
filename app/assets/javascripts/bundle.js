@@ -242,9 +242,9 @@ var addPost = function addPost(post) {
     });
   };
 };
-var updatePost = function updatePost(post) {
+var updatePost = function updatePost(post, postId) {
   return function (dispatch) {
-    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.updatePost(post).then(function (post) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__.updatePost(post, postId).then(function (post) {
       return dispatch(receivePost(post));
     });
   };
@@ -673,7 +673,9 @@ var mapStateToProps = function mapStateToProps(state) {
     currentUser: state.entities.users[state.session.id],
     post: {
       user_id: state.entities.users[state.session.id].id,
-      body: ""
+      body: "",
+      photoFile: null,
+      photoUrl: null
     },
     formType: 'Create a post'
   };
@@ -681,8 +683,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    postFunction: function postFunction(post) {
-      return dispatch((0,_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__.addPost)(post));
+    postFunction: function postFunction(formData) {
+      return dispatch((0,_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__.addPost)(formData));
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
@@ -747,6 +749,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     _this.state = _this.props.post;
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleSubmitButton = _this.handleSubmitButton.bind(_assertThisInitialized(_this));
+    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -760,10 +763,37 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "handleFile",
+    value: function handleFile(e) {
+      var _this3 = this;
+
+      var file = e.currentTarget.files[0];
+      var fileReader = new FileReader();
+
+      fileReader.onloadend = function () {
+        _this3.setState({
+          photoFile: file,
+          photoUrl: fileReader.result
+        });
+      };
+
+      if (file) {
+        fileReader.readAsDataURL(file);
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.postFunction(this.state);
+      var formData = new FormData();
+      formData.append('post[body]', this.state.body);
+      formData.append('post[user_id]', this.state.user_id);
+
+      if (this.state.photoFile) {
+        formData.append('post[photo]', this.state.photoFile);
+      }
+
+      this.props.postFunction(formData, this.state.id);
       this.props.closeModal();
     }
   }, {
@@ -780,8 +810,11 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
+      var preview = this.state.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: this.state.photoUrl
+      }) : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "post-form-container",
         onSubmit: this.handleSubmit
@@ -792,7 +825,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "close-modal-button",
         onClick: function onClick() {
-          return _this3.props.closeModal();
+          return _this4.props.closeModal();
         }
       }, "X")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "post-form-current-user-section"
@@ -819,14 +852,25 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleUpdate('body'),
         placeholder: "What do you want to talk about?"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        id: "body-error-handler",
-        className: "post-form-errors invisible"
-      }, "Post cannot be empty"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        id: "post-image-preview"
+      }, " ", preview, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "post-form-buttons"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        id: "post-image-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        "for": "original-post-image-button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://i.postimg.cc/kg3qM8Yq/image-trimmy.jpg"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        id: "original-post-image-button",
+        type: "file",
+        onChange: this.handleFile
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         className: "education-form-button",
         id: "post-form-button",
         type: "submit",
         disabled: this.state.body.length === 0
-      }, "Post")));
+      }, "Post"))));
     }
   }]);
 
@@ -1113,7 +1157,10 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
         id: "edit-button-feed"
       }))) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "post-body"
-      }, this.state.body));
+      }, this.state.body), this.props.post.photoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        id: "post-photo",
+        src: this.props.post.photoUrl
+      }) : null);
     }
   }]);
 
@@ -1161,8 +1208,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    postFunction: function postFunction(post) {
-      return dispatch((0,_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__.updatePost)(post));
+    postFunction: function postFunction(formData, postId) {
+      return dispatch((0,_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__.updatePost)(formData, postId));
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
@@ -1754,7 +1801,7 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
-        className: "homepage-buttons"
+        className: "signup-page-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -3764,7 +3811,7 @@ var EmailForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "signup-form-pages signup-form-email-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
-        className: "homepage-buttons"
+        className: "signup-page-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -4020,7 +4067,7 @@ var HeadlineForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "signup-form-pages signup-form-headline-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
-        className: "homepage-buttons"
+        className: "signup-page-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -4217,7 +4264,7 @@ var LocationForm = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "signup-form-pages signup-form-location-section"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
-        className: "homepage-buttons"
+        className: "signup-page-buttons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -5038,22 +5085,22 @@ var fetchPosts = function fetchPosts() {
     method: 'GET'
   });
 };
-var addPost = function addPost(post) {
+var addPost = function addPost(formData) {
   return $.ajax({
     url: '/api/posts',
     method: 'POST',
-    data: {
-      post: post
-    }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
-var updatePost = function updatePost(post) {
+var updatePost = function updatePost(formData, postId) {
   return $.ajax({
-    url: "/api/posts/".concat(post.id),
+    url: "/api/posts/".concat(postId),
     method: 'PATCH',
-    data: {
-      post: post
-    }
+    data: formData,
+    contentType: false,
+    processData: false
   });
 };
 var deletePost = function deletePost(post) {

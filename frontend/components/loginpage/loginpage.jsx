@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
   render() {
     return (
         <div>
-          <nav className="homepage-buttons">
+          <nav className="signup-page-buttons">
             <Link to="/"><img className="logo-image" src="https://i.postimg.cc/PJW6hmHb/Screen-Shot-2022-08-17-at-12-14-20-PM.jpg" alt="" /></Link>
           </nav>
           <main className="loginpage-body">

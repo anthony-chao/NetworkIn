@@ -74,7 +74,7 @@ class EmailForm extends React.Component {
     render() {
         return (
             <div className="signup-form-pages signup-form-email-section">
-                <nav className="homepage-buttons">
+                <nav className="signup-page-buttons">
                     <Link to="/"><img className="logo-image" src="https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png" alt=""/></Link>
                 </nav>
                 <h1 className="signup-form-header">Make the most of your professional life</h1>

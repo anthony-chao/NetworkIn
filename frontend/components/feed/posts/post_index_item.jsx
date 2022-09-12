@@ -9,7 +9,7 @@ class PostIndexItem extends React.Component {
         super(props)
         this.state = {
             body: props.post.body,
-            authorId: props.post.user_id
+            authorId: props.post.user_id,
         }
 
         this.openFakeModal = this.openFakeModal.bind(this);
@@ -42,6 +42,9 @@ class PostIndexItem extends React.Component {
                 </div>
                 <br />
                 <p id="post-body">{this.state.body}</p>
+                {(this.props.post.photoUrl) ? 
+                <img id="post-photo" src={this.props.post.photoUrl}/> 
+                : null}
             </div>
         )
     }

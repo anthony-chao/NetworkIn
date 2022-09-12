@@ -69,7 +69,7 @@ class HeadlineForm extends React.Component {
         
         return (
             <div className="signup-form-pages signup-form-headline-section">
-                <nav className="homepage-buttons">
+                <nav className="signup-page-buttons">
                     <Link to="/"><img className="logo-image" src="https://i.postimg.cc/X7v2tBh5/imageedit-6-5931706153-removebg-preview.png" alt="" /></Link>
                 </nav>
                 <h1 className="signup-form-header signup-form-headline-header">Your profile helps you discover new people and opportunities</h1>

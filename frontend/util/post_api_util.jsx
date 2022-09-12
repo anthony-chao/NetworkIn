@@ -5,19 +5,23 @@ export const fetchPosts = () => {
     })
 }
 
-export const addPost = (post) => {
+export const addPost = formData => {
     return $.ajax({
         url: '/api/posts',
         method: 'POST',
-        data: { post }
+        data: formData,
+        contentType: false,
+        processData: false
     })
 }
 
-export const updatePost = (post) => {
+export const updatePost = (formData, postId) => {
     return $.ajax({
-        url: `/api/posts/${post.id}`,
+        url: `/api/posts/${postId}`,
         method: 'PATCH',
-        data: { post }
+        data: formData,
+        contentType: false,
+        processData: false
     })
 }
 

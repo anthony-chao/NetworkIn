@@ -8,14 +8,16 @@ const mapStateToProps = (state) => {
         currentUser: state.entities.users[state.session.id],
         post: {
             user_id: state.entities.users[state.session.id].id,
-            body: ""
+            body: "",
+            photoFile: null,
+            photoUrl: null
         },
         formType: 'Create a post'
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    postFunction: (post) => dispatch(addPost(post)),
+    postFunction: (formData) => dispatch(addPost(formData)),
     closeModal: () => dispatch(closeModal())
 })
 

@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    postFunction: (post) => dispatch(updatePost(post)),
+    postFunction: (formData, postId) => dispatch(updatePost(formData, postId)),
     closeModal: () => dispatch(closeModal())
 })
 
