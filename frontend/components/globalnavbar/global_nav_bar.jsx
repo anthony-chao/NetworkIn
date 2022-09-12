@@ -26,12 +26,12 @@ class GlobalNavBar extends React.Component {
     render() {
       return (
           <nav className="global-nav-bar">
-            <div className="nav-bar-body">
             <div className="global-left-nav-bar">
               <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /></Link>
               <img src="https://i.postimg.cc/6pK7d510/image-removebg-preview.png" id="search-bar-logo"/>
               <input type="text" id="nav-bar-search-bar" placeholder="Search"/>
             </div>
+            <div className="global-mid-nav-bar"></div>
             <div className="global-right-nav-bar">
               <div onClick={this.handleClick}>
                 <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
@@ -48,9 +48,7 @@ class GlobalNavBar extends React.Component {
                 <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="dropdown-profile-link">View Profile</Link>
                 <div className="nav-bar-logout-button" onClick={this.props.logout}>Sign Out</div>
               </div>
-              : null}
-              
-            </div>
+              : null}              
           </nav>
       )
     }

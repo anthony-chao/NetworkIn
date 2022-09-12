@@ -121,10 +121,6 @@
     outline: none;
 }
 
-#post-form-button {
-    /* margin-left: 460px; */
-}
-
 #post-index-profile-image {
     height: 50px;
     width: 50px;
@@ -275,6 +271,7 @@
 #post-body {
     margin-bottom: 10px;
     line-height: 120%;
+    white-space: pre-wrap;
 }
 
 .post-functions-button {
@@ -347,7 +344,7 @@
 }
 
 #post-image-button > label > img {
-    height: 28px;
+    height: 25px;
 }
 
 #post-image-button {

@@ -162,3 +162,7 @@
     margin-right: -48px;
     z-index: 100;
 }
+
+.global-mid-nav-bar {
+    width: 620px;
+}

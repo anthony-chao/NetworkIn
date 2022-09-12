@@ -1305,8 +1305,6 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", {
         className: "global-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "nav-bar-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-left-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
         to: "/feed"
@@ -1321,6 +1319,8 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
         id: "nav-bar-search-bar",
         placeholder: "Search"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "global-mid-nav-bar"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "global-right-nav-bar"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: this.handleClick
@@ -1354,7 +1354,7 @@ var GlobalNavBar = /*#__PURE__*/function (_React$Component) {
       }, "View Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "nav-bar-logout-button",
         onClick: this.props.logout
-      }, "Sign Out")) : null));
+      }, "Sign Out")) : null);
     }
   }]);
 
