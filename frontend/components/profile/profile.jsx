@@ -1,34 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import GlobalNavBar from '../globalnavbar/global_nav_bar'
 import EducationIndex from "./education/education_index";
 import ExperienceIndex from "./experience/experience_index";
-// import ExperienceIndexContainer from "./experience/experience_index_container";
-import ProfileHeaderContainer from "./header/profile_header_container";
-import ProfileAboutContainer from "./header/profile_about_container";
+import ProfileAbout from "./header/profile_about";
+import ProfileHeader from "./header/profile_header";
 import { fetchEducations } from "../../actions/education_actions";
 import { fetchExperiences } from "../../actions/experience_actions";
 import { fetchUser } from "../../actions/profile_actions";
 import { openModal } from "../../actions/modal_actions";
-import { useEffect } from "react";
+import LoadingContainer from "../loading/loading";
 
 const Profile = (props) => {
 
-    const { viewedPageId, fetchEducations, fetchExperiences, openModal, viewedUserEducation, viewedUserExperience } = props;
+    const { viewedPageId, fetchEducations, fetchExperiences, fetchUser, openModal, viewedUserEducation, viewedUserExperience, viewedUser } = props;
 
     useEffect(() => {
-        fetchEducations(viewedPageId);
+        fetchUser(viewedPageId);
         fetchExperiences(viewedPageId);
-    }, [])
-
+        fetchEducations(viewedPageId);
+    }, [props.location.pathname])
+    
     return (
         <div className="profile-page">
             < GlobalNavBar />
-            { (Object.values(viewedUserEducation).length > 0 && Object.values(viewedUserExperience).length) ? 
+            { (viewedUser.id === parseInt(viewedPageId)) ? 
             <div className="profile-page-centered">
                 <div className="profile-page-body">
-                    {/* < ProfileHeaderContainer viewedPageId={viewedPageId} />
-                    < ProfileAboutContainer viewedPageId={viewedPageId} /> */}
+                    < ProfileHeader viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={props.currentUser.id} openModal={openModal}/>
+                    < ProfileAbout viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={props.currentUser.id} openModal={openModal} />
                     < ExperienceIndex viewedPageId={viewedPageId} experiences={viewedUserExperience} currentUserId={props.currentUser.id} openModal={openModal}/>
                     < EducationIndex viewedPageId={viewedPageId} educations={viewedUserEducation} currentUserId={props.currentUser.id} openModal={openModal}/>
                 </div>
@@ -56,7 +56,7 @@ const Profile = (props) => {
                     <p>Second Container Placeholder</p>
                 </div>
             </div>
-            : null }
+            : <LoadingContainer/> }
         </div>
     )
     
@@ -64,6 +64,7 @@ const Profile = (props) => {
 
 const mapStateToProps = (state, ownProps) => ({
     viewedPageId: ownProps.match.params.id,
+    viewedUser: state.entities.viewedUser,
     viewedUserEducation: state.entities.viewedUserEducation,
     viewedUserExperience: state.entities.viewedUserExperience,
     currentUser: state.session.user

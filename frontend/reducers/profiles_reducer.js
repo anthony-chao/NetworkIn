@@ -8,7 +8,7 @@ const profilesReducer = (state = {}, action) => {
         case RECEIVE_USER:
             // return Object.assign({}, state, { [action.user.id]: action.user });
             nextState = {};
-            nextState[action.user.id] = action.user;
+            nextState = action.user;
             return nextState;
         default:
             return state;

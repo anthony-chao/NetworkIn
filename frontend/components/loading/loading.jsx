@@ -1,13 +1,12 @@
 import React from "react"
-import { FaLinkedin } from 'react-icons/fa'
 
 const LoadingContainer = () => {
 
     return (
-        <div class="loading-container">
-            <span class="fa-linkedin">{FaLinkedin}</span>
-            <div class="loading-container-line">
-                <div class="loading-container-inner"></div>
+        <div className="loading-container">
+            <span className="fa-linkedin"><img id="loading-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /></span>
+            <div className="loading-container-line">
+                <div className="loading-container-inner"></div>
             </div>
         </div>
     )

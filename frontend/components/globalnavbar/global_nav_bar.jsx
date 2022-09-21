@@ -1,65 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 
-class GlobalNavBar extends React.Component {
-    constructor(props) {
-      super(props);
+const GlobalNavBar = (props) => {
 
-      this.state = {
-        dropdown: false
-      };
+  const history = useHistory();
+  const { currentUser, logout } = props;
 
-      this.handleClick = this.handleClick.bind(this);
-      this.handleLeave = this.handleLeave.bind(this);
-    }
+  const [state, setState] = useState({
+    dropdown: false
+  })
 
-    handleClick() {
-      !this.state.dropdown ? this.setState({dropdown: true}) : this.setState({dropdown: false});
-    }
-
-    handleLeave() {
-      this.setState({dropdown: false});
-    }
-  
-    render() {
-      return (
-          <nav className="global-nav-bar">
-            <div className="global-left-nav-bar">
-              <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /></Link>
-              <img src="https://i.postimg.cc/6pK7d510/image-removebg-preview.png" id="search-bar-logo"/>
-              <input type="text" id="nav-bar-search-bar" placeholder="Search"/>
-            </div>
-            <div className="global-mid-nav-bar"></div>
-            <div className="global-right-nav-bar">
-              <div onClick={this.handleClick}>
-                <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
-                <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
-              </div>
-            </div>
-              {(this.state.dropdown) ? 
-              <div className="nav-bar-dropdown"> 
-                <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="nav-bar-profile-container">
-                  <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
-                  <div className="dropdown-profile-name">{this.props.currentUser.first_name.concat(" " ,this.props.currentUser.last_name)}</div>
-                  <div className="dropdown-profile-headline">{this.props.currentUser.headline}</div>
-                </Link>
-                <Link to={{pathname: `/users/${this.props.currentUser.id}`}} className="dropdown-profile-link">View Profile</Link>
-                <div className="nav-bar-logout-button" onClick={this.props.logout}>Sign Out</div>
-              </div>
-              : null}              
-          </nav>
-      )
-    }
-  
+  const handleClick = () => {
+    !state.dropdown ? setState({dropdown: true}) : setState({dropdown: false});
   }
 
-const mapStateToProps = (state) => {
-    return {
+  const toProfilePage = () => {
+    history.push(`/users/${currentUser.id}`);
+    setState({dropdown: false});
+  }
+
+  return (
+    <nav className="global-nav-bar">
+      <div className="global-left-nav-bar">
+        <Link to="/feed"><img id="nav-bar-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" /></Link>
+        <img src="https://i.postimg.cc/6pK7d510/image-removebg-preview.png" id="search-bar-logo"/>
+        <input type="text" id="nav-bar-search-bar" placeholder="Search"/>
+      </div>
+      <div className="global-mid-nav-bar"></div>
+      <div className="global-right-nav-bar">
+        <div onClick={handleClick}>
+          <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
+          <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
+        </div>
+      </div>
+        {(state.dropdown) ? 
+        <div className="nav-bar-dropdown" onClick={toProfilePage}> 
+            <div className="nav-bar-profile-container">
+              <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
+              <div className="dropdown-profile-name">{currentUser.first_name.concat(" " ,currentUser.last_name)}</div>
+              <div className="dropdown-profile-headline">{currentUser.headline}</div>
+            </div>
+          <div onClick={toProfilePage} className="dropdown-profile-link">View Profile</div>
+          <div className="nav-bar-logout-button" onClick={logout}>Sign Out</div>
+        </div>
+        : null}              
+    </nav>
+  )
+}
+
+const mapStateToProps = (state) => ({
         currentUser: state.session.user
-    }
-};
+});
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout())
