@@ -47,12 +47,13 @@ class Feed extends React.Component {
                         </li>
                         <div id="networking-news-links">
                             <a href="https://www.linkedin.com/in/anthony-chao-cpa-983299133/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" id="nav-bar-logo"/></a>
+                            <a href="https://angel.co/u/anthony-chao-1" target="_blank"><img src="https://cdn1.iconfinder.com/data/icons/logos-and-brands-3/512/20_Angellist_logo_logos-512.png" id="nav-bar-logo"/></a>
                             <a href="https://github.com/anthony-chao" target="_blank"><img src="https://www.ab-it.io/wp-content/uploads/2017/09/github-logo.png" id="nav-bar-logo"/></a>
                         </div>
                         <li id="networking-news-bullet">
                             <span>Life altering pieces of knowledge</span>
                         </li>
-                        <p id="networking-news-response">Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive.</p>
+                        <p id="networking-news-response">Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive. </p>
                     </ul>
                 </div>
             </div>

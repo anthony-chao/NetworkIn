@@ -10,6 +10,7 @@ class PostIndexItem extends React.Component {
         this.state = {
             body: props.post.body,
             authorId: props.post.user_id,
+            created_at: props.post.created_at
         }
 
         this.openFakeModal = this.openFakeModal.bind(this);
@@ -21,6 +22,54 @@ class PostIndexItem extends React.Component {
         document.getElementById(`post-delete-button${postId}`).classList.remove("invisible");
     }
 
+    timeSince(date) {
+        if (typeof date !== 'object') {
+          date = new Date(date);
+        }
+      
+        var seconds = Math.floor((new Date() - date) / 1000);
+        var intervalType;
+      
+        var interval = Math.floor(seconds / 31536000);
+        if (interval >= 1) {
+          intervalType = 'yr';
+        } else {
+          interval = Math.floor(seconds / 2592000);
+          if (interval >= 1) {
+            intervalType = 'm';
+          } else {
+            interval = Math.floor(seconds / 604800);
+            if (interval >= 1) {
+              intervalType = 'w';
+            } else {
+            interval = Math.floor(seconds / 86400);
+            if (interval >= 1) {
+              intervalType = 'd';
+            } else {
+              interval = Math.floor(seconds / 3600);
+              if (interval >= 1) {
+                intervalType = "h";
+              } else {
+                interval = Math.floor(seconds / 60);
+                if (interval >= 1) {
+                  intervalType = "m";
+                } else {
+                  interval = seconds;
+                  intervalType = "second";
+                }
+              }
+            }
+          }
+        }
+    }
+      
+        // if (interval > 1 || interval === 0) {
+        //   intervalType += 's';
+        // }
+      
+        return interval + intervalType;
+      };
+
     render() {
         return (
             <div className="individual-post-body">
@@ -30,6 +79,7 @@ class PostIndexItem extends React.Component {
                         <div className="post-user-background">
                         <Link to={{pathname: `/users/${this.state.authorId}`}} id="post-user-name"> {this.props.users[this.props.post.user_id].first_name} {this.props.users[this.props.post.user_id].last_name} </Link>
                         <p id="post-user-headline"> {this.props.users[this.props.post.user_id].headline}</p>
+                        <p id="post-user-create-time">{this.timeSince(this.state.created_at)}</p>
                         </div>
                     </div>
                     { (this.state.authorId === this.props.currentUserId) ? 

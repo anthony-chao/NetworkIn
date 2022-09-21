@@ -241,6 +241,13 @@
 #post-user-headline {
     color: rgba(0,0,0,0.6);
     margin-top: 5px;
+    font-size: 12px;
+}
+
+#post-user-create-time {
+    color: rgba(0,0,0,0.6);
+    margin-top: 3px;
+    font-size: 12px;
 }
 
 #post-profile-image {

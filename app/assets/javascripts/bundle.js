@@ -590,6 +590,12 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         src: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
         id: "nav-bar-logo"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        href: "https://angel.co/u/anthony-chao-1",
+        target: "_blank"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: "https://cdn1.iconfinder.com/data/icons/logos-and-brands-3/512/20_Angellist_logo_logos-512.png",
+        id: "nav-bar-logo"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
         href: "https://github.com/anthony-chao",
         target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -599,7 +605,7 @@ var Feed = /*#__PURE__*/function (_React$Component) {
         id: "networking-news-bullet"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Life altering pieces of knowledge")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "networking-news-response"
-      }, "Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive."))))));
+      }, "Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive. "))))));
     }
   }]);
 
@@ -1089,7 +1095,8 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       body: props.post.body,
-      authorId: props.post.user_id
+      authorId: props.post.user_id,
+      created_at: props.post.created_at
     };
     _this.openFakeModal = _this.openFakeModal.bind(_assertThisInitialized(_this));
     return _this;
@@ -1101,6 +1108,59 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
       document.getElementById("post-functions-button".concat(postId)).classList.add("invisible");
       document.getElementById("post-edit-button".concat(postId)).classList.remove("invisible");
       document.getElementById("post-delete-button".concat(postId)).classList.remove("invisible");
+    }
+  }, {
+    key: "timeSince",
+    value: function timeSince(date) {
+      if (_typeof(date) !== 'object') {
+        date = new Date(date);
+      }
+
+      var seconds = Math.floor((new Date() - date) / 1000);
+      var intervalType;
+      var interval = Math.floor(seconds / 31536000);
+
+      if (interval >= 1) {
+        intervalType = 'yr';
+      } else {
+        interval = Math.floor(seconds / 2592000);
+
+        if (interval >= 1) {
+          intervalType = 'm';
+        } else {
+          interval = Math.floor(seconds / 604800);
+
+          if (interval >= 1) {
+            intervalType = 'w';
+          } else {
+            interval = Math.floor(seconds / 86400);
+
+            if (interval >= 1) {
+              intervalType = 'd';
+            } else {
+              interval = Math.floor(seconds / 3600);
+
+              if (interval >= 1) {
+                intervalType = "h";
+              } else {
+                interval = Math.floor(seconds / 60);
+
+                if (interval >= 1) {
+                  intervalType = "m";
+                } else {
+                  interval = seconds;
+                  intervalType = "second";
+                }
+              }
+            }
+          }
+        }
+      } // if (interval > 1 || interval === 0) {
+      //   intervalType += 's';
+      // }
+
+
+      return interval + intervalType;
     }
   }, {
     key: "render",
@@ -1129,7 +1189,9 @@ var PostIndexItem = /*#__PURE__*/function (_React$Component) {
         id: "post-user-name"
       }, " ", this.props.users[this.props.post.user_id].first_name, " ", this.props.users[this.props.post.user_id].last_name, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
         id: "post-user-headline"
-      }, " ", this.props.users[this.props.post.user_id].headline))), this.state.authorId === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, " ", this.props.users[this.props.post.user_id].headline), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+        id: "post-user-create-time"
+      }, this.timeSince(this.state.created_at)))), this.state.authorId === this.props.currentUserId ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: ""
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         onClick: function onClick() {
