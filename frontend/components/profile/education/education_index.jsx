@@ -1,34 +1,27 @@
 import React from "react";
 import EducationIndexItem from "./education_index_item";
 
-class EducationIndex extends React.Component {
+const EducationIndex = (props) => {
 
-    constructor(props) {
-        super(props)
-    }
+    const { educations, viewedPageId, currentUserId, openModal } = props;
 
-    componentDidMount() {
-        this.props.fetchEducations(this.props.viewedUserId)
-    }
-
-    render() {
-        if (Object.values(this.props.educations).length !== 0) {
+    if (Object.values(educations).length !== 0) {
         return (
             <section className="profile-page-education-experience">
                 <div className="education-experience-header-container">
-                    { (Object.values(this.props.educations).length !== 0) ? <label className="education-experience-header">Education</label> : null }
-                    { (parseInt(this.props.viewedUserId) === this.props.currentUser.id) ? this.props.otherForm : null}
+                    { (Object.values(educations).length !== 0) ? <label className="education-experience-header">Education</label> : null }
+                    { (parseInt(viewedPageId) === currentUserId) ? 
+                        <button className="add-education-experience-button" onClick={() => openModal('addEducation')}>+</button>
+                    : null}
                 </div>
-                {Object.values(this.props.educations).map((education) => (
-                    <EducationIndexItem key={education.id} education={education} openModal={this.props.openModal} closeModal={this.props.closeModal} viewedUserId={this.props.viewedUserId} currentUserId={this.props.currentUser.id}/>
+                {Object.values(educations).map((education) => (
+                    <EducationIndexItem key={education.id} education={education} openModal={openModal} viewedPageId={viewedPageId} currentUserId={currentUserId}/>
                 ))
                 }
 
             </section>
         )
     }
-    }
 }
-
 
 export default EducationIndex;

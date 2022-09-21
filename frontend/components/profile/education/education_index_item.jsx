@@ -1,47 +1,41 @@
 import React from "react";
 
-class EducationIndexItem extends React.Component {
+const EducationIndexItem = (props) => {
 
-    constructor(props) {
-        super(props)
-    }
+    const { viewedPageId, currentUserId, openModal, education } = props;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-    render() {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return (
-            <div className="education-experience-index-item">
-                <img src="https://i.postimg.cc/pdtrHFTQ/image.png" className="education-experience-image-logo"/>
-            
-                { (parseInt(this.props.viewedUserId) === this.props.currentUserId) ? 
-                <button className="update-education-experience-button" onClick={() => this.props.openModal('updateEducation', this.props.education.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-pencil" /></button>
-                    : null }
-                <div className="education-experience-body">
-                    <div className="education-experience-bolded">{this.props.education.school}</div>
-                    { (this.props.education.degree && !this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}</div> : null} 
-                    { (!this.props.education.degree && this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.field}</div> : null} 
-                    { (this.props.education.degree && this.props.education.field) ? <div className="education-experience-dark-font">{this.props.education.degree}, {this.props.education.field}</div> : null}
-                    
-                    { (this.props.education.start_date && this.props.education.end_date) ? <div className="education-experience-grey-font">
-                        {months[new Date(this.props.education.start_date).getMonth()].concat(" ", new Date(this.props.education.start_date).getFullYear())} - {months[new Date(this.props.education.end_date).getMonth()].concat(" ", new Date(this.props.education.end_date).getFullYear())}
-                        </div> : null}
+    return (
+        <div className="education-experience-index-item">
+            <img src="https://i.postimg.cc/pdtrHFTQ/image.png" className="education-experience-image-logo"/>
+        
+            { (parseInt(viewedPageId) === currentUserId) ? 
+            <button className="update-education-experience-button" onClick={() => openModal('updateEducation', education.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-pencil" /></button>
+                : null }
+            <div className="education-experience-body">
+                <div className="education-experience-bolded">{education.school}</div>
+                { (education.degree && !education.field) ? <div className="education-experience-dark-font">{education.degree}</div> : null} 
+                { (!education.degree && education.field) ? <div className="education-experience-dark-font">{education.field}</div> : null} 
+                { (education.degree && education.field) ? <div className="education-experience-dark-font">{education.degree}, {education.field}</div> : null}
+                
+                { (education.start_date && education.end_date) ? <div className="education-experience-grey-font">
+                    {months[new Date(education.start_date).getMonth()].concat(" ", new Date(education.start_date).getFullYear())} - {months[new Date(education.end_date).getMonth()].concat(" ", new Date(education.end_date).getFullYear())}
+                    </div> : null}
 
-                    { (this.props.education.start_date && !this.props.education.end_date) ? <div className="education-experience-grey-font">
-                        {months[new Date(this.props.education.start_date).getMonth()].concat(" ", new Date(this.props.education.start_date).getFullYear())}
-                        </div> : null}
+                { (education.start_date && !education.end_date) ? <div className="education-experience-grey-font">
+                    {months[new Date(education.start_date).getMonth()].concat(" ", new Date(education.start_date).getFullYear())}
+                    </div> : null}
 
-                    { (!this.props.education.start_date && this.props.education.end_date) ? <div className="education-experience-grey-font">
-                        {months[new Date(this.props.education.end_date).getMonth()].concat(" ", new Date(this.props.education.end_date).getFullYear())}
-                        </div> : null}
+                { (!education.start_date && education.end_date) ? <div className="education-experience-grey-font">
+                    {months[new Date(education.end_date).getMonth()].concat(" ", new Date(education.end_date).getFullYear())}
+                    </div> : null}
 
-                    { (this.props.education.activities) ? <div className="education-experience-dark-font">Activities and societies: {this.props.education.activities}</div> : null} 
+                { (education.activities) ? <div className="education-experience-dark-font">Activities and societies: {education.activities}</div> : null} 
 
-                    { (this.props.education.description) ? <div className="education-experience-dark-font">{this.props.education.description}</div> : null }
-                </div>
+                { (education.description) ? <div className="education-experience-dark-font">{education.description}</div> : null }
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default EducationIndexItem;
-
-//this.props in onClick gives back the item - do I need to make a container for the index item to pass along open modal and etc.?

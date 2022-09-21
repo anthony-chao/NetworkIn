@@ -13,26 +13,28 @@ class EducationForm extends React.Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleSubmit(e) {
       e.preventDefault();
       const inputted_start_date = this.state.start_year.concat("-", this.state.start_month, "-13")
       const inputted_end_date = this.state.end_year.concat("-", this.state.end_month, "-13")
-        if( (inputted_end_date > inputted_start_date || (this.state.end_year && this.state.end_month && !this.state.start_year && !this.state.start_month) || (this.state.start_year && this.state.start_month && !this.state.end_year && !this.state.end_month) || (!this.state.start_year && !this.state.end_year && !this.state.start_month && !this.state.end_month)) && this.state.school.length !== 0) { 
+      if (inputted_end_date < inputted_start_date && (this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month)) {
+        this.setState({year_error: true})
+      }
+      else if (this.state.school.length === 0) {
+        this.setState({school_error: true})
+      }  
+      else if( (inputted_end_date > inputted_start_date || 
+          (Date.parse(inputted_start_date) && !Date.parse(inputted_end_date)) || (Date.parse(inputted_end_date) && !Date.parse(inputted_start_date)) || !(Date.parse(inputted_start_date) && !Date.parse(inputted_end_date))) 
+          && this.state.school.length !== 0) { 
         this.setState(
           {start_date: inputted_start_date, 
           end_date: inputted_end_date,
           user_id: this.props.currentUser.id}, 
         () => {this.props.educationFunction(this.state), this.props.closeModal()})
         }
-        else if (inputted_end_date < inputted_start_date && (this.state.end_year && this.state.start_year && this.state.end_month && this.state.start_month)) {
-          this.setState({year_error: true})
-        }
-        else if (this.state.school.length === 0) {
-          this.setState({school_error: true})
-        }
+
   }
 
   handleUpdate(field) {
