@@ -4,22 +4,23 @@ import { updateExperience, deleteExperience } from '../../../actions/experience_
 import { closeModal } from "../../../actions/modal_actions";
 
 const mapStateToProps = (state, ownProps) => {
+    const selectedExperience = state.entities.viewedUserExperience[ownProps.experienceId]
     return {
         currentUser: state.session.user,
         viewedUserId: state.entities.viewedUser,
         experience: {
-            id: state.entities.viewedUserExperience[ownProps.experienceId].id,
-            user_id: state.entities.viewedUserExperience[ownProps.experienceId].user_id,
-            title: state.entities.viewedUserExperience[ownProps.experienceId].title,
-            company_name: state.entities.viewedUserExperience[ownProps.experienceId].company_name,
-            location: state.entities.viewedUserExperience[ownProps.experienceId].location,
-            start_date: state.entities.viewedUserExperience[ownProps.experienceId].start_date,
-            end_date: state.entities.viewedUserExperience[ownProps.experienceId].end_date,
-            description: state.entities.viewedUserExperience[ownProps.experienceId].description,
-            start_month: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(5, 7),
-            start_year: String(state.entities.viewedUserExperience[ownProps.experienceId].start_date).slice(0, 4),
-            end_month: String(state.entities.viewedUserExperience[ownProps.experienceId].end_date).slice(5, 7),
-            end_year: String(state.entities.viewedUserExperience[ownProps.experienceId].end_date).slice(0, 4)
+            id: selectedExperience.id,
+            user_id: selectedExperience.user_id,
+            title: selectedExperience.title,
+            company_name: selectedExperience.company_name,
+            location: selectedExperience.location,
+            start_date: selectedExperience.start_date,
+            end_date: selectedExperience.end_date,
+            description: selectedExperience.description,
+            start_month: String(selectedExperience.start_date).slice(5, 7),
+            start_year: String(selectedExperience.start_date).slice(0, 4),
+            end_month: String(selectedExperience.end_date).slice(5, 7),
+            end_year: String(selectedExperience.end_date).slice(0, 4)
         },
         formType: 'Edit Experience'
     }

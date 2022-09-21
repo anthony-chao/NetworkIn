@@ -1,36 +1,28 @@
 import React from "react";
 import ExperienceIndexItem from "./experience_index_item";
 
-class ExperienceIndex extends React.Component {
+const ExperienceIndex = (props) => {
 
-    constructor(props) {
-        super(props)
-    }
+    const { experiences, viewedPageId, currentUserId, openModal } = props;
 
-    componentDidMount() {
-        this.props.fetchExperiences(this.props.viewedUserId)
-    }
-
-    render() {
-        if (Object.values(this.props.experiences).length !== 0) {
+    if (Object.values(experiences).length !== 0) {
         return (
             <section className='profile-page-education-experience'>
                 <div className="education-experience-header-container">
-                    { (Object.values(this.props.experiences).length !== 0) ? <label className="education-experience-header">Experience</label> : null }
-                    { (parseInt(this.props.viewedUserId) === this.props.currentUser.id) ? 
-                    <button className="add-education-experience-button" onClick={() => this.props.openModal('addExperience')}>+</button>
+                    { (Object.values(experiences).length !== 0) ? <label className="education-experience-header">Experience</label> : null }
+                    { (parseInt(viewedPageId) === currentUserId) ? 
+                        <button className="add-education-experience-button" onClick={() => openModal('addExperience')}>+</button>
                     : null}
                 </div>
-                {Object.values(this.props.experiences).map((experience) => (
-                    <ExperienceIndexItem key={experience.id} experience={experience} openModal={this.props.openModal} closeModal={this.props.closeModal} viewedUserId={this.props.viewedUserId} currentUserId={this.props.currentUser.id}/>
+                {Object.values(experiences).map((experience) => (
+                    <ExperienceIndexItem key={experience.id} experience={experience} openModal={openModal} viewedPageId={viewedPageId} currentUserId={currentUserId}/>
                 ))
                 }
 
             </section>
         )
     }
-    }
-}
 
+}
 
 export default ExperienceIndex;

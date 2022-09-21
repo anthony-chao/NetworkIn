@@ -1,34 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
 import GlobalNavBar from '../globalnavbar/global_nav_bar'
-// import EducationIndexContainer from './education/education_index_container';
 import EducationIndex from "./education/education_index";
-import ExperienceIndexContainer from "./experience/experience_index_container";
+import ExperienceIndex from "./experience/experience_index";
+// import ExperienceIndexContainer from "./experience/experience_index_container";
 import ProfileHeaderContainer from "./header/profile_header_container";
 import ProfileAboutContainer from "./header/profile_about_container";
 import { fetchEducations } from "../../actions/education_actions";
 import { fetchExperiences } from "../../actions/experience_actions";
 import { fetchUser } from "../../actions/profile_actions";
-import { openModal, closeModal } from "../../actions/modal_actions";
+import { openModal } from "../../actions/modal_actions";
 import { useEffect } from "react";
 
 const Profile = (props) => {
 
-    const { viewedPageId, fetchEducations, fetchExperiences, openModal, closeModal, viewedUserEducation } = props;
+    const { viewedPageId, fetchEducations, fetchExperiences, openModal, viewedUserEducation, viewedUserExperience } = props;
 
     useEffect(() => {
         fetchEducations(viewedPageId);
+        fetchExperiences(viewedPageId);
     }, [])
 
     return (
         <div className="profile-page">
             < GlobalNavBar />
-            { (Object.values(viewedUserEducation).length > 0 ) ? 
+            { (Object.values(viewedUserEducation).length > 0 && Object.values(viewedUserExperience).length) ? 
             <div className="profile-page-centered">
                 <div className="profile-page-body">
                     {/* < ProfileHeaderContainer viewedPageId={viewedPageId} />
-                    < ProfileAboutContainer viewedPageId={viewedPageId} />
-                    < ExperienceIndexContainer viewedPageId={viewedPageId} /> */}
+                    < ProfileAboutContainer viewedPageId={viewedPageId} /> */}
+                    < ExperienceIndex viewedPageId={viewedPageId} experiences={viewedUserExperience} currentUserId={props.currentUser.id} openModal={openModal}/>
                     < EducationIndex viewedPageId={viewedPageId} educations={viewedUserEducation} currentUserId={props.currentUser.id} openModal={openModal}/>
                 </div>
                 <div className="profile-page-right-bar">
@@ -64,6 +65,7 @@ const Profile = (props) => {
 const mapStateToProps = (state, ownProps) => ({
     viewedPageId: ownProps.match.params.id,
     viewedUserEducation: state.entities.viewedUserEducation,
+    viewedUserExperience: state.entities.viewedUserExperience,
     currentUser: state.session.user
 })
 
@@ -72,7 +74,6 @@ const mapDispatchToProps = dispatch => ({
     fetchEducations: (userId) => dispatch(fetchEducations(userId)),
     fetchExperiences: (userId) => dispatch(fetchExperiences(userId)),
     openModal: (type, id) => dispatch(openModal(type, id)),
-    closeModal: () => dispatch(closeModal())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
