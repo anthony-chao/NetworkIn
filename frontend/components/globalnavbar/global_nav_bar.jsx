@@ -55,9 +55,9 @@ class GlobalNavBar extends React.Component {
   
   }
 
-const mapStateToProps = ({ session, entities: { users } }) => {
+const mapStateToProps = (state) => {
     return {
-        currentUser: users[session.id]
+        currentUser: state.session.user
     }
 };
 

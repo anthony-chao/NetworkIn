@@ -6,7 +6,7 @@ import { closeModal } from "../../../actions/modal_actions";
 const mapStateToProps = (state, ownProps) => {
     const toUpdateEducation = state.entities.viewedUserEducation[ownProps.educationId]
     return {
-        currentUser: state.entities.users[state.session.id],
+        currentUser: state.state.session.user,
         viewedUserId: state.entities.viewedUser,
         education: {
             id: toUpdateEducation.id,

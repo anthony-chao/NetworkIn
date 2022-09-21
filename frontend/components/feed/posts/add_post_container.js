@@ -5,9 +5,9 @@ import { closeModal } from '../../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.entities.users[state.session.id],
+        currentUser: state.session.user,
         post: {
-            user_id: state.entities.users[state.session.id].id,
+            user_id: state.session.user.id,
             body: "",
             photoFile: null,
             photoUrl: null

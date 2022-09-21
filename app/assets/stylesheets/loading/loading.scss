@@ -1,0 +1,62 @@
+$width: 100px;
+$height: 100px;
+
+.loading-container{
+  width: $width*2;
+  height: $height*2;
+  background-size: cover;
+  vertical-align: middle;
+  margin: 20% auto;
+}
+
+.fa-linkedin{
+  display: block;
+  font-size: 5em;
+  text-align: center;
+  color: #0077B5;
+}
+
+.loading-container-line{
+  height: 3px;
+  width: 100%;
+  background: #e8e8e8;
+  margin-top: 30%;
+  
+  .loading-container-inner{
+    width: 100%;
+    height: inherit;
+    background: #0077B5;
+    animation: slide 2s ease-in-out infinite;
+  }
+}
+
+@keyframes slide{
+  0%{
+    transform-origin: left;
+    transform: scalex(0.3);
+  }
+  25%{
+    transform-origin: left;
+    transform: scalex(1);
+  }
+  26%{
+    transform-origin: right;
+    transform: scalex(1);
+  }
+  50%{
+    transform-origin: right;
+    transform: scalex(0.3);
+  }
+  75%{
+    transform-origin: right;
+    transform: scalex(1);
+  }
+  76%{
+    transform-origin: left;
+    transform: scalex(1);
+  }
+  100%{
+    transform-origin: left;
+    transform: scalex(0.3);
+  }
+}

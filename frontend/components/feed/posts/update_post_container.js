@@ -5,7 +5,7 @@ import { closeModal } from "../../../actions/modal_actions";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        currentUser: state.entities.users[state.session.id],
+        currentUser: state.session.user,
         post: state.entities.posts[ownProps.postId],
         formType: 'Edit Post'
     }

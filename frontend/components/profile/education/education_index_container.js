@@ -6,7 +6,7 @@ import React from 'react';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        currentUser: state.entities.users[state.session.id],
+        currentUser: state.session.user,
         viewedUserId: ownProps.viewedPageId,
         educations: state.entities.viewedUserEducation
     }

@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { openModal } from '../../actions/modal_actions'
 import Feed from './feed';
 
-const mapStateToProps = ({ session, entities: { users } }) => {
+const mapStateToProps = (state) => {
     return {
-        currentUser: users[session.id]
+        currentUser: state.session.user
     }
 };
 
