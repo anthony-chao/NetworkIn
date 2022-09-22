@@ -6,11 +6,15 @@ const ProfileHeader = (props) => {
 
     const [state, setState] = useState({
         fakeModalOpened: false
-    })
+    });
 
     const openFakeModal = () => {
         !state.fakeModalOpened ? setState({fakeModalOpened: true}) : null;
     }
+
+    useEffect(() => {
+        document.title = `${viewedUser.first_name.concat(" ", viewedUser.last_name)} | NetworkIn`
+    }, [])
 
     if (Object.values(viewedUser).length !== 0) {
     return (

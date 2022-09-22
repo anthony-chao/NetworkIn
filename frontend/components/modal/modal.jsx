@@ -3,7 +3,6 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import AddEducationContainer from '../profile/education/add_education_container';
 import UpdateEducationContainer from '../profile/education/update_education_container';
-import FeedContainer from '../feed/feed_container'
 import AddExperienceContainer from '../profile/experience/add_experience_container';
 import UpdateExperienceContainer from '../profile/experience/update_experience_container';
 import AddPostContainer from '../feed/posts/add_post_container';

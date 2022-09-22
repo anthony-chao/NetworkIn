@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import GlobalNavBar from '../globalnavbar/global_nav_bar'
 import EducationIndex from "./education/education_index";
@@ -19,7 +19,11 @@ const Profile = (props) => {
         fetchUser(viewedPageId);
         fetchExperiences(viewedPageId);
         fetchEducations(viewedPageId);
-    }, [props.location.pathname])
+    }, [props.location.pathname]);
+
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+      });
     
     return (
         <div className="profile-page">

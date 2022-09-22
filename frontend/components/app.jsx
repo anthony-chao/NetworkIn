@@ -4,8 +4,8 @@ import SignupFormContainer from './signup/signup_form_container'
 import HomepageContainer from './homepage/homepage_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import LoginPageContainer from './loginpage/loginpage_container'
-import FeedContainer from './feed/feed_container'
-import ProfileContainer from './profile/profile'
+import Feed from './feed/feed'
+import Profile from './profile/profile'
 import Modal from './modal/modal';
 
 const App = () => {
@@ -15,8 +15,8 @@ const App = () => {
             <Switch>
                 <AuthRoute exact path="/login" component={LoginPageContainer} />
                 <AuthRoute path="/signup" component={SignupFormContainer} />
-                <ProtectedRoute exact path="/feed" component={FeedContainer}/>
-                <ProtectedRoute path="/users/:id" component={ProfileContainer}/>
+                <ProtectedRoute exact path="/feed" component={Feed}/>
+                <ProtectedRoute path="/users/:id" component={Profile}/>
                 <AuthRoute exact path="/" component={HomepageContainer} />            
             </Switch>
         </div>
