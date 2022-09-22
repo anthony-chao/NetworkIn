@@ -34,6 +34,11 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: :Post
 
+    has_many :likes,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Like
+
     has_one_attached :profile_picture
     has_one_attached :background_photo
     

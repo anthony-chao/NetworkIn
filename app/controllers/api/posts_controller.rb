@@ -30,7 +30,7 @@ class Api::PostsController < ApplicationController
         @post = Post.find_by(id: params[:id])
 
         if @post
-            @post.delete
+            @post.destroy
             render :show
         else
             render json: @post.errors.full_messages, status: 422

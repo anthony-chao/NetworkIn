@@ -30,7 +30,7 @@ class Api::EducationsController < ApplicationController
         @education = Education.find_by(id: params[:id])
 
         if @education
-            @education.delete
+            @education.destroy
             render :show
         else
             render json: @education.errors.full_messages, status: 422

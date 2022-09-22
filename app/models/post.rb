@@ -7,4 +7,9 @@ class Post < ApplicationRecord
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :User
+
+    has_many :likes,
+        as: :likeable,
+        dependent: :destroy
+
 end

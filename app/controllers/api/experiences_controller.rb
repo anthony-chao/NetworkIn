@@ -30,7 +30,7 @@ class Api::ExperiencesController < ApplicationController
         @experience = Experience.find_by(id: params[:id])
 
         if @experience
-            @experience.delete
+            @experience.destroy
             render :show
         else
             render json: @experience.errors.full_messages, status: 422

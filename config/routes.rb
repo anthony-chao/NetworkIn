@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :educations, only: [:create, :update, :destroy]
 
     resources :posts, only: [:index, :create, :update, :destroy]
+    resources :likes, only: [:create, :destroy]
   end
 
   root to: "static_pages#root"
