@@ -8,7 +8,7 @@
 #  company_name :string           not null
 #  location     :string
 #  start_date   :date             not null
-#  end_date     :date
+#  end_date     :date             not null
 #  description  :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
