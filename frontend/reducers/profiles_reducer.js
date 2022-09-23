@@ -6,7 +6,6 @@ const profilesReducer = (state = {}, action) => {
     
     switch (action.type) {
         case RECEIVE_USER:
-            // return Object.assign({}, state, { [action.user.id]: action.user });
             nextState = {};
             nextState = action.user;
             return nextState;

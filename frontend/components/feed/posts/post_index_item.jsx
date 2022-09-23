@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import CommentIndex from '../comments/comment_index';
 
 const PostIndexItem = (props) => {
 
@@ -22,7 +23,7 @@ const PostIndexItem = (props) => {
     } else {
       interval = Math.floor(seconds / 2592000);
       if (interval >= 1) {
-        intervalType = 'm';
+        intervalType = 'mo';
       } else {
         interval = Math.floor(seconds / 604800);
         if (interval >= 1) {
@@ -41,14 +42,14 @@ const PostIndexItem = (props) => {
               intervalType = "m";
             } else {
               interval = seconds;
-              intervalType = "second";
+              intervalType = "now";
             }
           }
         }
       }
     }
   }
-    return interval + intervalType;
+    return (intervalType === "now") ? intervalType : interval + intervalType;
   };
 
   const toUserProfile = () => {
@@ -83,6 +84,7 @@ const PostIndexItem = (props) => {
         {(post.photoUrl) ? 
         <img id="post-photo" src={post.photoUrl}/> 
         : null}
+        <CommentIndex postId={post.id} timeSince={timeSince}/>
     </div>
   )
 

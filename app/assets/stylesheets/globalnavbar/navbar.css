@@ -90,12 +90,12 @@
     width: 60px;
     border-radius: 50%;
     background-color: #e7e2dc;
-    cursor: pointer;
     float: left;
 }
 
 .nav-bar-profile-container {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .dropdown-profile-name {

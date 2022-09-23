@@ -13,3 +13,11 @@ json.users do
     end
   end
 end
+
+json.comments do
+  Comment.all.each do |comment|
+    json.set! comment.id do
+      json.extract! comment, :id, :user_id, :post_id, :parent_comment_id, :body, :likes, :comments, :created_at, :updated_at
+    end
+  end
+end

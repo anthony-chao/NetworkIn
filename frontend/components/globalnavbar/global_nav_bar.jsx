@@ -37,8 +37,8 @@ const GlobalNavBar = (props) => {
         </div>
       </div>
         {(state.dropdown) ? 
-        <div className="nav-bar-dropdown" onClick={toProfilePage}> 
-            <div className="nav-bar-profile-container">
+        <div className="nav-bar-dropdown"> 
+            <div className="nav-bar-profile-container" onClick={toProfilePage}>
               <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
               <div className="dropdown-profile-name">{currentUser.first_name.concat(" " ,currentUser.last_name)}</div>
               <div className="dropdown-profile-headline">{currentUser.headline}</div>

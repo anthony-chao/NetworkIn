@@ -238,6 +238,7 @@
 #post-user-name {
     font-size: 16px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 #post-user-headline {
@@ -257,6 +258,7 @@
     width: 50px;
     border-radius: 50%;
     background-color: #e7e2dc;
+    cursor: pointer;
 }
 
 #feed-page-empty-line {
