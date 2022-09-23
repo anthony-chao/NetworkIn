@@ -4,6 +4,10 @@
     margin-bottom: 10px;
 }
 
+.single-reply {
+    margin-left: 45px;
+}
+
 .single-comment-body {
     margin-left: 5px;
     background-color: #f2f2f2;
@@ -59,4 +63,13 @@
     margin-top: 10px;
     margin-bottom: 8px;
     font-size: 14px;
+}
+
+.single-comment-right-side {
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+}
+
+.single-comment-right-side > div {
+    margin-left: 5px;
 }
