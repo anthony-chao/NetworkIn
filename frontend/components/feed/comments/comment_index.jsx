@@ -11,7 +11,6 @@ const CommentIndex = (props) => {
             <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser}/>
         ))
     )
-
 }
 
 const mapStateToProps = (state, ownProps) => {

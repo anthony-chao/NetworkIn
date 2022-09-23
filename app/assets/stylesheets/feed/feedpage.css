@@ -29,7 +29,7 @@
 .individual-post-body {
     background-color: white;
     word-break: normal;
-    padding: 12px;
+    padding: 12px 12px 0px 12px;
     margin-top: 5px;
     border-radius: 0.3rem;
     border: 1px solid rgba(0,0,0,0.08);
@@ -392,4 +392,42 @@
 #post-image-preview img {
     width: 552px;
     object-fit: cover;
+}
+
+.post-like-comment-buttons {
+    display: flex;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 5px 0px;
+}
+
+.post-like-comment-buttons > div {
+    width: 50%;
+    background-color: white;
+    height: 50px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+}
+
+.post-like-comment-buttons > div:hover {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 0.3rem;
+}
+
+.post-like-comment-buttons img {
+    height: 20px;
+    width: auto;
+    margin-right: 5px;
+}
+
+#post-comment-count {
+    display: flex;
+    justify-content: end;
+    color: rgba(0,0,0,0.6);
+    font-size: 12px;
+    margin-bottom: 5px;
 }

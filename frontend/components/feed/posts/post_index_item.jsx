@@ -4,7 +4,7 @@ import CommentIndex from '../comments/comment_index';
 
 const PostIndexItem = (props) => {
 
-  const { post, users, openModal, deletePost, currentUserId } = props;
+  const { post, users, openModal, deletePost, currentUserId, comments } = props;
   const history = useHistory();
 
   const [revealedButton, setRevealedButton] = useState(false);
@@ -60,6 +60,10 @@ const PostIndexItem = (props) => {
     !revealedButton.fakeModalOpened ? setRevealedButton(true) : null;
   }
 
+  const commentsCount = Object.values(comments)
+    .filter((comment) => comment.post_id === post.id)
+    .length;
+
   return (
     <div className="individual-post-body">
         <div className="post-header">
@@ -87,6 +91,14 @@ const PostIndexItem = (props) => {
         {(post.photoUrl) ? 
         <img id="post-photo" src={post.photoUrl}/> 
         : null}
+        
+        { (commentsCount === 1) ? <div id="post-comment-count">1 comment</div> : null}
+        { (commentsCount > 1) ? <div id="post-comment-count">{commentsCount} comments</div> : null}
+
+        <div className="post-like-comment-buttons">
+          <div><img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like</div>
+          <div><img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment</div>
+        </div>
         <CommentIndex postId={post.id} timeSince={timeSince}/>
     </div>
   )
