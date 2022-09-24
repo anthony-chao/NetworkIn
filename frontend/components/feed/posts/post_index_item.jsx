@@ -8,6 +8,11 @@ const PostIndexItem = (props) => {
   const history = useHistory();
 
   const [revealedButton, setRevealedButton] = useState(false);
+  const [toggleComments, setToggleComments] = useState(false);
+
+  const handleToggle = () => {
+    (toggleComments) ? setToggleComments(false) : setToggleComments(true);
+  }
 
   const timeSince = (date) => {
     if (typeof date !== 'object') {
@@ -92,14 +97,19 @@ const PostIndexItem = (props) => {
         <img id="post-photo" src={post.photoUrl}/> 
         : null}
         
-        { (commentsCount === 1) ? <div id="post-comment-count">1 comment</div> : null}
-        { (commentsCount > 1) ? <div id="post-comment-count">{commentsCount} comments</div> : null}
+        { (commentsCount === 1) ? 
+          <div id="post-comment-count" onClick={handleToggle}>1 comment</div> 
+        : null}
+        { (commentsCount > 1) ? 
+          <div id="post-comment-count" onClick={handleToggle}>{commentsCount} comments</div>
+        : null}
 
         <div className="post-like-comment-buttons">
-          <div><img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like</div>
-          <div><img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment</div>
+            <div><img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like</div>
+            <div onClick={handleToggle}>
+              <img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment</div>
         </div>
-        <CommentIndex postId={post.id} timeSince={timeSince}/>
+        { toggleComments ? <CommentIndex postId={post.id} timeSince={timeSince}/> : null}
     </div>
   )
 

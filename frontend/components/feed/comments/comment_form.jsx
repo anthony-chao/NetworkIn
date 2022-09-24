@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 const CommentForm = (props) => {
 
     const { comment, currentUser, formType, commentFunction } = props;
+    const history = useHistory();
 
     const [state, setState] = useState(comment);
     const [error, setError] = useState(true);
