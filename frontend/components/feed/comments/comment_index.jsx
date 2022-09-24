@@ -1,15 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import CommentIndexItem from './comment_index_item';
+import AddCommentContainer from "./add_comment_container";
 
 const CommentIndex = (props) => {
 
-    const { comments, users, timeSince, currentUser } = props;
+    const { comments, users, timeSince, currentUser, postId } = props;
 
     return (
-        comments.map((comment) => (
-            <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser}/>
-        ))
+        <div>
+            <div>
+                <AddCommentContainer postId={postId} />
+            </div>
+            {comments.map((comment) => (
+                <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser}/>
+            ))}
+        </div>
     )
 }
 
