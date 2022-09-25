@@ -34,6 +34,7 @@
 
 .single-comment-post-date > span {
     margin-left: 5px;
+    cursor: pointer;
 }
 
 #single-comment-name {
@@ -147,8 +148,8 @@
 #comment-dropdown {
     position: absolute;
     width: 150px;
-    margin-top: 25px;
-    margin-left: -108px;
+    margin-top: 20px;
+    margin-left: -115px;
     background-color: white;
     border: 0.1rem solid rgba(0,0,0,0.4);
     z-index: 100;
@@ -172,4 +173,49 @@
 
 #comment-dropdown > div:hover {
     background-color: rgba(0,0,0,0.1);
+}
+
+#comment-body-update {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    margin: 18px 0px;
+}
+
+#comment-body-update:focus {
+    outline: none;
+}
+
+.comment-update-button {
+    cursor: pointer;
+    text-decoration-line: none;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: 0.1rem solid #0a66c2;
+    background-color: #0a66c2;
+    color: white;
+    padding: 3px 8px;
+    margin-right: 5px;
+}
+
+.disable-comment-button {
+    cursor: not-allowed;
+    text-decoration-line: none;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    background-color: rgba(0,0,0,0.08);
+    color: rgba(0,0,0,0.3);
+    padding: 3px 8px;
+    margin-right: 5px;
+}
+
+#comment-cancel-button {
+    border: 0.1rem solid;
+    background-color: transparent;
+    color: rgba(0,0,0,0.6);
 }

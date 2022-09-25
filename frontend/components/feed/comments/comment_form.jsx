@@ -41,10 +41,10 @@ const CommentForm = (props) => {
             : 
             <div className='comment-form-area'>
                 <form className="comment-form" onSubmit={handleSubmit}>
-                    <input type="text" placeholder='Add a comment...' value={state.body} onChange={handleUpdate("body")}/>
+                    <input id="comment-body-update" type="text" placeholder='Add a comment...' value={state.body} onChange={handleUpdate("body")}/>
                     <div>
                         <button type="submit" className={`${error ? "disable-comment-button" : 'comment-update-button'}`}>Save Changes</button>
-                        <button onClick={cancelEdit} className="comment-update-button">Cancel</button>
+                        <button onClick={cancelEdit} className="comment-update-button" id="comment-cancel-button">Cancel</button>
                     </div>
                 </form>
             </div>

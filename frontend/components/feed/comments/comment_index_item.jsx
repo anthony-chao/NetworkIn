@@ -41,8 +41,8 @@ const CommentIndexItem = (props) => {
                                 : null }
                                 { (dropdown) ? 
                                     <div id="comment-dropdown">
-                                        <div onClick={() => {setEditing(true), setDropdown(false)}}><img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="comment-edit-button"/>Edit</div>
-                                        <div onClick={() => {deleteComment(comment), setDropdown(false)}}><img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="comment-edit-button"/>Delete</div>
+                                        <div onClick={() => {setEditing(true), setDropdown(false)}}><img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="comment-edit-button"/>Edit</div>
+                                        <div onClick={() => {deleteComment(comment), setDropdown(false)}}><img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="comment-edit-button"/>Delete</div>
                                     </div> 
                                 : null}
                             </div>
