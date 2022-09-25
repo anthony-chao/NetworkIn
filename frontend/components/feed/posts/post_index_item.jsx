@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import CommentIndex from '../comments/comment_index';
+import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const PostIndexItem = (props) => {
 
@@ -77,7 +78,6 @@ const PostIndexItem = (props) => {
                 <div className="post-user-background">
                 <div onClick={toUserProfile} id="post-user-name"> 
                   <div>{users[post.user_id].first_name} {users[post.user_id].last_name}</div>
-                  {/* { post.user_id === currentUserId ? <p> • You</p> : <p> • 2nd </p> } */}
                 </div>
                 <p id="post-user-headline"> {users[post.user_id].headline}</p>
                 <p id="post-user-create-time">{timeSince(post.created_at)}</p>

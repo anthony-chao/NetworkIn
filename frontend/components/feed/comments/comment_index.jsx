@@ -8,25 +8,35 @@ const CommentIndex = (props) => {
 
     const { comments, users, timeSince, currentUser, postId, deleteComment } = props;
 
+    const rootComments = comments
+        .filter((comment) => comment.parent_comment_id === null);
+
     return (
         <div>
             <div>
                 <AddCommentContainer postId={postId} />
             </div>
-            {comments.map((comment) => (
-                <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser} deleteComment={deleteComment}/>
-            ))}
+            {rootComments.map((comment) => (
+                <CommentIndexItem 
+                    key={comment.id} 
+                    comments={comments}
+                    comment={comment} 
+                    users={users} 
+                    timeSince={timeSince} 
+                    currentUser={currentUser} 
+                    deleteComment={deleteComment}/>
+                ))}
         </div>
     )
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const rootComments = Object.values(state.entities.comments)
-        .filter((comment) => comment.post_id === ownProps.postId && comment.parent_comment_id === null)
+    const postComments = Object.values(state.entities.comments)
+        .filter((comment) => comment.post_id === ownProps.postId)
         .reverse();
 
     return {
-        comments: rootComments,
+        comments: postComments,
         users: state.entities.users,
         currentUser: state.session.user
     }

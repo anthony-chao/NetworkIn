@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import ReplyIndex from "./reply_index";
 import UpdateCommentContainer from './update_comment_container';
 import AddReplyContainer from "./add_reply_container";
-import { connect } from "react-redux";
 
 const CommentIndexItem = (props) => {
 
-    const { comment, users, timeSince, currentUser, deleteComment, repliesLength } = props;
+    const { comment, users, timeSince, currentUser, deleteComment, comments } = props;
     const history = useHistory();
 
     const toAuthorsProfile = () => {
@@ -30,6 +29,10 @@ const CommentIndexItem = (props) => {
         editing ? setEditing(false) : setEditing(true);
     };
 
+    const repliesCount = Object.values(comments)
+        .filter((reply) => reply.parent_comment_id === comment.id)
+        .length;
+        
     return (
         <div>
             <div className="single-comment">
@@ -65,8 +68,8 @@ const CommentIndexItem = (props) => {
                         <div>Like</div>
                         |
                         <div onClick={handleAddReply}>Reply</div> 
-                        {(repliesLength === 1) ? <span>• 1 Reply</span> : null}
-                        {(repliesLength > 1) ? <span>• {repliesLength} Replies</span> : null}
+                        {(repliesCount === 1) ? <span>• 1 Reply</span> : null}
+                        {(repliesCount > 1) ? <span>• {repliesCount} Replies</span> : null}
                     </div>
                 </div>
             </div>
@@ -76,15 +79,4 @@ const CommentIndexItem = (props) => {
     )
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const repliesLength = Object.values(state.entities.comments)
-        .filter((reply) => reply.parent_comment_id === ownProps.comment.id)
-        .length;
-    
-    return {
-        repliesLength: repliesLength
-    }
-}
-
-
-export default connect(mapStateToProps, null)(CommentIndexItem);
+export default CommentIndexItem;
