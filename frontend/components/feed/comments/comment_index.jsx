@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import CommentIndexItem from './comment_index_item';
 import AddCommentContainer from "./add_comment_container";
+import { deleteComment } from "../../../actions/comment_actions";
 
 const CommentIndex = (props) => {
 
-    const { comments, users, timeSince, currentUser, postId } = props;
+    const { comments, users, timeSince, currentUser, postId, deleteComment } = props;
 
     return (
         <div>
@@ -13,7 +14,7 @@ const CommentIndex = (props) => {
                 <AddCommentContainer postId={postId} />
             </div>
             {comments.map((comment) => (
-                <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser}/>
+                <CommentIndexItem key={comment.id} comment={comment} users={users} timeSince={timeSince} currentUser={currentUser} deleteComment={deleteComment}/>
             ))}
         </div>
     )
@@ -32,7 +33,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-
+    deleteComment: (commentId) => dispatch(deleteComment(commentId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentIndex);

@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReplyIndex from "./reply_index";
+import UpdateCommentContainer from './update_comment_container';
 
 const CommentIndexItem = (props) => {
 
-    const { comment, users, timeSince, currentUser } = props;
+    const { comment, users, timeSince, currentUser, deleteComment } = props;
     const history = useHistory();
 
     const toAuthorsProfile = () => {
         history.push(`/users/${comment.user_id}`);
     }
+
+    const [dropdown, setDropdown] = useState(false);
+    const [editing, setEditing] = useState(false);
+
+    const handleDropdown = () => {
+        dropdown ? setDropdown(false) : setDropdown(true);
+    };
+
+    const cancelEdit = () => {
+        editing ? setEditing(false) : setEditing(true);
+    };
 
     return (
         <div>
@@ -24,11 +36,23 @@ const CommentIndexItem = (props) => {
                             </div>
                             <div className="single-comment-post-date">
                                 <div>{timeSince(comment.created_at)}</div>
-                                <div>•••</div>
+                                { currentUser.id === comment.user_id ?
+                                <span onClick={handleDropdown} onBlur={() => setDropdown(false)}>•••</span>
+                                : null }
+                                { (dropdown) ? 
+                                    <div id="comment-dropdown">
+                                        <div onClick={() => {setEditing(true), setDropdown(false)}}><img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="comment-edit-button"/>Edit</div>
+                                        <div onClick={() => {deleteComment(comment), setDropdown(false)}}><img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="comment-edit-button"/>Delete</div>
+                                    </div> 
+                                : null}
                             </div>
                         </div>
                         <div id="single-comment-headline">{users[comment.user_id].headline}</div>
-                        <div id="single-comment-body">{comment.body}</div>
+                        { (editing) ? 
+                            <div>
+                                <UpdateCommentContainer comment={comment} cancelEdit={cancelEdit} editing={editing} setEditing={setEditing}/>
+                            </div>
+                        : <div id="single-comment-body">{comment.body}</div> }
                     </div>
                     <div className="comment-likes-replies">
                         <div>Like</div>
@@ -37,7 +61,7 @@ const CommentIndexItem = (props) => {
                     </div>
                 </div>
             </div>
-            <ReplyIndex comment={comment} timeSince={timeSince} />
+            <ReplyIndex comment={comment} timeSince={timeSince}/>
         </div>
     )
 }
