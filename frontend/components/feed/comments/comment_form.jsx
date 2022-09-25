@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const CommentForm = (props) => {
 
-    const { comment, currentUser, formType, commentFunction, cancelEdit, editing, setEditing } = props;
+    const { comment, formType, commentFunction, cancelEdit, setEditing } = props;
 
     const [state, setState] = useState(comment);
     const [error, setError] = useState(true);
@@ -24,7 +24,7 @@ const CommentForm = (props) => {
         if (!error) {
             commentFunction(state);
             setState({ ...state, body: "" });
-            if (formType !== "Add a comment...") {setEditing(false)};
+            if (formType === "Update comment" ) {setEditing(false)};
         };
     };
 

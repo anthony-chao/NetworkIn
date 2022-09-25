@@ -4,6 +4,7 @@ import experiencesReducer from './experiences_reducer';
 import profilesReducer from "./profiles_reducer";
 import postsReducer from "./posts_reducer";
 import commentsReducer from "./comments_reducer";
+import likesReducer from "./likes_reducer";
 import { combineReducers } from 'redux';
 
 const entitiesReducer = combineReducers({
@@ -12,7 +13,8 @@ const entitiesReducer = combineReducers({
     viewedUserEducation: educationsReducer,
     viewedUserExperience: experiencesReducer,
     posts: postsReducer,
-    comments: commentsReducer
+    comments: commentsReducer,
+    likes: likesReducer
 })
 
 export default entitiesReducer;
