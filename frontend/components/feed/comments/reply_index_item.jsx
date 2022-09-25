@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import UpdateCommentContainer from './update_comment_container';
 
 const ReplyIndexItem = (props) => {
 
@@ -46,7 +47,12 @@ const ReplyIndexItem = (props) => {
                             </div>
                         </div>
                         <div id="single-comment-headline">{users[reply.user_id].headline}</div>
-                        <div id="single-comment-body">{reply.body}</div>
+                        { (editing) ? 
+                            <div>
+                                <UpdateCommentContainer comment={reply} cancelEdit={cancelEdit} editing={editing} setEditing={setEditing}/>
+                            </div>
+                        : <div id="single-comment-body">{reply.body}</div> }
+                        {/* <div id="single-comment-body">{reply.body}</div> */}
                     </div>
                     <div className="comment-likes-replies">
                         <div>Like</div>
