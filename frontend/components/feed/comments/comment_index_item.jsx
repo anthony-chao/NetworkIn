@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReplyIndex from "./reply_index";
 import UpdateCommentContainer from './update_comment_container';
+import AddReplyContainer from "./add_reply_container";
+import { connect } from "react-redux";
 
 const CommentIndexItem = (props) => {
 
-    const { comment, users, timeSince, currentUser, deleteComment } = props;
+    const { comment, users, timeSince, currentUser, deleteComment, repliesLength } = props;
     const history = useHistory();
 
     const toAuthorsProfile = () => {
@@ -14,6 +16,11 @@ const CommentIndexItem = (props) => {
 
     const [dropdown, setDropdown] = useState(false);
     const [editing, setEditing] = useState(false);
+    const [addReply, setAddReply] = useState(false);
+
+    const handleAddReply = () => {
+        addReply ? setAddReply(false) : setAddReply(true);
+    };
 
     const handleDropdown = () => {
         dropdown ? setDropdown(false) : setDropdown(true);
@@ -57,13 +64,27 @@ const CommentIndexItem = (props) => {
                     <div className="comment-likes-replies">
                         <div>Like</div>
                         |
-                        <div>Reply</div>
+                        <div onClick={handleAddReply}>Reply</div> 
+                        {(repliesLength === 1) ? <span>• 1 Reply</span> : null}
+                        {(repliesLength > 1) ? <span>• {repliesLength} Replies</span> : null}
                     </div>
                 </div>
             </div>
-            <ReplyIndex comment={comment} timeSince={timeSince}/>
+            <ReplyIndex comment={comment} timeSince={timeSince} handleAddReply={handleAddReply}/>
+            { addReply ? <AddReplyContainer postId={comment.post_id} parent_comment_id={comment.id} /> : null }
         </div>
     )
 }
 
-export default CommentIndexItem;
+const mapStateToProps = (state, ownProps) => {
+    const repliesLength = Object.values(state.entities.comments)
+        .filter((reply) => reply.parent_comment_id === ownProps.comment.id)
+        .length;
+    
+    return {
+        repliesLength: repliesLength
+    }
+}
+
+
+export default connect(mapStateToProps, null)(CommentIndexItem);

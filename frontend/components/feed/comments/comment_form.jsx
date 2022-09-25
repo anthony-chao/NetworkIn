@@ -24,14 +24,14 @@ const CommentForm = (props) => {
         if (!error) {
             commentFunction(state);
             setState({ ...state, body: "" });
-            setEditing(false);
+            if (formType !== "Add a comment...") {setEditing(false)};
         };
     };
 
     return (
         <div>
-            { (formType === "Add a comment...") ? 
-            <div className='comment-form-area'>
+            { (formType === "Add a comment..." || formType === "Add a reply...") ? 
+            <div className='comment-form-area' id={`${ formType === "Add a reply..." ? "reply-comment-form" : null}`}>
                 <div> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "auto"}}/></div>
                 <form className="comment-form" onSubmit={handleSubmit}>
                     <input className="comment-form-input" type="text" placeholder={formType} value={state.body} onChange={handleUpdate("body")}/>

@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const ReplyIndexItem = (props) => {
 
-    const { reply, users, timeSince, currentUser } = props;
+    const { reply, users, timeSince, currentUser, deleteComment, handleAddReply } = props;
     const history = useHistory();
+
+    const [dropdown, setDropdown] = useState(false);
+    const [editing, setEditing] = useState(false);
+
+    const handleDropdown = () => {
+        dropdown ? setDropdown(false) : setDropdown(true);
+    };
+
+    const cancelEdit = () => {
+        editing ? setEditing(false) : setEditing(true);
+    };
 
     const toAuthorsProfile = () => {
         history.push(`/users/${reply.user_id}`);
@@ -23,7 +34,15 @@ const ReplyIndexItem = (props) => {
                             </div>
                             <div className="single-comment-post-date">
                                 <div>{timeSince(reply.created_at)}</div>
-                                <div>•••</div>
+                                { currentUser.id === reply.user_id ?
+                                <span onClick={handleDropdown} onBlur={() => setDropdown(false)}>•••</span>
+                                : null }
+                                { (dropdown) ? 
+                                    <div id="comment-dropdown">
+                                        <div onClick={() => {setEditing(true), setDropdown(false)}}><img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="comment-edit-button"/>Edit</div>
+                                        <div onClick={() => {deleteComment(reply), setDropdown(false)}}><img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="comment-edit-button"/>Delete</div>
+                                    </div> 
+                                : null}
                             </div>
                         </div>
                         <div id="single-comment-headline">{users[reply.user_id].headline}</div>
@@ -32,7 +51,7 @@ const ReplyIndexItem = (props) => {
                     <div className="comment-likes-replies">
                         <div>Like</div>
                         |
-                        <div>Reply</div>
+                        <div onClick={handleAddReply}>Reply</div>
                     </div>
                 </div>
             </div>

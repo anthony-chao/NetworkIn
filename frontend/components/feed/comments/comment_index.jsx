@@ -33,7 +33,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteComment: (commentId) => dispatch(deleteComment(commentId))
+    deleteComment: (comment) => dispatch(deleteComment(comment))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentIndex);

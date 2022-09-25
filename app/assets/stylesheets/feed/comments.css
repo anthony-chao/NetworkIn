@@ -96,6 +96,11 @@
     border-radius: 0.3rem;
 }
 
+.comment-likes-replies span {
+    font-weight: normal;
+    margin-left: -5px;
+}
+
 .comment-form-area {
     display: flex;
     /* align-items: center; */
@@ -218,4 +223,8 @@
     border: 0.1rem solid;
     background-color: transparent;
     color: rgba(0,0,0,0.6);
+}
+
+#reply-comment-form {
+    margin-left: 45px;
 }

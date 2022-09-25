@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import ReplyIndexItem from "./reply_index_item";
+import { deleteComment } from "../../../actions/comment_actions";
 
 const ReplyIndex = (props) => {
 
-    const { replies, users, currentUser, timeSince } = props;
+    const { replies, users, currentUser, timeSince, deleteComment, handleAddReply } = props;
 
     return (
-        replies.map((reply) => (
-            <ReplyIndexItem key={reply.id} reply={reply} users={users} timeSince={timeSince} currentUser={currentUser}/>
-        ))
+        <div>
+            {replies.map((reply) => (
+                <ReplyIndexItem key={reply.id} reply={reply} users={users} timeSince={timeSince} currentUser={currentUser} deleteComment={deleteComment} handleAddReply={handleAddReply}/>
+            ))}
+        </div>
     )
 
 }
 
 const mapStateToProps = (state, ownProps) => {
     const replies = Object.values(state.entities.comments)
-    .filter((reply) => reply.parent_comment_id === ownProps.comment.id)
-    .reverse();
+    .filter((reply) => reply.parent_comment_id === ownProps.comment.id);
 
     return {
         replies: replies,
@@ -27,7 +29,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    
+    deleteComment: (comment) => dispatch(deleteComment(comment))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReplyIndex);
