@@ -7,12 +7,16 @@ const PostIndexItem = (props) => {
   const { post, users, openModal, deletePost, currentUserId, comments, likes, addLike, deleteLike } = props;
   const history = useHistory();
 
-  const [revealedButton, setRevealedButton] = useState(false);
   const [toggleComments, setToggleComments] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
   const handleToggle = () => {
     (toggleComments) ? setToggleComments(false) : setToggleComments(true);
   }
+
+  const handleDropdown = () => {
+    dropdown ? setDropdown(false) : setDropdown(true);
+  };
 
   const timeSince = (date) => {
     if (typeof date !== 'object') {
@@ -61,10 +65,6 @@ const PostIndexItem = (props) => {
     history.push(`/users/${post.user_id}`);
   };
 
-  const revealButtons = () => {
-    !revealedButton.fakeModalOpened ? setRevealedButton(true) : null;
-  }
-
   const commentsCount = Object.values(comments)
     .filter((comment) => comment.post_id === post.id)
     .length;
@@ -99,9 +99,13 @@ const PostIndexItem = (props) => {
             </div>
             { (post.user_id === currentUserId) ? 
             <div className="">
-                <div onClick={revealButtons} id={`post-functions-button${post.id}`} className={`post-functions-button ${!revealedButton ? "" : 'invisible'}`}><p>...</p></div>
-                <button id={`post-edit-button${post.id}`} className={`edit-post-button ${revealedButton ? "" : 'invisible'}`} onClick={() => deletePost(post)}> <img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="edit-button-feed" /></button>
-                <button id={`post-delete-button${post.id}`} className={`edit-post-button ${revealedButton ? "" : 'invisible'}`} onClick={() => openModal('updatePost', post.id)}> <img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="edit-button-feed" /></button>
+                <div onClick={handleDropdown} id={`post-functions-button${post.id}`} className='post-functions-button'><p>...</p></div>
+                { (dropdown) ? 
+                    <div id="comment-dropdown" style={{marginTop: 0}}>
+                        <div onClick={() => {openModal('updatePost', post.id), setDropdown(false)}}><img src="https://i.postimg.cc/Y9JpH6sk/image-removebg-preview.png" id="comment-edit-button"/>Edit</div>
+                        <div onClick={() => {deletePost(post), setDropdown(false)}}><img src="https://i.postimg.cc/tRh0B38K/image-removebg-preview.png" id="comment-edit-button"/>Delete</div>
+                    </div> 
+                : null}
             </div>
             : null }
         </div>
