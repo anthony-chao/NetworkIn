@@ -36,7 +36,7 @@ const Feed = (props) => {
 
         <div className="profile-page-right-bar">
               <div className="right-bar-networkin-news">
-                  <h1 id="networkin-news-header">NetworkIn News</h1>
+                  <h1>NetworkIn News</h1>
                   <ul>
                       <li id="networking-news-bullet">
                           <span>Who is Anthony Chao?</span>
@@ -55,6 +55,23 @@ const Feed = (props) => {
                       </li>
                       <p id="networking-news-response">Homicide victims rarely talk to police. Breathing oxygen is linked to staying alive. </p>
                   </ul>
+              </div>
+              <div className="right-bar-networkin-news" style={{marginTop: 8, paddingLeft: 12, paddingRight: 12}}>
+                <h1 style={{paddingLeft: 0, paddingRight: 0}}>Promoted</h1>
+                  <div className="right-bar-promoted">
+                    <a href="https://github.com/anthony-chao/Task-It" target="_blank"><img src="https://github.com/anthony-chao/Task-It/raw/main/frontend/src/assets/images/task-it-logo.png"/></a>
+                    <div id="right-bar-task-it">
+                    <a href="https://github.com/anthony-chao/Task-It" target="_blank"><p>Manage your projects!</p></a>  
+                      <span>Task It is a project management tool built using the MERN Stack where users can create projects, tasks and chat with other users!</span>
+                    </div>
+                  </div>
+                  <div className="right-bar-promoted">
+                  <a href="https://github.com/anthony-chao/Nothin-but-Treble" target="_blank"><img src="https://i.postimg.cc/7ZHWR6fG/image-removebg-preview.png"/></a>
+                    <div>
+                    <a href="https://github.com/anthony-chao/Nothin-but-Treble" target="_blank"><p>Learn how to write music!</p></a>
+                      <span>Nothin' but Treble is an interactive music sheet where users can drag and drop notes onto a music sheet and have it play notes!</span>
+                    </div>
+                  </div>
               </div>
           </div>
       </div>

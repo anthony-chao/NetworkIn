@@ -7,7 +7,7 @@
     border: 1px solid rgba(0,0,0,0.08);
 }
 
-#networkin-news-header {
+.right-bar-networkin-news > h1 {
     font-size: 17px;
     font-weight: 500;
     padding: 12px 12px;
@@ -46,3 +46,31 @@
     margin-right: 10px;
 }
 
+.right-bar-promoted {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.right-bar-promoted img {
+    height: 35px;
+    width: auto;
+}
+
+.right-bar-promoted p {
+    font-size: 15px;
+}
+
+.right-bar-promoted p:hover {
+    color: #0a66c2;
+    text-decoration: underline;
+}
+
+.right-bar-promoted span {
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+
+#right-bar-task-it {
+    margin-left: 8px;
+}
