@@ -52,7 +52,7 @@ const GlobalNavBar = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-        currentUser: state.session.user
+    currentUser: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({

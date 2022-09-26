@@ -19,7 +19,7 @@ const Profile = (props) => {
         fetchUser(viewedPageId);
         fetchExperiences(viewedPageId);
         fetchEducations(viewedPageId);
-    }, []);
+    }, [props.location.pathname]);
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
