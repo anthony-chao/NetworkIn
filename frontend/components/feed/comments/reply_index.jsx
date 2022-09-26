@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import ReplyIndexItem from "./reply_index_item";
 import { deleteComment } from "../../../actions/comment_actions";
+import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const ReplyIndex = (props) => {
 
-    const { replies, users, currentUser, timeSince, deleteComment, handleAddReply, likes } = props;
+    const { replies, users, currentUser, timeSince, deleteComment, handleAddReply, likes, addLike, deleteLike } = props;
 
     return (
         <div>
@@ -19,6 +20,8 @@ const ReplyIndex = (props) => {
                     deleteComment={deleteComment} 
                     handleAddReply={handleAddReply}
                     likes={likes}
+                    addLike={addLike}
+                    deleteLike={deleteLike}
                 />
             ))}
         </div>
@@ -39,7 +42,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteComment: (comment) => dispatch(deleteComment(comment))
+    deleteComment: (comment) => dispatch(deleteComment(comment)),
+    addLike: (like) => dispatch(addLike(like)),
+    deleteLike: (like) => dispatch(deleteLike(like))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReplyIndex);

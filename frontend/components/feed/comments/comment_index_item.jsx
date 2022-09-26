@@ -6,7 +6,7 @@ import AddReplyContainer from "./add_reply_container";
 
 const CommentIndexItem = (props) => {
 
-    const { comment, users, timeSince, currentUser, deleteComment, comments, likes } = props;
+    const { comment, users, timeSince, currentUser, deleteComment, comments, likes, addLike, deleteLike } = props;
     const history = useHistory();
 
     const toAuthorsProfile = () => {
@@ -36,7 +36,16 @@ const CommentIndexItem = (props) => {
     const likesCount = Object.values(likes)
         .filter((like) => like.likeable_type === "Comment" && like.likeable_id === comment.id)
         .length
+
+    const likedComment = Object.values(likes)
+        .filter((like) => like.likeable_type === "Comment" && like.likeable_id === comment.id && like.user_id === currentUser.id);
         
+    const toggleLike = () => {
+        (likedComment.length === 0) ? 
+            addLike({post_id: comment.post_id, likeable_type: "Comment", likeable_id: comment.id, user_id: currentUser.id})
+        : deleteLike(likedComment[0]);
+    }
+    
     return (
         <div>
             <div className="single-comment">
@@ -69,7 +78,7 @@ const CommentIndexItem = (props) => {
                         : <div id="single-comment-body">{comment.body}</div> }
                     </div>
                     <div className="comment-likes-replies">
-                        <div>Like</div>
+                        <div onClick={toggleLike} id={`${likedComment.length === 0 ? "" : 'liked-post-icon'}`}>Like</div>
                         {(likesCount > 0) ? <span>• {likesCount} <img src="https://i.postimg.cc/VNmdxbQc/image-removebg-preview.png"/></span> : null}
                         |
                         <div onClick={handleAddReply}>Reply</div> 

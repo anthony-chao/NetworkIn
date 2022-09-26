@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import CommentIndexItem from './comment_index_item';
 import AddCommentContainer from "./add_comment_container";
 import { deleteComment } from "../../../actions/comment_actions";
+import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const CommentIndex = (props) => {
 
-    const { comments, users, timeSince, currentUser, postId, deleteComment, likes } = props;
+    const { comments, users, timeSince, currentUser, postId, deleteComment, likes, addLike, deleteLike } = props;
 
     const rootComments = comments
         .filter((comment) => comment.parent_comment_id === null);
@@ -26,6 +27,8 @@ const CommentIndex = (props) => {
                     currentUser={currentUser} 
                     deleteComment={deleteComment}
                     likes={likes}
+                    addLike={addLike}
+                    deleteLike={deleteLike}
                 />
             ))}
         </div>
@@ -46,7 +49,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    deleteComment: (comment) => dispatch(deleteComment(comment))
+    deleteComment: (comment) => dispatch(deleteComment(comment)),
+    addLike: (like) => dispatch(addLike(like)),
+    deleteLike: (like) => dispatch(deleteLike(like))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentIndex);
