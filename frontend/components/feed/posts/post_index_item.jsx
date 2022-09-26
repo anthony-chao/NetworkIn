@@ -5,7 +5,7 @@ import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const PostIndexItem = (props) => {
 
-  const { post, users, openModal, deletePost, currentUserId, comments } = props;
+  const { post, users, openModal, deletePost, currentUserId, comments, likes } = props;
   const history = useHistory();
 
   const [revealedButton, setRevealedButton] = useState(false);
@@ -70,6 +70,10 @@ const PostIndexItem = (props) => {
     .filter((comment) => comment.post_id === post.id)
     .length;
 
+  const likesCount = Object.values(likes)
+    .filter((like) => like.likeable_type === "Post" && like.likeable_id === post.id)
+    .length
+
   return (
     <div className="individual-post-body">
         <div className="post-header">
@@ -97,17 +101,20 @@ const PostIndexItem = (props) => {
         <img id="post-photo" src={post.photoUrl}/> 
         : null}
         
-        { (commentsCount === 1) ? 
-          <div id="post-comment-count" onClick={handleToggle}>1 comment</div> 
-        : null}
-        { (commentsCount > 1) ? 
-          <div id="post-comment-count" onClick={handleToggle}>{commentsCount} comments</div>
-        : null}
+        <div id="post-comment-count">
+          { (likesCount > 0) ? <div>{likesCount} <img src="https://i.postimg.cc/VNmdxbQc/image-removebg-preview.png"/></div> : <div></div>}
+          { (commentsCount === 1) ? <div onClick={handleToggle}>1 comment</div> : null}
+          { (commentsCount > 1) ? <div onClick={handleToggle}>{commentsCount} comments</div> : null}
+          { (commentsCount === 0) ? <div></div> : null}
+        </div>
 
         <div className="post-like-comment-buttons">
-            <div><img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like</div>
+            <div>
+              <img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like
+            </div>
             <div onClick={handleToggle}>
-              <img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment</div>
+              <img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment
+            </div>
         </div>
         { toggleComments ? <CommentIndex postId={post.id} timeSince={timeSince}/> : null}
     </div>

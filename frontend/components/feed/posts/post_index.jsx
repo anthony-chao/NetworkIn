@@ -8,7 +8,7 @@ import LoadingContainer from "../../loading/loading";
 
 const PostIndex = (props) => {
 
-    const { fetchPosts, currentUser, posts, users, deletePost, openModal, comments } = props;
+    const { fetchPosts, currentUser, posts, users, deletePost, openModal, comments, likes } = props;
     const history = useHistory();
     
     const [loading, setLoading] = useState(true);
@@ -32,7 +32,16 @@ const PostIndex = (props) => {
             <div id="feed-page-empty-line">Sort by: Recent</div>
             <div className="feed-post-index-body">
                 {Object.values(posts).map((post) => (
-                    <PostIndexItem key={post.id} post={post} openModal={openModal} deletePost={deletePost} currentUserId={currentUser.id} users={users} comments={comments}/>
+                    <PostIndexItem 
+                        key={post.id} 
+                        post={post} 
+                        openModal={openModal} 
+                        deletePost={deletePost} 
+                        currentUserId={currentUser.id} 
+                        users={users} 
+                        comments={comments}
+                        likes={likes}
+                    />
                 ))}
             </div>
         </section>
@@ -44,7 +53,8 @@ const mapStateToProps = (state) => ({
         currentUser: state.session.user,
         posts: state.entities.posts,
         users: state.entities.users,
-        comments: state.entities.comments
+        comments: state.entities.comments,
+        likes: state.entities.likes
 });
 
 const mapDispatchToProps = (dispatch) => ({

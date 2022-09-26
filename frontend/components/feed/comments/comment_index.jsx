@@ -6,7 +6,7 @@ import { deleteComment } from "../../../actions/comment_actions";
 
 const CommentIndex = (props) => {
 
-    const { comments, users, timeSince, currentUser, postId, deleteComment } = props;
+    const { comments, users, timeSince, currentUser, postId, deleteComment, likes } = props;
 
     const rootComments = comments
         .filter((comment) => comment.parent_comment_id === null);
@@ -24,8 +24,10 @@ const CommentIndex = (props) => {
                     users={users} 
                     timeSince={timeSince} 
                     currentUser={currentUser} 
-                    deleteComment={deleteComment}/>
-                ))}
+                    deleteComment={deleteComment}
+                    likes={likes}
+                />
+            ))}
         </div>
     )
 }
@@ -38,7 +40,8 @@ const mapStateToProps = (state, ownProps) => {
     return {
         comments: postComments,
         users: state.entities.users,
-        currentUser: state.session.user
+        currentUser: state.session.user,
+        likes: state.entities.likes
     }
 };
 

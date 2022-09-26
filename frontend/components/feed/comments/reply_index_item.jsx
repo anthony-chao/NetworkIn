@@ -4,7 +4,7 @@ import UpdateCommentContainer from './update_comment_container';
 
 const ReplyIndexItem = (props) => {
 
-    const { reply, users, timeSince, currentUser, deleteComment, handleAddReply } = props;
+    const { reply, users, timeSince, currentUser, deleteComment, handleAddReply, likes } = props;
     const history = useHistory();
 
     const [dropdown, setDropdown] = useState(false);
@@ -21,6 +21,10 @@ const ReplyIndexItem = (props) => {
     const toAuthorsProfile = () => {
         history.push(`/users/${reply.user_id}`);
     }
+
+    const likesCount = Object.values(likes)
+        .filter((like) => like.likeable_type === "Comment" && like.likeable_id === reply.id)
+        .length
 
     return (
         <div>
@@ -52,10 +56,10 @@ const ReplyIndexItem = (props) => {
                                 <UpdateCommentContainer comment={reply} cancelEdit={cancelEdit} editing={editing} setEditing={setEditing}/>
                             </div>
                         : <div id="single-comment-body">{reply.body}</div> }
-                        {/* <div id="single-comment-body">{reply.body}</div> */}
                     </div>
                     <div className="comment-likes-replies">
                         <div>Like</div>
+                        {(likesCount > 0) ? <span>• {likesCount} <img src="https://i.postimg.cc/VNmdxbQc/image-removebg-preview.png"/></span> : null}
                         |
                         <div onClick={handleAddReply}>Reply</div>
                     </div>

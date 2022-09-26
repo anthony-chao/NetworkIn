@@ -99,6 +99,13 @@
 .comment-likes-replies span {
     font-weight: normal;
     margin-left: -5px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-likes-replies img {
+    height: 18px;
+    margin-right: 8px;
 }
 
 .comment-form-area {
@@ -205,6 +212,10 @@
     margin-right: 5px;
 }
 
+.comment-update-button:hover {
+    background-color: #004182;
+}
+
 .disable-comment-button {
     cursor: not-allowed;
     text-decoration-line: none;
@@ -223,6 +234,10 @@
     border: 0.1rem solid;
     background-color: transparent;
     color: rgba(0,0,0,0.6);
+}
+
+#comment-cancel-button:hover {
+    background-color: rgba(0,0,0,0.18);
 }
 
 #reply-comment-form {

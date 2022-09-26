@@ -29,7 +29,7 @@
 .individual-post-body {
     background-color: white;
     word-break: normal;
-    padding: 12px 12px 0px 12px;
+    padding: 12px 16px 0px 16px;
     margin-top: 5px;
     border-radius: 0.3rem;
     border: 1px solid rgba(0,0,0,0.08);
@@ -427,10 +427,22 @@
 
 #post-comment-count {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     color: rgba(0,0,0,0.6);
     font-size: 12px;
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+#post-comment-count > div {
+    display: flex;
+    align-items: center;
+}
+
+#post-comment-count > div:last-child {
     cursor: pointer;
+}
+
+#post-comment-count img {
+    height: 20px;
 }

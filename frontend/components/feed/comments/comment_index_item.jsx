@@ -6,7 +6,7 @@ import AddReplyContainer from "./add_reply_container";
 
 const CommentIndexItem = (props) => {
 
-    const { comment, users, timeSince, currentUser, deleteComment, comments } = props;
+    const { comment, users, timeSince, currentUser, deleteComment, comments, likes } = props;
     const history = useHistory();
 
     const toAuthorsProfile = () => {
@@ -32,6 +32,10 @@ const CommentIndexItem = (props) => {
     const repliesCount = Object.values(comments)
         .filter((reply) => reply.parent_comment_id === comment.id)
         .length;
+
+    const likesCount = Object.values(likes)
+        .filter((like) => like.likeable_type === "Comment" && like.likeable_id === comment.id)
+        .length
         
     return (
         <div>
@@ -66,6 +70,7 @@ const CommentIndexItem = (props) => {
                     </div>
                     <div className="comment-likes-replies">
                         <div>Like</div>
+                        {(likesCount > 0) ? <span>• {likesCount} <img src="https://i.postimg.cc/VNmdxbQc/image-removebg-preview.png"/></span> : null}
                         |
                         <div onClick={handleAddReply}>Reply</div> 
                         {(repliesCount === 1) ? <span>• 1 Reply</span> : null}
