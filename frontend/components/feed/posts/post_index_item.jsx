@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import CommentIndex from '../comments/comment_index';
-import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const PostIndexItem = (props) => {
 
-  const { post, users, openModal, deletePost, currentUserId, comments, likes } = props;
+  const { post, users, openModal, deletePost, currentUserId, comments, likes, addLike, deleteLike } = props;
   const history = useHistory();
 
   const [revealedButton, setRevealedButton] = useState(false);
@@ -74,6 +73,17 @@ const PostIndexItem = (props) => {
     .filter((like) => like.likeable_type === "Post" && like.likeable_id === post.id)
     .length
 
+  const likedPost = Object.values(likes)
+    .filter((like) => like.likeable_type === "Post" && like.likeable_id === post.id && like.user_id === currentUserId);
+
+  const likePost = () => {
+    addLike({post_id: post.id, likeable_type: "Post", likeable_id: post.id, user_id: currentUserId})
+  }
+
+  const unlikePost = () => {
+    deleteLike(likedPost[0]);
+  }
+
   return (
     <div className="individual-post-body">
         <div className="post-header">
@@ -109,9 +119,9 @@ const PostIndexItem = (props) => {
         </div>
 
         <div className="post-like-comment-buttons">
-            <div>
-              <img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like
-            </div>
+              {(likedPost.length === 0) ? 
+                <div onClick={likePost}><img src="https://i.postimg.cc/50NkbGW7/image-removebg-preview.png"/> Like</div>
+                : <div onClick={unlikePost} id="liked-post-icon"><img src="https://i.postimg.cc/Cx1k7QGT/image-removebg-preview-2.png"/> Like</div>}
             <div onClick={handleToggle}>
               <img src="https://i.postimg.cc/Rh2P1Z6y/image-removebg-preview-2.png"/> Comment
             </div>

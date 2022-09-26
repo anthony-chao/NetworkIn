@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import { fetchPosts, deletePost } from '../../../actions/post_actions';
 import { openModal } from '../../../actions/modal_actions';
 import LoadingContainer from "../../loading/loading";
+import { addLike, deleteLike } from "../../../actions/like_actions";
 
 const PostIndex = (props) => {
 
-    const { fetchPosts, currentUser, posts, users, deletePost, openModal, comments, likes } = props;
+    const { fetchPosts, currentUser, posts, users, deletePost, openModal, comments, likes, addLike, deleteLike } = props;
     const history = useHistory();
     
     const [loading, setLoading] = useState(true);
@@ -41,6 +42,8 @@ const PostIndex = (props) => {
                         users={users} 
                         comments={comments}
                         likes={likes}
+                        addLike={addLike}
+                        deleteLike={deleteLike}
                     />
                 ))}
             </div>
@@ -61,7 +64,9 @@ const mapDispatchToProps = (dispatch) => ({
     fetchPosts: () => dispatch(fetchPosts()),
     closeModal: () => dispatch(closeModal()),
     openModal: (type, id) => dispatch(openModal(type, id)),
-    deletePost: (post) => dispatch(deletePost(post))
+    deletePost: (post) => dispatch(deletePost(post)),
+    addLike: (like) => dispatch(addLike(like)),
+    deleteLike: (like) => dispatch(deleteLike(like))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostIndex)

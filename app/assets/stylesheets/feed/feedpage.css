@@ -446,3 +446,7 @@
 #post-comment-count img {
     height: 20px;
 }
+
+#liked-post-icon {
+    color: #0a66c2;
+}
