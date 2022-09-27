@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/connection_api_util'
+import * as APIUtil from '../util/connection_api_util';
 
 export const RECEIVE_CONNECTIONS = 'RECEIVE_CONNECTIONS';
 export const RECEIVE_CONNECTION = 'RECEIVE_CONNECTION';

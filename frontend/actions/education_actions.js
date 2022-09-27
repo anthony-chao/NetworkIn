@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/education_api_util'
+import * as APIUtil from '../util/education_api_util';
 
 export const RECEIVE_EDUCATIONS = 'RECEIVE_EDUCATIONS';
 export const RECEIVE_EDUCATION = 'RECEIVE_EDUCATION';

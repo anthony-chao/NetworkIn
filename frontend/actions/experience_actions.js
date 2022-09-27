@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/experience_api_util'
+import * as APIUtil from '../util/experience_api_util';
 
 export const RECEIVE_EXPERIENCES = 'RECEIVE_EXPERIENCES';
 export const RECEIVE_EXPERIENCE = 'RECEIVE_EXPERIENCE';

@@ -23,7 +23,8 @@
     border-radius: 50%;
     z-index: 5;
     border: 5px solid white;
-    background-color: #e7e2dc
+    background-color: #e7e2dc;
+    object-fit: cover;
 }
 
 .profile-below-cover-image {
@@ -162,4 +163,11 @@
 
 #profile-header-add-education:hover {
     background-color: rgba(112, 181, 249, 0.2);
+}
+
+#update-profile-pic-button {
+    height: 50px;
+    margin-left: -30px;
+    margin-top: -10px;
+    cursor: pointer;
 }

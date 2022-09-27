@@ -7,13 +7,23 @@ import ProfileAbout from "./header/profile_about";
 import ProfileHeader from "./header/profile_header";
 import { fetchEducations } from "../../actions/education_actions";
 import { fetchExperiences } from "../../actions/experience_actions";
-import { fetchUser } from "../../actions/profile_actions";
+import { fetchUser, updateUserPhotos } from "../../actions/profile_actions";
 import { openModal } from "../../actions/modal_actions";
 import LoadingContainer from "../loading/loading";
 
 const Profile = (props) => {
 
-    const { viewedPageId, fetchEducations, fetchExperiences, fetchUser, openModal, viewedUserEducation, viewedUserExperience, viewedUser } = props;
+    const { viewedPageId, 
+            fetchEducations, 
+            fetchExperiences, 
+            fetchUser, 
+            currentUser,
+            openModal, 
+            viewedUserEducation, 
+            viewedUserExperience, 
+            viewedUser,
+            updateUserPhotos
+         } = props;
 
     useEffect(() => {
         fetchUser(viewedPageId);
@@ -31,10 +41,10 @@ const Profile = (props) => {
             { (viewedUser.id === parseInt(viewedPageId)) ? 
             <div className="profile-page-centered">
                 <div className="profile-page-body">
-                    < ProfileHeader viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={props.currentUser.id} openModal={openModal}/>
-                    < ProfileAbout viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={props.currentUser.id} openModal={openModal} />
-                    < ExperienceIndex viewedPageId={viewedPageId} experiences={viewedUserExperience} currentUserId={props.currentUser.id} openModal={openModal}/>
-                    < EducationIndex viewedPageId={viewedPageId} educations={viewedUserEducation} currentUserId={props.currentUser.id} openModal={openModal}/>
+                    < ProfileHeader viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={currentUser.id} openModal={openModal} updateUserPhotos={updateUserPhotos}/>
+                    < ProfileAbout viewedPageId={viewedPageId} viewedUser={viewedUser} currentUserId={currentUser.id} openModal={openModal} />
+                    < ExperienceIndex viewedPageId={viewedPageId} experiences={viewedUserExperience} currentUserId={currentUser.id} openModal={openModal}/>
+                    < EducationIndex viewedPageId={viewedPageId} educations={viewedUserEducation} currentUserId={currentUser.id} openModal={openModal}/>
                 </div>
                 <div className="profile-page-right-bar">
                     <div className="right-bar-networkin-news">
@@ -79,6 +89,7 @@ const mapDispatchToProps = dispatch => ({
     fetchEducations: (userId) => dispatch(fetchEducations(userId)),
     fetchExperiences: (userId) => dispatch(fetchExperiences(userId)),
     openModal: (type, id) => dispatch(openModal(type, id)),
+    updateUserPhotos: (formData, currentUserId) => dispatch(updateUserPhotos(formData, currentUserId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

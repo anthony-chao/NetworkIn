@@ -76,7 +76,7 @@ class PostForm extends React.Component {
                 <div id="post-image-preview"> { preview } </div>
                 <div className="post-form-buttons">
                     <div id="post-image-button">
-                        <label className="original-post-image-button">
+                        <label htmlFor="original-post-image-button">
                             <img src="https://i.postimg.cc/kg3qM8Yq/image-trimmy.jpg"/>
                         </label>
                         <input id="original-post-image-button" type="file" onChange={this.handleFile}/>
