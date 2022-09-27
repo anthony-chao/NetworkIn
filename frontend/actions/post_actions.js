@@ -1,40 +1,40 @@
-import * as APIUtil from '../util/post_api_util'
+import * as APIUtil from '../util/connection_api_util'
 
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const RECEIVE_POST = 'RECEIVE_POST';
-export const REMOVE_POST = 'REMOVE_POST';
+export const RECEIVE_CONNECTIONS = 'RECEIVE_CONNECTIONS';
+export const RECEIVE_CONNECTION = 'RECEIVE_CONNECTION';
+export const REMOVE_CONNECTION = 'REMOVE_CONNECTION';
 
-const receivePosts = (posts) => ({
-    type: RECEIVE_POSTS,
-    posts: posts
+const receiveConnections = (connections) => ({
+    type: RECEIVE_CONNECTIONS,
+    connections: connections
 });
 
-const receivePost = (post) => ({
-    type: RECEIVE_POST,
-    post: post
+const receiveConnection = (connection) => ({
+    type: RECEIVE_CONNECTION,
+    connection: connection
 });
 
-const removePost = (post) => ({
-    type: REMOVE_POST,
-    post: post
+const removeConnection = (connection) => ({
+    type: REMOVE_CONNECTION,
+    connection: connection
 });
 
-export const fetchPosts = () => dispatch => {
-    return APIUtil.fetchPosts()
-    .then((posts) => dispatch(receivePosts(posts)))
+export const fetchConnections = () => dispatch => {
+    return APIUtil.fetchConnections()
+    .then((connections) => dispatch(receiveConnections(connections)))
 };
 
-export const addPost = (post) => dispatch => {
-    return APIUtil.addPost(post)
-    .then((post) => dispatch(receivePost(post)))
+export const addConnection = (connection) => dispatch => {
+    return APIUtil.addConnection(connection)
+    .then((connection) => dispatch(receiveConnection(connection)))
 };
 
-export const updatePost = (post, postId) => dispatch => {
-    return APIUtil.updatePost(post, postId)
-    .then((post) => dispatch(receivePost(post)))
+export const updateConnection = (connection) => dispatch => {
+    return APIUtil.updateConnection(connection)
+    .then((connection) => dispatch(receiveConnection(connection)))
 };
 
-export const deletePost = (post) => dispatch => {
-    return APIUtil.deletePost(post)
-    .then((post) => dispatch(removePost(post)))
+export const deleteConnection = (connection) => dispatch => {
+    return APIUtil.deleteConnection(connection)
+    .then((connection) => dispatch(removeConnection(connection)))
 };
