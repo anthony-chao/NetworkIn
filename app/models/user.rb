@@ -17,7 +17,6 @@
 #  updated_at       :datetime         not null
 #
 class User < ApplicationRecord
-    #has_many experiences, education, posts, likes, comments, connections
 
     has_many :experiences,
         primary_key: :id,
@@ -38,6 +37,16 @@ class User < ApplicationRecord
         primary_key: :id,
         foreign_key: :user_id,
         class_name: :Like
+
+    has_many :outgoing_connections,
+        primary_key: :id,
+        foreign_key: :connector_id,
+        class_name: :Connection
+
+    has_many :incoming_connections,
+        primary_key: :id,
+        foreign_key: :connectee_id,
+        class_name: :Connection
 
     has_one_attached :profile_picture
     has_one_attached :background_photo
