@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const CommentForm = (props) => {
 
-    const { comment, formType, commentFunction, cancelEdit, setEditing } = props;
+    const { comment, formType, commentFunction, cancelEdit, setEditing, currentUser } = props;
 
     const [state, setState] = useState(comment);
     const [error, setError] = useState(true);
@@ -32,7 +32,11 @@ const CommentForm = (props) => {
         <div>
             { (formType === "Add a comment..." || formType === "Add a reply...") ? 
             <div className='comment-form-area' id={`${ formType === "Add a reply..." ? "reply-comment-form" : null}`}>
-                <div> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "auto"}}/></div>
+                <div> 
+                    { (currentUser.profilePictureUrl) ? 
+                        <img src={`${currentUser.profilePictureUrl}`} id="post-index-profile-image" style={{height: 40, width: 40, cursor: "auto", objectFit: "cover"}}/> 
+                        : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "auto", objectFit: "cover"}}/>}
+                </div>
                 <form className="comment-form" onSubmit={handleSubmit}>
                     <input className="comment-form-input" type="text" placeholder={formType} value={state.body} onChange={handleUpdate("body")}/>
                     {(!error) ? <button type="submit" className="comment-post-button">Post</button> : null}

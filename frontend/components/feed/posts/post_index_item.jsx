@@ -88,7 +88,11 @@ const PostIndexItem = (props) => {
     <div className="individual-post-body">
         <div className="post-header">
             <div className="post-user-entire">
-                <div onClick={toUserProfile}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-profile-image" /></div>
+                <div onClick={toUserProfile}>
+                    {(users[post.user_id].profilePictureUrl) ?
+                    <img src={`${users[post.user_id].profilePictureUrl}`} id="post-profile-image"/> 
+                    : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-profile-image" /> }
+                </div>
                 <div className="post-user-background">
                 <div onClick={toUserProfile} id="post-user-name"> 
                   <div>{users[post.user_id].first_name} {users[post.user_id].last_name}</div>

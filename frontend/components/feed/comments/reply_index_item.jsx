@@ -34,11 +34,16 @@ const ReplyIndexItem = (props) => {
             addLike({post_id: reply.post_id, likeable_type: "Comment", likeable_id: reply.id, user_id: currentUser.id})
         : deleteLike(likedComment[0]);
     }
-
+    
     return (
         <div>
             <div className="single-comment single-reply">
-                <div onClick={toAuthorsProfile}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer"}}/></div>
+                <div onClick={toAuthorsProfile}> 
+                {(users[reply.user_id].profilePictureUrl) ?
+                    <img src={`${users[reply.user_id].profilePictureUrl}`} id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer", objectFit: "cover"}}/> 
+                    : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer"}}/>
+                }
+                </div>
                 <div className="single-comment-right">
                     <div className="single-comment-body">
                         <div className="single-comment-name-time">

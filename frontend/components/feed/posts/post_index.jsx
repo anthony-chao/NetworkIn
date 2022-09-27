@@ -26,7 +26,11 @@ const PostIndex = (props) => {
         <section className="feed-post-index">
             <div className="feed-page-post-button">
                 <div className="add-post-button-container">
-                    <div onClick={toProfilePage}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" /></div>
+                    <div onClick={toProfilePage}> 
+                        {(currentUser.profilePictureUrl) ?
+                        <img src={`${currentUser.profilePictureUrl}`} id="post-index-profile-image"/> 
+                        : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" /> }
+                    </div>
                     <div className="post-fake-input-field" onClick={() => openModal('addPost')}>Start a post</div>
                 </div>
             </div>

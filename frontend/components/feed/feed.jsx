@@ -23,7 +23,9 @@ const Feed = (props) => {
       <div className="feed-page-centered">
         <div className="feed-page-left-bar">
             <img src="https://static-exp1.licdn.com/sc/h/55k1z8997gh8dwtihm11aajyq" id="feed-page-cover-image" />
-            <div onClick={toProfilePage}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" className="feed-page-profile-picture"/></div>
+            <div onClick={toProfilePage}> 
+              { (currentUser.profilePictureUrl) ? <img src={`${currentUser.profilePictureUrl}`} className="feed-page-profile-picture"/> : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" className="feed-page-profile-picture"/>}
+            </div>
             <div className="left-bar-current-user">
             <div onClick={toProfilePage}> <h1 id="left-bar-header">{currentUser.first_name.concat(" ", currentUser.last_name)}</h1> </div>
                 <div id="left-bar-user-headline">{currentUser.headline}</div>

@@ -49,7 +49,12 @@ const CommentIndexItem = (props) => {
     return (
         <div>
             <div className="single-comment">
-                <div onClick={toAuthorsProfile}> <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer"}}/></div>
+                <div onClick={toAuthorsProfile}> 
+                    {(users[comment.user_id].profilePictureUrl) ?
+                    <img src={`${users[comment.user_id].profilePictureUrl}`} id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer", objectFit: "cover"}}/> 
+                    : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-index-profile-image" style={{height: 40, width: 40, cursor: "pointer", objectFit: "cover"}}/>
+                    }
+                </div>
                 <div className="single-comment-right">
                     <div className="single-comment-body">
                         <div className="single-comment-name-time">

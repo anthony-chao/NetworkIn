@@ -58,11 +58,11 @@
 #post-form-profile-image {
     height: 50px;
     width: 50px;
-    /* margin-top: -110px; */
     border-radius: 50%;
     background-color: #e7e2dc;
     margin-left: 20px;
     margin-top: -7px;
+    object-fit: cover;
 }
 
 .post-form-current-user-name-anyone {
@@ -129,6 +129,7 @@
     background-color: #e7e2dc;
     margin-left: 5px;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .add-post-button-container {
@@ -194,6 +195,7 @@
     background-color: #e7e2dc;
     margin-left: 78px;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .left-bar-current-user {
@@ -278,6 +280,7 @@
     border-radius: 50%;
     background-color: #e7e2dc;
     cursor: pointer;
+    object-fit: cover;
 }
 
 #feed-page-empty-line {

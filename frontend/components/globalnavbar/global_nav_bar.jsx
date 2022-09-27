@@ -32,14 +32,18 @@ const GlobalNavBar = (props) => {
       <div className="global-mid-nav-bar"></div>
       <div className="global-right-nav-bar">
         <div onClick={handleClick}>
-          <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" />
+          {(currentUser.profilePictureUrl) ?
+            <img src={`${currentUser.profilePictureUrl}`} id="nav-bar-profile-picture"/> 
+          : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-profile-picture" /> }
           <button className="nav-bar-dropdown-button" > Me <img src="https://i.postimg.cc/Xvf03CFb/image.png" id="down-button"/> </button>
         </div>
       </div>
         {(state.dropdown) ? 
         <div className="nav-bar-dropdown"> 
             <div className="nav-bar-profile-container" onClick={toProfilePage}>
-              <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" />
+              {(currentUser.profilePictureUrl) ?
+                <img src={`${currentUser.profilePictureUrl}`} id="nav-bar-open-picture"/> 
+              : <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="nav-bar-open-picture" /> }
               <div className="dropdown-profile-name">{currentUser.first_name.concat(" " ,currentUser.last_name)}</div>
               <div className="dropdown-profile-headline">{currentUser.headline}</div>
             </div>

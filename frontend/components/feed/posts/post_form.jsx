@@ -61,7 +61,11 @@ class PostForm extends React.Component {
                     <button className="close-modal-button" onClick={() => this.props.closeModal()}>X</button>
                 </div>
                 <div className="post-form-current-user-section">
+                {(this.props.currentUser.profilePictureUrl) ?
+                    <img src={`${this.props.currentUser.profilePictureUrl}`} id="post-form-profile-image"/> 
+                    : 
                     <img src="https://i.postimg.cc/bYDLSPVZ/image-removebg-preview.png" id="post-form-profile-image"/>
+                }
                     <div className="post-form-current-user-name-anyone">
                         <div id="post-form-current-user-name">{this.props.currentUser.first_name.concat(" ", this.props.currentUser.last_name)}</div>
                         <div className="post-form-globe-anyone">
