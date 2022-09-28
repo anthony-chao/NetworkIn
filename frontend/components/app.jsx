@@ -8,6 +8,7 @@ import Feed from './feed/feed';
 import Profile from './profile/profile';
 import Modal from './modal/modal';
 import NetworkContainer from './network/network_index';
+import ConnectedIndexContainer from './network/connected_index';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <AuthRoute path="/signup" component={SignupFormContainer} />
                 <ProtectedRoute exact path="/feed" component={Feed}/>
                 <ProtectedRoute path="/users/:id" component={Profile}/>
+                <ProtectedRoute exact path="/mynetwork/connection" component={ConnectedIndexContainer}/>
                 <ProtectedRoute exact path="/mynetwork" component={NetworkContainer}/>
                 <AuthRoute exact path="/" component={HomepageContainer} />            
             </Switch>

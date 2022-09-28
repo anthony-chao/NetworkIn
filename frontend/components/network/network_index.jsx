@@ -22,6 +22,7 @@ const NetworkIndex = (props) => {
     
     useEffect(() => {
         fetchConnections();
+        document.title = 'My Network | NetworkIn';
     }, []);
 
     return (
@@ -30,7 +31,7 @@ const NetworkIndex = (props) => {
             <div className="network-page-body">
                 <div className="network-left-nav">
                     <h1>Manage my network</h1>
-                    <div><img src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/> Connections</div>
+                    <div><img src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/> Connections <span style={{marginLeft: 100}}>{connectedUsers.length}</span></div>
                     <div><img src="https://i.postimg.cc/L57602qg/image-removebg-preview.png" /> Contacts</div>
                     <div><img src="https://i.postimg.cc/jqk5jQ8q/image-removebg-preview-3.png"/> People I follow</div>
                 </div>
@@ -110,6 +111,7 @@ const mapStateToProps = (state) => {
         connectedUsers: connectedUsers,
         incomingConnectors: incomingConnectors,
         outgoingConnectees: outgoingConnectees,
+        connectedUsers: connectedUsers,
         currentUser: state.session.user
     }
 }

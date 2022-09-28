@@ -27,7 +27,7 @@ const NetworkIndexItem = (props) => {
             <div className="network-index-name" onClick={toUserProfile}>{user.first_name} {user.last_name}</div>
             <div className="network-index-headline">{user.headline}</div>
             { (outgoingConnectees.includes(user)) ? 
-            <div id="network-request-status-sent" onClick={toggleConnectionRequest}>Requested</div>
+            <div id="network-request-status-sent" onClick={toggleConnectionRequest}><img src="https://i.postimg.cc/y8JbWxJP/image-removebg-preview.png"/> Pending</div>
             : <div id="network-request-status-not-sent" onClick={toggleConnectionRequest}>Connect</div> }
         </div>
     )
