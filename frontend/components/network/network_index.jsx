@@ -5,10 +5,19 @@ import { fetchConnections } from '../../actions/connection_actions'
 import GlobalNavBar from '../globalnavbar/global_nav_bar';
 import NetworkIndexItem from './network_index_item';
 import InvitationsIndexItem from './invitations_index_item';
+import { addConnection, deleteConnection } from '../../actions/connection_actions';
 
 const NetworkIndex = (props) => {
 
-    const { fetchConnections, notConnectedUsers, connectedUsers, incomingConnectors } = props;
+    const { fetchConnections, 
+            notConnectedUsers, 
+            connectedUsers, 
+            incomingConnectors, 
+            addConnection, 
+            currentUser, 
+            outgoingConnectees,
+            deleteConnection
+         } = props;
     
     useEffect(() => {
         fetchConnections();
@@ -25,23 +34,31 @@ const NetworkIndex = (props) => {
                     <div><img src="https://i.postimg.cc/jqk5jQ8q/image-removebg-preview-3.png"/> People I follow</div>
                 </div>
                 <div className="network-right-side">
-                    <div className="network-invitations">
+                    <div>
                         <h1>Invitations</h1>
-                        {Object.values(incomingConnectors).map((connector) => (
-                                <InvitationsIndexItem 
-                                    key={connector.id} 
-                                    connector={connector} 
-                                />
-                        ))}
+                        <div className="network-invitations">
+                            {Object.values(incomingConnectors).map((connector) => (
+                                    <InvitationsIndexItem 
+                                        key={connector.id} 
+                                        connector={connector} 
+                                    />
+                            ))}
+                        </div>
                     </div>
-                    <div className="network-people-may-know">
+                    <div>
                         <h1>People You May Know</h1>
-                        {Object.values(notConnectedUsers).map((user) => (
-                                <NetworkIndexItem 
-                                    key={user.id} 
-                                    user={user} 
-                                />
-                        ))}
+                        <div className="network-people-may-know">
+                            {Object.values(notConnectedUsers).map((user) => (
+                                    <NetworkIndexItem 
+                                        key={user.id} 
+                                        user={user}
+                                        outgoingConnectees={outgoingConnectees}
+                                        addConnection={addConnection}
+                                        deleteConnection={deleteConnection}
+                                        currentUser={currentUser}
+                                    />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,13 +70,17 @@ const NetworkIndex = (props) => {
 const mapStateToProps = (state) => {
 
     const currentUserId = state.session.user.id
+    const users = state.entities.users
 
+    // To return all the users that sent request invites to the current user
     const incomingConnections = Object.values(state.entities.connections)
         .filter((connection) => connection.connectee_id === currentUserId && connection.accepted === false)
-        
-    // const outgoingConnections = Object.values(state.entities.connections)
-    //     .filter((connection) => connection.connector_id === currentUserId && connection.accepted === false)
 
+    const incomingConnectors = incomingConnections.map((connection) => {
+        return users[connection.connector_id]
+    })
+
+    // To return all the users that the current user is connected with
     const acceptedConnections = Object.values(state.entities.connections)
         .filter((connection) => 
             (connection.connector_id === currentUserId || connection.connectee_id === currentUserId) && connection.accepted === true)
@@ -68,22 +89,31 @@ const mapStateToProps = (state) => {
         return connection.connector_id === currentUserId ? users[connection.connector_id] : users[connection.connectee_id]
     })
 
+    // To return all users that the current user is not connected with
     const notConnectedUsers = Object.values(state.entities.users)
-        .filter((user) => !connectedUsers.includes(user) && user.id !== currentUserId)
+        .filter((user) => !connectedUsers.includes(user) && !incomingConnectors.includes(user) && user.id !== currentUserId)
 
-    const incomingConnectors = incomingConnections.map((connection) => {
-        return users[connection.connector_id]
+    // To return all users that the current user requested to be connected with
+    const outgoingConnections = Object.values(state.entities.connections)
+        .filter((connection) => connection.connector_id === currentUserId && connection.accepted === false)
+
+    const outgoingConnectees = outgoingConnections.map((connection) => {
+        return users[connection.connectee_id]
     })
 
     return {
         notConnectedUsers: notConnectedUsers,
         connectedUsers: connectedUsers,
-        incomingConnectors: incomingConnectors
+        incomingConnectors: incomingConnectors,
+        outgoingConnectees: outgoingConnectees,
+        currentUser: state.session.user
     }
 }
 
 const mapDispatchToprops = (dispatch) => ({
-    fetchConnections: () => dispatch(fetchConnections())
+    fetchConnections: () => dispatch(fetchConnections()),
+    addConnection: (connection) => dispatch(addConnection(connection)),
+    deleteConnection: (connection) => dispatch(deleteConnection(connection))
 });
 
 export default connect(mapStateToProps, mapDispatchToprops)(NetworkIndex);

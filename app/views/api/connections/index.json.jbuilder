@@ -9,7 +9,7 @@ end
 json.users do
   User.all.each do |user|
     json.set! user.id do
-      json.extract! user, :id, :email, :first_name, :last_name, :headline, :pronouns, :location_country, :location_city
+      json.partial! 'api/users/user', user: user
     end
   end
 end
