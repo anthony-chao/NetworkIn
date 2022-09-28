@@ -22,6 +22,14 @@ const GlobalNavBar = (props) => {
     setState({dropdown: false});
   }
 
+  const toNetworkPage = () => {
+    history.push(`/mynetwork`);
+  }
+
+  const toHomePage = () => {
+    history.push(`/feed`);
+  }
+
   return (
     <nav className="global-nav-bar">
       <div className="global-left-nav-bar">
@@ -31,6 +39,14 @@ const GlobalNavBar = (props) => {
       </div>
       <div className="global-mid-nav-bar"></div>
       <div className="global-right-nav-bar">
+      <div onClick={toHomePage}>
+          <img id="nav-bar-network" src="https://i.postimg.cc/8PpLWHG2/image-removebg-preview.png"/>
+          <button className="nav-bar-dropdown-button">My Network</button>
+        </div>
+        <div onClick={toNetworkPage}>
+          <img id="nav-bar-network" src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/>
+          <button className="nav-bar-dropdown-button">My Network</button>
+        </div>
         <div onClick={handleClick}>
           {(currentUser.profilePictureUrl) ?
             <img src={`${currentUser.profilePictureUrl}`} id="nav-bar-profile-picture"/> 

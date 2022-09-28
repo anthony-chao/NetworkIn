@@ -29,7 +29,21 @@
 }
 
 .global-right-nav-bar {
-    margin-right: 10vw;
+    /* margin-right: 10vw; */
+    display: flex;
+    flex-direction: row;
+}
+
+.global-right-nav-bar > div{
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#nav-bar-network {
+    height: 24px;
+    cursor: pointer;
 }
 
 .nav-bar-dropdown-button {
@@ -41,19 +55,18 @@
   text-align: center;
   text-decoration: none;
   height: 12px;
-  width: 12px;
+  width: 80px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  margin-left: 8px;
 }
 
 .nav-bar-dropdown {
     position: absolute;
-    top: 60px;
-    left: 61vw;
+    margin-top: 230px;
+    margin-left: 750px;
     border: 1px solid rgba(0,0,0,0.2);
     width: 270px;
     height: 160px;
@@ -146,7 +159,6 @@
     border: none;
     border-radius: 0.3rem;
     padding-left: 30px;
-    /* width: 33%; */
     width: 230px;
 }
 
@@ -159,5 +171,5 @@
 }
 
 .global-mid-nav-bar {
-    width: 620px;
+    width: 500px;
 }

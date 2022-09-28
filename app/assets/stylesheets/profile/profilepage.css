@@ -3,7 +3,6 @@
     padding-bottom: 5vh;
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
     min-height: 95vh;
     width: 100vw;
@@ -12,12 +11,10 @@
 .profile-page-centered {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
 }
 
 .profile-page-body {
-    /* margin-left: 12vw; */
     width: 54vw;
     max-width: 820px;
     display: block;
@@ -27,8 +24,6 @@
 
 .profile-page-education-experience {
     background-color: white;
-    /* word-wrap: break-word;
-    word-break: break-all; */
     word-break: normal;
     padding-bottom: 12px;
     margin-top: 8px;
