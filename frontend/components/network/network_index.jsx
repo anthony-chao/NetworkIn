@@ -5,7 +5,7 @@ import { fetchConnections } from '../../actions/connection_actions'
 import GlobalNavBar from '../globalnavbar/global_nav_bar';
 import NetworkIndexItem from './network_index_item';
 import InvitationsIndexItem from './invitations_index_item';
-import { addConnection, deleteConnection } from '../../actions/connection_actions';
+import { addConnection, deleteConnection, updateConnection } from '../../actions/connection_actions';
 
 const NetworkIndex = (props) => {
 
@@ -16,7 +16,8 @@ const NetworkIndex = (props) => {
             addConnection, 
             currentUser, 
             outgoingConnectees,
-            deleteConnection
+            deleteConnection,
+            updateConnection
          } = props;
     
     useEffect(() => {
@@ -41,6 +42,9 @@ const NetworkIndex = (props) => {
                                     <InvitationsIndexItem 
                                         key={connector.id} 
                                         connector={connector} 
+                                        currentUser={currentUser}
+                                        deleteConnection={deleteConnection}
+                                        updateConnection={updateConnection}
                                     />
                             ))}
                         </div>
@@ -86,7 +90,7 @@ const mapStateToProps = (state) => {
             (connection.connector_id === currentUserId || connection.connectee_id === currentUserId) && connection.accepted === true)
 
     const connectedUsers = acceptedConnections.map((connection) => {
-        return connection.connector_id === currentUserId ? users[connection.connector_id] : users[connection.connectee_id]
+        return connection.connector_id === currentUserId ? users[connection.connectee_id] : users[connection.connector_id]
     })
 
     // To return all users that the current user is not connected with
@@ -113,7 +117,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToprops = (dispatch) => ({
     fetchConnections: () => dispatch(fetchConnections()),
     addConnection: (connection) => dispatch(addConnection(connection)),
-    deleteConnection: (connection) => dispatch(deleteConnection(connection))
+    deleteConnection: (connection) => dispatch(deleteConnection(connection)),
+    updateConnection: (connection) => dispatch(updateConnection(connection))
 });
 
 export default connect(mapStateToProps, mapDispatchToprops)(NetworkIndex);
