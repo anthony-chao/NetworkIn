@@ -41,7 +41,7 @@ const GlobalNavBar = (props) => {
       <div className="global-right-nav-bar">
       <div onClick={toHomePage}>
           <img id="nav-bar-network" src="https://i.postimg.cc/8PpLWHG2/image-removebg-preview.png"/>
-          <button className="nav-bar-dropdown-button">My Network</button>
+          <button className="nav-bar-dropdown-button">Home</button>
         </div>
         <div onClick={toNetworkPage}>
           <img id="nav-bar-network" src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/>

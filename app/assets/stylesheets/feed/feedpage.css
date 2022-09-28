@@ -23,7 +23,7 @@
 .feed-post-index-body {
     margin-top: 5px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .individual-post-body {

@@ -36,7 +36,7 @@ const PostIndex = (props) => {
             </div>
             <div id="feed-page-empty-line">Sort by: Recent</div>
             <div className="feed-post-index-body">
-                {Object.values(posts).map((post) => (
+                {Object.values(posts).reverse().map((post) => (
                     <PostIndexItem 
                         key={post.id} 
                         post={post} 
