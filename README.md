@@ -14,3 +14,9 @@ Live Site: [NetworkIn](https://networkin.herokuapp.com/#/)
 ### User Authentication
 
 * Users can sign up for a new account. Upon sign up, users will be automatically logged in and will be redirected to their feed page.
+* Users can use their existing accounts to sign in or use the demo login.
+![](https://github.com/anthony-chao/NetworkIn/blob/main/app/assets/images/demologin.gif)
+
+### Posts
+* Logged in users can create posts for all users to view
+![](https://github.com/anthony-chao/NetworkIn/blob/main/app/assets/images/posts.gif)
