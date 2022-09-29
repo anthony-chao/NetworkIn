@@ -67,7 +67,6 @@ const Profile = (props) => {
                             <p id="networking-news-response">According to some scientists, bananas, are in fact, good for you. Shocking!</p>
                         </ul>
                     </div>
-                    <p>Second Container Placeholder</p>
                 </div>
             </div>
             : <LoadingContainer/> }

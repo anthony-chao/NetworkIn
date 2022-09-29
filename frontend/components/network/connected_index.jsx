@@ -22,9 +22,13 @@ const ConnectedIndex = (props) => {
     return (
         <div className="network-page">
             <GlobalNavBar/>
-            <div className="network-page-body">
-                <h1>Invitations</h1>
-                <div className="network-invitations">
+            <div className="network-page-body" style={{flexDirection: 'column'}}>
+                
+                <div className="connectioned-users-index">
+                    { (acceptedConnections.length === 1) ? 
+                        <h1>1 Connection</h1>
+                        : <h1>{acceptedConnections.length} Connections</h1>
+                    }
                     {Object.values(connectedUsers).map((user) => (
                             <ConnectedIndexItem 
                                 key={user.id} 

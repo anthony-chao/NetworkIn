@@ -6,6 +6,7 @@ import GlobalNavBar from '../globalnavbar/global_nav_bar';
 import NetworkIndexItem from './network_index_item';
 import InvitationsIndexItem from './invitations_index_item';
 import { addConnection, deleteConnection, updateConnection } from '../../actions/connection_actions';
+import { useHistory } from 'react-router-dom';
 
 const NetworkIndex = (props) => {
 
@@ -19,11 +20,17 @@ const NetworkIndex = (props) => {
             deleteConnection,
             updateConnection
          } = props;
+        
+    const history = useHistory();
     
     useEffect(() => {
         fetchConnections();
         document.title = 'My Network | NetworkIn';
     }, []);
+
+    const toConnectedShowpage = () => {
+        history.push(`/mynetwork/connections`);
+    }
 
     return (
         <div className="network-page">
@@ -31,9 +38,9 @@ const NetworkIndex = (props) => {
             <div className="network-page-body">
                 <div className="network-left-nav">
                     <h1>Manage my network</h1>
-                    <div><img src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/> Connections <span style={{marginLeft: 100}}>{connectedUsers.length}</span></div>
-                    <div><img src="https://i.postimg.cc/L57602qg/image-removebg-preview.png" /> Contacts</div>
-                    <div><img src="https://i.postimg.cc/jqk5jQ8q/image-removebg-preview-3.png"/> People I follow</div>
+                    <div onClick={toConnectedShowpage}><img src="https://i.postimg.cc/KcVGbczR/image-removebg-preview.png"/> Connections <span style={{marginLeft: 100}}>{connectedUsers.length}</span></div>
+                    <div onClick={toConnectedShowpage}><img src="https://i.postimg.cc/L57602qg/image-removebg-preview.png" /> Contacts</div>
+                    <div onClick={toConnectedShowpage}><img src="https://i.postimg.cc/jqk5jQ8q/image-removebg-preview-3.png"/> People I follow</div>
                 </div>
                 <div className="network-right-side">
                     <div>
