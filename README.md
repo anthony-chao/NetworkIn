@@ -40,7 +40,7 @@ To determine how each user is associated with another user, different filters we
 * Users that the logged in user requested to connect with
 * Users that have no relationship to the user
 * Users that the current user is connected with
-Once each user is placed into a category, the user will be placed into a different component.
+
 ```
 const mapStateToProps = (state) => {
 
@@ -83,3 +83,5 @@ const mapStateToProps = (state) => {
     }
 }
 ```
+
+Once each user is placed into a category, the user will be placed into a different component.
