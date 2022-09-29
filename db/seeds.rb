@@ -10,6 +10,9 @@ User.destroy_all
 Experience.destroy_all
 Education.destroy_all
 Post.destroy_all
+Comment.destroy_all
+Like.destroy_all
+Connection.destroy_all
 
 # create users
 user1 = User.create!(email: 'demouser@networkin.com', password: "abc123", first_name: 'Demo', last_name: 'User', headline: 'Software Engineer at NetworkIn', location_country: 'United States', location_city: 'Greater New York City Area', about: 'Hello! Welcome to NetworkIn.')

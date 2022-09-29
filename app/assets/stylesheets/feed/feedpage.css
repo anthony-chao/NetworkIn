@@ -350,6 +350,7 @@
     font-size: 14px;
     word-wrap: normal;
     text-align: center;
+    cursor: auto;
 }
 
 #left-bar-header {
