@@ -14,9 +14,16 @@ Post.destroy_all
 # create users
 user1 = User.create!(email: 'demouser@networkin.com', password: "abc123", first_name: 'Demo', last_name: 'User', headline: 'Software Engineer at NetworkIn', location_country: 'United States', location_city: 'Greater New York City Area', about: 'Hello! Welcome to NetworkIn.')
 user2 = User.create!(email: 'anthony@networkin.com', password: "abc123", first_name: 'Anthony', last_name: 'Chao', headline: 'CEO at NetworkIn', location_country: 'United States', location_city: 'Greater New York City Area')
-user3 = User.create!(email: 'ashketchum@networkin.com', password: "abc123", first_name: 'Ash', last_name: 'Ketchum', headline: 'Main Protagonist at Pokemon Series', location_country: 'Kanto Region', location_city: 'Pallet Town', about: "Spearows! Do you know who I am? I'm Ash, from the town of Pallet. I'm destined to be the world's number one Pokémon master! I can't be defeated by the likes of you. I'm going to capture and defeat you all! ...Pikachu, go inside the Poké Ball--it's the only way! ...COME AND GET ME!!!")
-user4 = User.create!(email: 'misty@networkin.com', password: "abc123", first_name: 'Misty', last_name: 'Williams', headline: 'Gym Leader at Cerulean Gym', location_country: 'Kanto Region', location_city: 'Cerulean City')
-user5 = User.create!(email: 'brock@networkin.com', password: "abc123", first_name: 'Brock', last_name: 'Harrison', headline: 'Pokemon Breeder at Will', location_country: 'Kanto Region', location_city: 'Pewter City')
+user3 = User.create!(email: 'jenniekim@networkin.com', password: "abc123", first_name: 'Jennie', last_name: 'Kim', headline: 'Brand Ambassador at Chanel', location_country: 'South Korea', location_city: 'Seoul', about: "Blackpink in your area!")
+user4 = User.create!(email: 'lisa@networkin.com', password: "abc123", first_name: 'Lisa', last_name: 'Manoban', headline: 'Brand Ambassador at Celine', location_country: 'South Korea', location_city: 'Seoul')
+user5 = User.create!(email: 'rosepark@networkin.com', password: "abc123", first_name: 'Rose', last_name: 'Park', headline: 'Brand Ambassador at YSL', location_country: 'South Korea', location_city: 'Seoul')
+user6 = User.create!(email: 'jisoo@networkin.com', password: "abc123", first_name: 'Jisoo', last_name: 'Kim', headline: 'Lead Actress at Snowdrop', location_country: 'South Korea', location_city: 'Seoul')
+user7 = User.create!(email: 'april@networkin.com', password: "abc123", first_name: 'April', last_name: 'Rain', headline: 'Partner at Ernst & Young', location_country: 'United States', location_city: 'New York')
+user8 = User.create!(email: 'may@networkin.com', password: "abc123", first_name: 'May', last_name: 'Smith', headline: 'Financial Analyst at Google', location_country: 'United States', location_city: 'San Francisco')
+user9 = User.create!(email: 'june@networkin.com', password: "abc123", first_name: 'June', last_name: 'Snow', headline: 'Program Manager at Netflix', location_country: 'United States', location_city: 'Seattle')
+user10 = User.create!(email: 'july@networkin.com', password: "abc123", first_name: 'July', last_name: 'Woo', headline: 'Operations Associate at Meta', location_country: 'United States', location_city: 'Austin')
+user11 = User.create!(email: 'august@networkin.com', password: "abc123", first_name: 'August', last_name: 'Roger', headline: 'Student at Princeton University', location_country: 'United States', location_city: 'Princeton')
+user12 = User.create!(email: 'mohammmad@networkin.com', password: "abc123", first_name: 'Mohammad', last_name: 'Patel', headline: 'Student at App Academy', location_country: 'Canada', location_city: 'Toronto')
 
 # create experiences
 
@@ -24,8 +31,20 @@ experience1 = Experience.create!(user_id: user1.id, title: "Software Engineer", 
 experience2 = Experience.create!(user_id: user1.id, title: "Software Engineer Apprentice", company_name: 'LinkedIn', location: 'Greater New York City Area', start_date: "2020-08-13", end_date: "2022-04-13")
 experience3 = Experience.create!(user_id: user2.id, title: "CEO", company_name: 'NetworkIn', location: 'Greater New York City Area', start_date: "2022-05-13", end_date: "2022-08-13")
 experience4 = Experience.create!(user_id: user2.id, title: "Assurance Senior", company_name: 'EY', location: 'Greater New York City Area', start_date: "2019-09-18", end_date: "2022-03-31")
-experience5 = Experience.create!(user_id: user3.id, title: "Pokemon Trainer", company_name: 'Pokemon World', location: 'Pallet Town', start_date: "1996-09-18", end_date: "2018-05-20")
-experience6 = Experience.create!(user_id: user4.id, title: "Gym Leader", company_name: 'Cerulean Gym', location: 'Cerulean City', start_date: "1996-09-18", end_date: "1998-01-13")
+experience5 = Experience.create!(user_id: user3.id, title: "Brand Ambassador", company_name: 'Chanel', location: 'Greater London Area', start_date: "2018-05-18", end_date: "2022-09-22")
+experience6 = Experience.create!(user_id: user3.id, title: "Main Rapper, Lead Vocalist", company_name: 'Blackpink', location: 'Seoul', start_date: "2016-03-18", end_date: "2022-06-22")
+experience7 = Experience.create!(user_id: user4.id, title: "Brand Ambassador", company_name: 'Celine', location: 'Greater London Area', start_date: "2017-05-18", end_date: "2022-09-22")
+experience8 = Experience.create!(user_id: user4.id, title: "Main Dancer, Lead Rapper", company_name: 'Blackpink', location: 'Seoul', start_date: "2016-03-18", end_date: "2022-06-22")
+experience9 = Experience.create!(user_id: user5.id, title: "Brand Ambassador", company_name: 'YSL', location: 'Greater London Area', start_date: "2018-01-18", end_date: "2022-09-22")
+experience10 = Experience.create!(user_id: user5.id, title: "Main Vocalist", company_name: 'Blackpink', location: 'Seoul', start_date: "2016-03-18", end_date: "2022-06-22")
+experience11 = Experience.create!(user_id: user6.id, title: "Lead Actress", company_name: 'Snowdrop', location: 'Seoul', start_date: "2022-01-18", end_date: "2022-06-22")
+experience12 = Experience.create!(user_id: user6.id, title: "Lead Vocalist", company_name: 'Blackpink', location: 'Seoul', start_date: "2016-03-18", end_date: "2022-06-22")
+experience13 = Experience.create!(user_id: user7.id, title: "Partner", company_name: 'Ernst & Young', location: 'Greater New York City Area', start_date: "1988-03-18", end_date: "2022-09-22")
+experience14 = Experience.create!(user_id: user8.id, title: "Financial Analyst", company_name: 'Google', location: 'Greater San Francisco Bay Area', start_date: "2021-09-18", end_date: "2022-09-22")
+experience15 = Experience.create!(user_id: user9.id, title: "Program Manager", company_name: 'Netflix', location: 'Greater Seattle Area', start_date: "2019-05-18", end_date: "2022-09-22")
+experience16 = Experience.create!(user_id: user9.id, title: "Assistant Program Manager", company_name: 'Twitter', location: 'Greater Seattle Area', start_date: "2017-05-18", end_date: "2019-05-22")
+experience17 = Experience.create!(user_id: user9.id, title: "Junior Program Manager", company_name: 'Adobe', location: 'Greater Los Angeles Area', start_date: "2012-04-18", end_date: "2017-05-22")
+experience18 = Experience.create!(user_id: user10.id, title: "Operations Associate", company_name: 'Meta', location: 'Greate Austin Area', start_date: "2016-03-18", end_date: "2022-08-22")
 
 # create educations
 
@@ -33,8 +52,10 @@ education1 = Education.create!(user_id: user1.id, school: 'Harvard University', 
 education2 = Education.create!(user_id: user1.id, school: 'App Academy', field: "Software Engineering", start_date: "2022-05-13", end_date: "2022-09-13", description: "1000-hour immersive full-stack web development intensive with <3% acceptance rate.")
 education3 = Education.create!(user_id: user2.id, school: 'Baruch College', degree: "Bachelor's of Business Administration", field: "Accounting", start_date: "2016-08-13", end_date: "2018-12-13")
 education4 = Education.create!(user_id: user2.id, school: 'App Academy', field: "Software Engineering", start_date: "2022-05-13", end_date: "2022-09-13", description: "1000-hour immersive full-stack web development intensive with <3% acceptance rate.")
-education5 = Education.create!(user_id: user3.id, school: 'Pokemon Academy', degree: "Master's", field: "Pokemon Battling", start_date: "1994-08-13", end_date: "1995-09-13")
-education6 = Education.create!(user_id: user5.id, school: 'Pokemon Academy', degree: "Master's", field: "Pokemon Breeding", start_date: "1993-05-13", end_date: "1996-01-13")
+education5 = Education.create!(user_id: user3.id, school: 'YG Entertainment', degree: "Trainee", field: "Idol Training", start_date: "2010-08-13", end_date: "2015-09-13")
+education5 = Education.create!(user_id: user4.id, school: 'YG Entertainment', degree: "Trainee", field: "Idol Training", start_date: "2008-06-13", end_date: "2015-09-13")
+education5 = Education.create!(user_id: user5.id, school: 'YG Entertainment', degree: "Trainee", field: "Idol Training", start_date: "2011-03-13", end_date: "2015-09-13")
+education5 = Education.create!(user_id: user6.id, school: 'YG Entertainment', degree: "Trainee", field: "Idol Training", start_date: "2009-05-13", end_date: "2015-09-13")
 
 # create posts
 
