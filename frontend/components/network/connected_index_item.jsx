@@ -74,14 +74,14 @@ const ConnectedIndexItem = (props) => {
                   }
                 else {
                   interval = seconds;
-                  intervalType = "now";
+                  intervalType = "Less than a minute ago";
                 }
               }
             }
           }
         }
       }
-        return (intervalType === "now") ? 'connected' + intervalType : 'Connected ' + interval + " " + intervalType + " ago";
+        return (intervalType === "Less than a minute ago") ? intervalType : 'Connected ' + interval + " " + intervalType + " ago";
       };
 
     return (

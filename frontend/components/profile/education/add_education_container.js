@@ -3,7 +3,7 @@ import EducationForm from "./education_form";
 import { addEducation } from '../../../actions/education_actions';
 import { closeModal } from '../../../actions/modal_actions';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
         education: {
